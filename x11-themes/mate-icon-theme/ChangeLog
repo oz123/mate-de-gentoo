@@ -2,6 +2,12 @@
 # Copyright 1999-2015 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/x11-themes/mate-icon-theme/ChangeLog,v 1.10 2014/12/20 18:07:13 tamiko Exp $
 
+*mate-icon-theme-1.10.1 (12 Jul 2015)
+
+  12 Jul 2015; NP-Hardass <NP-Hardass@gentoo.org>
+  +mate-icon-theme-1.10.1.ebuild:
+  Version bump mate-icon-theme to 1.10.1
+
   06 Jul 2015; NP-Hardass <NP-Hardass@gentoo.org> metadata.xml:
   Updated maintainer and add remote IDs.
 
