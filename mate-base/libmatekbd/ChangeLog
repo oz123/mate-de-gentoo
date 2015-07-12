@@ -2,6 +2,11 @@
 # Copyright 1999-2015 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/mate-base/libmatekbd/ChangeLog,v 1.10 2014/12/20 17:07:57 tamiko Exp $
 
+*libmatekbd-1.10.0 (12 Jul 2015)
+
+  12 Jul 2015; NP-Hardass <NP-Hardass@gentoo.org> +libmatekbd-1.10.0.ebuild:
+  Version bump libmatekbd to 1.10.0
+
   06 Jul 2015; NP-Hardass <NP-Hardass@gentoo.org> metadata.xml:
   Updated maintainer and add remote IDs.
 
