@@ -2,6 +2,11 @@
 # Copyright 1999-2015 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/dev-libs/libmateweather/ChangeLog,v 1.12 2015/04/08 17:51:55 mgorny Exp $
 
+*libmateweather-1.10.0 (12 Jul 2015)
+
+  12 Jul 2015; NP-Hardass <NP-Hardass@gentoo.org> +libmateweather-1.10.0.ebuild:
+  Version bump libmateweather to 1.10.0
+
   06 Jul 2015; NP-Hardass <NP-Hardass@gentoo.org> metadata.xml:
   Updated maintainer and add remote IDs.
 
