@@ -2,6 +2,11 @@
 # Copyright 1999-2015 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/mate-base/caja/ChangeLog,v 1.10 2014/12/08 23:44:40 tamiko Exp $
 
+*caja-1.10.1 (13 Jul 2015)
+
+  13 Jul 2015; NP-Hardass <NP-Hardass@gentoo.org> +caja-1.10.1.ebuild:
+  Version bump caja to 1.10.1
+
   06 Jul 2015; NP-Hardass <NP-Hardass@gentoo.org> metadata.xml:
   Updated maintainer and add remote IDs.
 
