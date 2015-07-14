@@ -46,20 +46,14 @@ DEPEND="${RDEPEND}
 	virtual/pkgconfig:*"
 
 src_configure() {
-	myconf=()
-
-	if ! use startup-notification; then
-		myconf+=( --disable-startup-notification )
-	fi
-
 	gnome2_src_configure \
 		--enable-mate-about \
 		--enable-mate-conf-import \
 		--with-gtk=2.0 \
 		$(use_with X x) \
-		$(use_enable user-guide) \
 		$(use_enable introspection) \
-		${myconf[@]}
+		$(use_enable startup-notification) \
+		$(use_enable user-guide)
 }
 
 DOCS="AUTHORS ChangeLog HACKING NEWS README"
