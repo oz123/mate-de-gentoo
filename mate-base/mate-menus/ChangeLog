@@ -2,6 +2,11 @@
 # Copyright 1999-2015 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/mate-base/mate-menus/ChangeLog,v 1.12 2015/04/08 18:13:42 mgorny Exp $
 
+*mate-menus-1.10.0 (18 Jul 2015)
+
+  18 Jul 2015; NP-Hardass <NP-Hardass@gentoo.org> +mate-menus-1.10.0.ebuild:
+  Version bump mate-menus to 1.10.0
+
   06 Jul 2015; NP-Hardass <NP-Hardass@gentoo.org> metadata.xml:
   Updated maintainer and add remote IDs.
 
