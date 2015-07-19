@@ -2,6 +2,11 @@
 # Copyright 1999-2015 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/mate-extra/mate-media/ChangeLog,v 1.8 2014/12/20 17:30:33 tamiko Exp $
 
+*mate-media-1.10.0 (19 Jul 2015)
+
+  19 Jul 2015; NP-Hardass <NP-Hardass@gentoo.org> +mate-media-1.10.0.ebuild:
+  Version bump mate-media to 1.10.0
+
   06 Jul 2015; NP-Hardass <NP-Hardass@gentoo.org> metadata.xml:
   Updated maintainer and add remote IDs.
 
