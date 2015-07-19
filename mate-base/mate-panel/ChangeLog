@@ -2,6 +2,11 @@
 # Copyright 1999-2015 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/mate-base/mate-panel/ChangeLog,v 1.16 2014/12/20 17:19:11 tamiko Exp $
 
+*mate-panel-1.10.1 (18 Jul 2015)
+
+  18 Jul 2015; NP-Hardass <NP-Hardass@gentoo.org> +mate-panel-1.10.1.ebuild:
+  Version bump mate-panel to 1.10.1
+
   06 Jul 2015; NP-Hardass <NP-Hardass@gentoo.org> metadata.xml:
   Updated maintainer and add remote IDs.
 
