@@ -2,6 +2,12 @@
 # Copyright 1999-2015 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/mate-base/mate-control-center/ChangeLog,v 1.11 2014/12/20 17:12:16 tamiko Exp $
 
+*mate-control-center-1.10.1 (19 Jul 2015)
+
+  19 Jul 2015; NP-Hardass <NP-Hardass@gentoo.org>
+  +mate-control-center-1.10.1.ebuild:
+  Version bump mate-control-center to 1.10.1
+
   06 Jul 2015; NP-Hardass <NP-Hardass@gentoo.org> metadata.xml:
   Updated maintainer and add remote IDs.
 
