@@ -4,8 +4,10 @@
 	<herd>mate</herd>
 	<use>
 		<flag name="caja">Enable property page extension in 
-			<pkg>mate-base/mate-file-manager</pkg></flag>
+			<pkg>mate-base/caja</pkg></flag>
 		<flag name="dvi">Enable build-in DVI viewer</flag>
+		<flag name="epub">Enable build-in DVI viewer using
+			<pkg>net-libs/webkit-gtk</pkg></flag>
 		<flag name="ps">Enable build-in postscript viewer</flag>
 		<flag name="t1lib">Enable the Type-1 fonts for the build-in DVI viewer
 			(<pkg>media-libs/t1lib</pkg>)</flag>
