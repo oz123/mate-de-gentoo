@@ -1,6 +1,6 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/mate-extra/mate-utils/mate-utils-1.8.1.ebuild,v 1.1 2014/12/09 22:23:27 tamiko Exp $
+# $Id$
 
 EAPI="5"
 

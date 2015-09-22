@@ -1,6 +1,6 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/mate-base/mate-control-center/mate-control-center-1.8.1.ebuild,v 1.5 2014/07/02 09:46:30 pacho Exp $
+# $Id$
 
 EAPI="5"
 

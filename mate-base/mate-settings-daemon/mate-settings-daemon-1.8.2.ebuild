@@ -1,6 +1,6 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/mate-base/mate-settings-daemon/mate-settings-daemon-1.8.2.ebuild,v 1.1 2014/12/09 01:07:11 tamiko Exp $
+# $Id$
 
 EAPI="5"
 

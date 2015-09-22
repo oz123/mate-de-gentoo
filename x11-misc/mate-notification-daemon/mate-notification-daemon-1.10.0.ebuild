@@ -1,6 +1,6 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-misc/mate-notification-daemon/mate-notification-daemon-1.8.1.ebuild,v 1.1 2014/12/09 23:17:58 tamiko Exp $
+# $Id$
 
 EAPI="5"
 

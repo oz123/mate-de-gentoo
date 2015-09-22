@@ -1,6 +1,6 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/mate-extra/mate-screensaver/mate-screensaver-1.8.1.ebuild,v 1.2 2014/12/11 09:55:55 pacho Exp $
+# $Id$
 
 EAPI="5"
 GCONF_DEBUG="yes"

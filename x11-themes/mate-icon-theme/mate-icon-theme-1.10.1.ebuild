@@ -1,6 +1,6 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-themes/mate-icon-theme/mate-icon-theme-1.8.0.ebuild,v 1.5 2014/10/26 03:54:16 leio Exp $
+# $Id$
 
 EAPI="5"
 
