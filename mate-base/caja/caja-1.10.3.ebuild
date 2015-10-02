@@ -52,7 +52,7 @@ DEPEND="${RDEPEND}
 	sys-devel/gettext:*
 	virtual/pkgconfig:*"
 
-PDEPEND="mate? ( >=x11-themes/mate-icon-theme-1.8:0 )"
+PDEPEND="mate? ( >=x11-themes/mate-icon-theme-1.10:0 )"
 
 # TODO: Test fails because Caja is not merged yet:
 # GLib-GIO-ERROR **: Settings schema 'org.mate.caja.preferences' is not installed
