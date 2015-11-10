@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+	<herd>mate</herd>
+	<use>
+		<flag name="gtk3">Link against version 3 of the GIMP Toolkit instead of
+			              version 2 (x11-libs/gtk+)</flag>
+	</use>
+	<upstream>
+		<remote-id type="github">mate-desktop/libmateweather</remote-id>
+	</upstream>
+
+</pkgmetadata>
