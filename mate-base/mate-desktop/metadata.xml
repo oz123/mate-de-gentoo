@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+	<herd>mate</herd>
+	<use>
+		<flag name="user-guide">Install MATE user guide</flag>
+		<flag name="gtk3">Build mate-desktop with GTK3 support</flag>
+	</use>
+    <upstream>
+        <remote-id type="github">mate-desktop/mate-desktop</remote-id>
+    </upstream>
+</pkgmetadata>
