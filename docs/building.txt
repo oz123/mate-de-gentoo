@@ -1,0 +1,23 @@
+This is the order for building mate-1.12
+========================================
+
+mate-common
+mate-desktop
+# libmatekeyring # removed 
+# mate-keyring # removed
+libmatekbd
+# libmatewnck # removed
+libmateweather
+mate-icon-theme
+# mate-dialogs
+caja
+marco
+mate-settings-daemon
+mate-session-manager
+mate-menus # issue with open overlay, allows python 2.6
+mate-panel
+mate-control-center
+
+extras
+------
+mate-polkit
