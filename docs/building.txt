@@ -14,7 +14,7 @@ caja
 marco
 mate-settings-daemon
 mate-session-manager
-mate-menus # issue with open overlay, allows python 2.6
+mate-menus
 mate-panel
 mate-control-center
 
