@@ -19,7 +19,7 @@ LICENSE="GPL-2 FDL-1.1 LGPL-2"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
 
-IUSE="X +introspection gtk3 networkmanager"
+IUSE="X +introspection -gtk3 networkmanager"
 
 RDEPEND="
 	dev-libs/atk:0
@@ -45,9 +45,9 @@ RDEPEND="
 	introspection? ( >=dev-libs/gobject-introspection-0.6.7:0 )
 	networkmanager? ( >=net-misc/networkmanager-0.6:0 )
 	!gtk3? ( >=x11-libs/gdk-pixbuf-2.7.1:2
-             >=x11-libs/libwnck-2.30:1[introspection?]
-             >=x11-libs/gtk+-2.19.7:2[introspection?]
-             >=media-libs/libcanberra-0.23:0[gtk]
+			>=x11-libs/libwnck-2.30:1[introspection?]
+			>=x11-libs/gtk+-2.19.7:2[introspection?]
+			>=media-libs/libcanberra-0.23:0[gtk]
 	)
 	gtk3? ( x11-libs/gtk+:3[introspection?]
 			x11-libs/libwnck:3[introspection?]
@@ -73,10 +73,10 @@ src_prepare() {
 }
 
 src_configure() {
-        local use_gtk3
-        use gtk3 && use_gtk3="${use_gtk3} --with-gtk=3.0"
-        use !gtk3 && use_gtk3="${use_gtk3} --with-gtk=2.0"
-        gnome2_src_configure \
+	local use_gtk3
+	use gtk3 && use_gtk3="${use_gtk3} --with-gtk=3.0"
+	use !gtk3 && use_gtk3="${use_gtk3} --with-gtk=2.0"
+	gnome2_src_configure \
 		--libexecdir=/usr/libexec/mate-applets \
 		--disable-deprecation-flags \
 		$(use_enable networkmanager network-manager) \
