@@ -60,14 +60,15 @@ DEPEND="${RDEPEND}
 	virtual/pkgconfig:*
 	!<gnome-base/gdm-2.20.4"
 
-src_prepare() {
+#src_prepare() {
+	# Is this relevant still ?
 	# Add "session saving" button back,
 	# see https://bugzilla.gnome.org/show_bug.cgi?id=575544
-	epatch "${FILESDIR}"/${PN}-1.5.2-save-session-ui.patch
+	#epatch "${FILESDIR}"/${PN}-1.5.2-save-session-ui.patch
 
-	eautoreconf
-	gnome2_src_prepare
-}
+	#eautoreconf
+	#gnome2_src_prepare
+#}
 
 src_configure() {
 	local use_gtk3
