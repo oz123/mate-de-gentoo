@@ -12,6 +12,7 @@ mate-icon-theme
 # mate-dialogs
 caja
 marco
+libmatemixer
 mate-settings-daemon
 mate-session-manager
 mate-menus
