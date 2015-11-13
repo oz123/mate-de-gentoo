@@ -39,12 +39,15 @@ RDEPEND="dev-libs/atk:0
 	>=x11-libs/pango-1.1.2:0
 	virtual/libintl:0
 	introspection? ( >=dev-libs/gobject-introspection-0.6.4:0 )
-	xmp? ( >=media-libs/exempi-1.99.5:2 )"
-	!gtk3? ( >=x11-libs/gtk+-2.24:2[introspection?]
-		 >=dev-libs/libunique-1:1)
-	gtk3? ( x11-libs/gtk+:3 
-                dev-libs/libunique:3 
-    	)
+	xmp? ( >=media-libs/exempi-1.99.5:2 )
+	!gtk3? (
+			>=x11-libs/gtk+-2.24:2[introspection?]
+			>=dev-libs/libunique-1:1
+			)
+	gtk3? ( x11-libs/gtk+:3
+			dev-libs/libunique:3
+			)"
+			
 DEPEND="${RDEPEND}
 	!!mate-base/mate-file-manager
 	>=dev-lang/perl-5:0=
@@ -70,15 +73,15 @@ src_prepare() {
 
 src_configure() {
 	local use_gtk3
-        use gtk3 && use_gtk3="${use_gtk3} --with-gtk=3.0"
-        use !gtk3 && use_gtk3="${use_gtk3} --with-gtk=2.0"
+	use gtk3 && use_gtk3="${use_gtk3} --with-gtk=3.0"
+	use !gtk3 && use_gtk3="${use_gtk3} --with-gtk=2.0"
 	gnome2_src_configure \
 		--disable-packagekit \
 		--disable-update-mimedb \
 		--enable-unique \
 		$(use_enable introspection) \
 		$(use_enable xmp) \
-                ${use_gtk3}
+		${use_gtk3}
 
 }
 
