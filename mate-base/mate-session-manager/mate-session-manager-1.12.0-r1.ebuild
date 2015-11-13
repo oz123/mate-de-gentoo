@@ -46,10 +46,10 @@ RDEPEND=">=dev-libs/dbus-glib-0.76
 	gnome-keyring? ( gnome-base/gnome-keyring )
 	systemd? ( sys-apps/systemd )
 	upower? ( >=sys-power/upower-pm-utils-0.9.23 )
-        !gtk3? ( x11-libs/gdk-pixbuf:2
-        	 >=x11-libs/gtk+-2.14:2
-        	)
-        gtk3? ( x11-libs/gtk+:3 )"
+	!gtk3? ( x11-libs/gdk-pixbuf:2
+			>=x11-libs/gtk+-2.14:2
+		)
+	gtk3? ( x11-libs/gtk+:3 )"
 
 DEPEND="${RDEPEND}
 	>=dev-util/intltool-0.40:*
@@ -70,9 +70,9 @@ src_prepare() {
 }
 
 src_configure() {
-        local use_gtk3
-        use gtk3 && use_gtk3="${myconf} --with-gtk=3.0"
-        use !gtk3 && use_gtk3="${myconf} --with-gtk=2.0"
+	local use_gtk3
+	use gtk3 && use_gtk3="${myconf} --with-gtk=3.0"
+	use !gtk3 && use_gtk3="${myconf} --with-gtk=2.0"
 	gnome2_src_configure \
 		--docdir="${EPREFIX}/usr/share/doc/${PF}" \
 		$(use_enable ipv6) \

@@ -5,4 +5,8 @@
     <upstream>
         <remote-id type="github">mate-desktop/mate-session-manager</remote-id>
     </upstream>
+    <herd>mate</herd>
+	<use>
+	<flag name="gtk3">Build mate-desktop with GTK3 support</flag>
+	</use>
 </pkgmetadata>
