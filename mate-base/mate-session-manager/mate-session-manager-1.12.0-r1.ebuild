@@ -63,7 +63,7 @@ DEPEND="${RDEPEND}
 src_prepare() {
 	# Add "session saving" button back,
 	# see https://bugzilla.gnome.org/show_bug.cgi?id=575544
-	epatch "${FILESDIR}"/${P}-save-session-ui.patch
+	epatch "${FILESDIR}"/${PN}-1.5.2-save-session-ui.patch
 
 	eautoreconf
 	gnome2_src_prepare
