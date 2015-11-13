@@ -47,7 +47,7 @@ RDEPEND="dev-libs/atk:0
 	gtk3? ( x11-libs/gtk+:3
 			dev-libs/libunique:3
 			)"
-			
+
 DEPEND="${RDEPEND}
 	!!mate-base/mate-file-manager
 	>=dev-lang/perl-5:0=
