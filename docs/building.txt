@@ -3,7 +3,7 @@ This is the order for building mate-1.12
 
 mate-common
 mate-desktop
-# libmatekeyring # removed 
+# libmatekeyring # removed
 # mate-keyring # removed
 libmatekbd
 # libmatewnck # removed
