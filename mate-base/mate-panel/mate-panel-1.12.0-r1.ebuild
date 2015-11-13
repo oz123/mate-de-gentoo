@@ -19,19 +19,16 @@ LICENSE="GPL-2 FDL-1.1 LGPL-2"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
 
-IUSE="X +introspection -gtk3 networkmanager"
+IUSE="X +introspection gtk3 networkmanager"
 
 RDEPEND="
 	dev-libs/atk:0
 	>=dev-libs/dbus-glib-0.80:0
 	>=dev-libs/glib-2.36:2
-	>=dev-libs/libmateweather-1.10[gtk3]
 	dev-libs/libxml2:2
 	>=gnome-base/dconf-0.10:0
 	gnome-base/librsvg:2
-	>=mate-base/mate-desktop-1.10:0[gtk3]
-	>=mate-base/mate-menus-1.10:0[gtk3]
-	>=media-libs/libcanberra-0.23:0[gtk]
+	>=mate-base/mate-menus-1.10:0[gtk3?]
 	>=sys-apps/dbus-1.1.2:0
 	>=x11-libs/cairo-1:0
 	>=x11-libs/gdk-pixbuf-2.7.1:2
@@ -48,10 +45,15 @@ RDEPEND="
 			>=x11-libs/libwnck-2.30:1[introspection?]
 			>=x11-libs/gtk+-2.19.7:2[introspection?]
 			>=media-libs/libcanberra-0.23:0[gtk]
+			>=dev-libs/libmateweather-1.10
+			>=mate-base/mate-desktop-1.10:0
+			>=mate-base/mate-menus-1.10:0
 	)
 	gtk3? ( x11-libs/gtk+:3[introspection?]
 			x11-libs/libwnck:3[introspection?]
 			media-libs/libcanberra[gtk3]
+			>=dev-libs/libmateweather-1.10[gtk3]
+			>=mate-base/mate-desktop-1.10:0[gtk3?]
 	)"
 
 DEPEND="${RDEPEND}
