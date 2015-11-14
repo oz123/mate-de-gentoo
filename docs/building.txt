@@ -1,19 +1,21 @@
 This is the order for building mate-1.12
 ========================================
 
-mate-common
-mate-desktop
-libmatekbd
-libmateweather
-mate-icon-theme
-caja
-marco
-libmatemixer
-mate-settings-daemon
-mate-session-manager
-mate-menus
-mate-panel
-mate-control-center
+mate-base                 ebuild name                        1.12 ebuild
+---------                 -----------                        -----------
+mate-common               mate-base/mate-common                    +
+mate-desktop		  mate-base/mate-desktop                   +
+libmatekbd                mate-base/libmatekbd                     +
+libmateweather		  dev-libs/libmateweather                  +
+mate-icon-theme		  x11-themes/mate-icon-theme               +
+caja                      mate-base/caja                           +
+marco                     x11-wm/marco                             +
+libmatemixer              media-libs/libmatemedia                  +
+mate-settings-daemon      mate-base/mate-settings-daemon           +
+mate-session-manager      mate-base/mate-session-manager           +
+mate-menus                mate-base/mate-menus                     +
+mate-panel                mate-base/mate-panel                     +
+mate-control-center       mate-base/mate-contor-center             +
 
 extras
 ------
@@ -51,4 +53,3 @@ mate-icon-theme-faenza
 mate-themes-gtk3.14
 mate-themes-gtk3.16
 mate-themes-gtk3.18
-
