@@ -6,7 +6,6 @@ mate-desktop
 libmatekbd
 libmateweather
 mate-icon-theme
-# mate-dialogs
 caja
 marco
 libmatemixer
