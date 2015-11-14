@@ -3,10 +3,7 @@ This is the order for building mate-1.12
 
 mate-common
 mate-desktop
-# libmatekeyring # removed
-# mate-keyring # removed
 libmatekbd
-# libmatewnck # removed
 libmateweather
 mate-icon-theme
 # mate-dialogs
@@ -22,3 +19,37 @@ mate-control-center
 extras
 ------
 mate-polkit
+mate-applets
+mate-media
+mate-netbook
+caja-extensions
+caja-dropbox
+mate-backgrounds
+mate-indicator-applet
+mate-notification-daemon
+mate-sensors-applet
+mate-system-monitor
+mate-user-guide
+mate-user-share
+mate-utils
+python-caja
+
+mate-applications
+-----------------
+mate-netspeed
+mate-power-manager
+mate-terminal
+engrampa
+eom
+atril
+mate-screensaver
+mozo
+pluma
+
+mate-themes-extra
+-----------------
+mate-icon-theme-faenza
+mate-themes-gtk3.14
+mate-themes-gtk3.16
+mate-themes-gtk3.18
+
