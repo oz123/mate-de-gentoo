@@ -20,7 +20,7 @@ mate-base                     ebuild name                        1.12 ebuild
 extras
 ------
 14. mate-polkit		      mate-extra/mate-polkit                   +
-15. mate-applets              mate-base/mate-applets
+15. mate-applets              mate-base/mate-applets                   +
 16. mate-media
 17. mate-netbook
 18. caja-extensions
