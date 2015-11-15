@@ -19,7 +19,7 @@ LICENSE="GPL-2 FDL-1.1 LGPL-2"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
 
-IUSE="X gtk3 ipv6 networkmanager policykit +upower"
+IUSE="X gtk3 ipv6 policykit +upower"
 REQUIRED_USE="${PYTHON_REQUIRED_USE}"
 
 RDEPEND="${PYTHON_DEPS}
@@ -53,7 +53,6 @@ RDEPEND="${PYTHON_DEPS}
 	x11-libs/pango:0
 	>=x11-themes/mate-icon-theme-1.10:0
 	virtual/libintl:0
-	networkmanager? ( >=net-misc/networkmanager-0.7:0 )
 	policykit? ( >=sys-auth/polkit-0.92:0 )"
 
 DEPEND="${RDEPEND}
@@ -77,9 +76,7 @@ src_configure() {
 	use !gtk3 && use_gtk3="${use_gtk3} --with-gtk=2.0"
 	gnome2_src_configure \
 		--libexecdir=/usr/libexec/mate-applets \
-		--without-hal \
 		$(use_enable ipv6) \
-		$(use_enable networkmanager) \
 		$(use_enable policykit polkit) \
 		$(use_with upower) \
 		${use_gtk3} \
