@@ -18,7 +18,7 @@ LICENSE="LGPL-2 GPL-2 FDL-1.1"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
 
-IUSE="aac flac gtk3 mp3 pulseaudio speex twolame vorbis"
+IUSE="aac flac gtk3 mp3 speex twolame vorbis"
 
 # FIXME: automagic dev-util/glade:3 support
 COMMON_DEPEND="app-text/rarian:0
@@ -40,8 +40,7 @@ COMMON_DEPEND="app-text/rarian:0
 	>=media-plugins/gst-plugins-gconf-0.10.1:0.10
 	x11-libs/cairo:0
 	x11-libs/pango:0
-	virtual/libintl:0
-	pulseaudio? ( >=media-sound/pulseaudio-0.9.16:0[glib] )"
+	virtual/libintl:0"
 
 # Specific gst plugins are used by the default audio encoding profiles
 RDEPEND="${COMMON_DEPEND}
@@ -79,10 +78,7 @@ src_configure() {
 	use gtk3 && use_gtk3="${use_gtk3} --with-gtk=3.0"
 	use !gtk3 && use_gtk3="${use_gtk3} --with-gtk=2.0"
 	gnome2_src_configure \
-		${use_gtk3} \
-		$(use_enable pulseaudio) \
-		$(use_enable !pulseaudio gstmix) \
-		$(use_enable !pulseaudio gst-mixer-applet)
+		${use_gtk3}
 }
 
 DOCS="AUTHORS ChangeLog* NEWS README"
@@ -94,9 +90,4 @@ pkg_postinst() {
 	ewarn "If you cannot play some music format, please check your"
 	ewarn "USE flags on media-plugins/gst-plugins-meta"
 	ewarn
-
-	if use pulseaudio ; then
-		ewarn "You have enabled pulseaudio support, gstmixer will not be built"
-		ewarn "If you do not use pulseaudio, you do not want this"
-	fi
 }

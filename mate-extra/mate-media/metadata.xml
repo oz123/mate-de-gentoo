@@ -7,7 +7,6 @@
 		<flag name="flac">Add flac gstreamer support</flag>
 		<flag name="gtk3">Build with gtk3 support</flag>
 		<flag name="mp3">Add mp3 gstreamer support</flag>
-		<flag name="pulseaudio">Add pulseaudio support</flag>
 		<flag name="speex">Add speex gstreamer support</flag>
 		<flag name="twolame">Add twolame gstreamer support</flag>
 		<flag name="vorbis">Add vorbis gstreamer support</flag>
