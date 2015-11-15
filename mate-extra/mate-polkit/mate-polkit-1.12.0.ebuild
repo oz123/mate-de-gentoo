@@ -26,7 +26,7 @@ RDEPEND=">=dev-libs/glib-2.36:2
 	x11-libs/gdk-pixbuf:2[introspection?]
 	)
 	gtk3? ( x11-libs/gtk+:3[introspection?] )
-    virtual/libintl:0
+	virtual/libintl:0
 	introspection? ( >=dev-libs/gobject-introspection-0.6.2:0 )"
 
 # We call gtkdocize so we need to depend on gtk-doc.
@@ -42,7 +42,7 @@ DEPEND="${RDEPEND}
 ENTROPY_RDEPEND="!lxde-base/lxpolkit"
 
 src_configure() {
-	local use_gtk3 
+	local use_gtk3
 	use gtk3 && use_gtk3="${use_gtk3} --with-gtk=3.0"
 	use !gtk3 && use_gtk3="${use_gtk3} --with-gtk=2.0"
 	gnome2_src_configure \
