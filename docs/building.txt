@@ -1,55 +1,55 @@
 This is the order for building mate-1.12
 ========================================
 
-mate-base                 ebuild name                        1.12 ebuild
----------                 -----------                        -----------
-mate-common               mate-base/mate-common                    +
-mate-desktop		  mate-base/mate-desktop                   +
-libmatekbd                mate-base/libmatekbd                     +
-libmateweather		  dev-libs/libmateweather                  +
-mate-icon-theme		  x11-themes/mate-icon-theme               +
-caja                      mate-base/caja                           +
-marco                     x11-wm/marco                             +
-libmatemixer              media-libs/libmatemedia                  +
-mate-settings-daemon      mate-base/mate-settings-daemon           +
-mate-session-manager      mate-base/mate-session-manager           +
-mate-menus                mate-base/mate-menus                     +
-mate-panel                mate-base/mate-panel                     +
-mate-control-center       mate-base/mate-contor-center             +
+mate-base                     ebuild name                        1.12 ebuild
+---------                     -----------                        -----------
+1.  mate-common               mate-base/mate-common                    +
+2.  mate-desktop              mate-base/mate-desktop                   +
+3.  libmatekbd                mate-base/libmatekbd                     +
+4.  libmateweather	      dev-libs/libmateweather                  +
+5.  mate-icon-theme           x11-themes/mate-icon-theme               +
+6.  caja                      mate-base/caja                           +
+7.  marco                     x11-wm/marco                             +
+8.  libmatemixer              media-libs/libmatemedia                  +
+9.  mate-settings-daemon      mate-base/mate-settings-daemon           +
+10. mate-session-manager      mate-base/mate-session-manager           +
+11. mate-menus                mate-base/mate-menus                     +
+12. mate-panel                mate-base/mate-panel                     +
+13. mate-control-center       mate-base/mate-contor-center             +
 
 extras
 ------
-mate-polkit		  mate-extra/mate-polkit                   +
-mate-applets
-mate-media
-mate-netbook
-caja-extensions
-caja-dropbox
-mate-backgrounds
-mate-indicator-applet
-mate-notification-daemon
-mate-sensors-applet
-mate-system-monitor
-mate-user-guide
-mate-user-share
-mate-utils
-python-caja
+14. mate-polkit		      mate-extra/mate-polkit                   +
+15. mate-applets              mate-base/mate-applets
+16. mate-media
+17. mate-netbook
+18. caja-extensions
+19. caja-dropbox
+20. mate-backgrounds
+21. mate-indicator-applet
+22. mate-notification-daemon
+23. mate-sensors-applet
+24. mate-system-monitor
+25. mate-user-guide
+26. mate-user-share
+27. mate-utils
+28. python-caja
 
 mate-applications
 -----------------
-mate-netspeed
-mate-power-manager
-mate-terminal
-engrampa
-eom
-atril
-mate-screensaver
-mozo
-pluma
+29. mate-netspeed
+30. mate-power-manager
+31. mate-terminal
+32. engrampa
+33. eom
+34. atril
+35. mate-screensaver
+36. mozo
+37. pluma
 
 mate-themes-extra
 -----------------
-mate-icon-theme-faenza
-mate-themes-gtk3.14
-mate-themes-gtk3.16
-mate-themes-gtk3.18
+38. mate-icon-theme-faenza
+39. mate-themes-gtk3.14
+40. mate-themes-gtk3.16
+41. mate-themes-gtk3.18
