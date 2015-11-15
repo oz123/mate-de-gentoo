@@ -19,7 +19,7 @@ mate-control-center       mate-base/mate-contor-center             +
 
 extras
 ------
-mate-polkit
+mate-polkit		  mate-extra/mate-polkit                   +
 mate-applets
 mate-media
 mate-netbook
