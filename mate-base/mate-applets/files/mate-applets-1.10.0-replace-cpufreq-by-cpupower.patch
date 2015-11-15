@@ -1,0 +1,71 @@
+--- a/configure.ac	2015-06-16 01:32:25.485187109 +0000
++++ b/configure.ac	2015-06-16 01:39:00.414170501 +0000
+@@ -409,12 +409,12 @@
+ 
+ AC_CHECK_HEADER(cpufreq.h, have_libcpufreq=yes, have_libcpufreq=no)
+ LIBCPUFREQ_LIBS=
+-if test "x$have_libcpufreq" = "xyes"; then
+-   AC_DEFINE([HAVE_LIBCPUFREQ], [1], [Have libcpufreq.])
+-   LIBCPUFREQ_LIBS="-l$with_cpufreq_lib"
++if test "x$have_libcpupower" = "xyes"; then
++   AC_DEFINE([HAVE_LIBCPOWER], [1], [Have libcpupower.])
++   LIBCPUPOWER_LIBS="-lcpupower"
+ fi
+-AM_CONDITIONAL(HAVE_LIBCPUFREQ, test x$have_libcpufreq = xyes)
+-AC_SUBST(LIBCPUFREQ_LIBS)
++AM_CONDITIONAL(HAVE_LIBCPUPOWER, test x$have_libcpupower = xyes)
++AC_SUBST(LIBCPUPOWER_LIBS)
+ 
+ build_cpufreq_applet=no
+ 
+--- a/cpufreq/src/cpufreq-selector/cpufreq-selector-factory.c	2015-06-16 01:42:36.709161405 +0000
++++ b/cpufreq/src/cpufreq-selector/cpufreq-selector-factory.c	2015-06-16 01:47:30.191149062 +0000
+@@ -24,7 +24,7 @@
+ #include "cpufreq-selector-factory.h"
+ #include "cpufreq-selector-sysfs.h"
+ #include "cpufreq-selector-procfs.h"
+-#ifdef HAVE_LIBCPUFREQ
++#ifdef HAVE_LIBCPUPOWER
+ #include "cpufreq-selector-libcpufreq.h"
+ #endif
+ 
+@@ -33,7 +33,7 @@
+ {
+ 	CPUFreqSelector *selector = NULL;
+ 	
+-#ifdef HAVE_LIBCPUFREQ
++#ifdef HAVE_LIBCPUPOWER
+ 	selector = cpufreq_selector_libcpufreq_new (cpu);
+ #else
+ 	if (g_file_test ("/sys/devices/system/cpu/cpu0/cpufreq", G_FILE_TEST_EXISTS)) { /* 2.6 kernel */
+@@ -41,7 +41,7 @@
+ 	} else if (g_file_test ("/proc/cpufreq", G_FILE_TEST_EXISTS)) { /* 2.4 kernel */
+ 		selector = cpufreq_selector_procfs_new (cpu);
+ 	}
+-#endif /* HAVE_LIBCPUFREQ */
++#endif /* HAVE_LIBCPUPOWER */
+ 
+ 	return selector;
+ }
+--- a/cpufreq/src/cpufreq-selector/Makefile.am	2015-06-16 01:49:29.208144057 +0000
++++ b/cpufreq/src/cpufreq-selector/Makefile.am	2015-06-16 01:50:43.970140913 +0000
+@@ -16,7 +16,7 @@
+ endif
+ 
+ 
+-if HAVE_LIBCPUFREQ
++if HAVE_LIBCPUPOWER
+ cpufreq_files=cpufreq-selector-libcpufreq.c        cpufreq-selector-libcpufreq.h
+ endif
+ 
+--- a/cpufreq/src/Makefile.am	2015-06-16 01:52:13.562137145 +0000
++++ b/cpufreq/src/Makefile.am	2015-06-16 01:52:46.122135776 +0000
+@@ -12,7 +12,7 @@
+ 
+ libexec_PROGRAMS = mate-cpufreq-applet
+ 
+-if HAVE_LIBCPUFREQ
++if HAVE_LIBCPUPOWER
+ cpufreq_files=cpufreq-monitor-libcpufreq.c    cpufreq-monitor-libcpufreq.h
+ endif
+ 
