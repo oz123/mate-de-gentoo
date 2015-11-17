@@ -27,7 +27,7 @@ extras
 19. caja-dropbox	      mate-extra/caja-dropbox                  +
 20. mate-backgrounds	      x11-themes/mate-backgrounds              +
 21. mate-indicator-applet     not packaged
-22. mate-notification-daemon
+22. mate-notification-daemon  x11-misc/mate-notification-daemon        +
 23. mate-sensors-applet
 24. mate-system-monitor
 25. mate-user-guide
