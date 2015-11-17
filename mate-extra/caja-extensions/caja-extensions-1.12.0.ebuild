@@ -7,7 +7,7 @@ EAPI="5"
 GCONF_DEBUG="yes"
 GNOME2_LA_PUNT="yes"
 
-inherit autotools eutils gnome2
+inherit eutils gnome2
 
 MATE_BRANCH="$(get_version_component_range 1-2)"
 
@@ -24,7 +24,7 @@ IUSE="gtk3 image-converter +open-terminal share +wallpaper ${SENDTO}"
 
 RDEPEND="!gtk3? ( >=x11-libs/gtk+-2.24:2
 				x11-libs/gdk-pixbuf:2
-        )
+	)
 	gtk3? ( x11-libs/gtk+:3 )
 	>=dev-libs/glib-2.36:2
 	>=mate-base/caja-1.12:0[gtk3?]
