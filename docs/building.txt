@@ -30,8 +30,8 @@ extras
 22. mate-notification-daemon  x11-misc/mate-notification-daemon        +
 23. mate-sensors-applet	      mate-extra/mate-sensors-applet           +
 24. mate-system-monitor       mate-extra/mate-system-monitor           +
-25. mate-user-guide
-26. mate-user-share
+25. mate-user-guide	      mate-extra/mate-user-guide               +
+26. mate-user-share           mate-extra/mate-user-share               +
 27. mate-utils
 28. python-caja
 
