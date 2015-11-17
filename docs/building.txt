@@ -32,7 +32,7 @@ extras
 24. mate-system-monitor       mate-extra/mate-system-monitor           +
 25. mate-user-guide	      mate-extra/mate-user-guide               +
 26. mate-user-share           mate-extra/mate-user-share               +
-27. mate-utils
+27. mate-utils                mate-extra/mate-utils                    +
 28. python-caja
 
 mate-applications

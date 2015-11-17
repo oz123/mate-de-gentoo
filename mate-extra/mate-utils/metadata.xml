@@ -4,6 +4,7 @@
 	<herd>mate</herd>
 	<use>
 		<flag name="applet">Enable the mate dictionary applet</flag>
+		<flag name="gtk3">Build with GTK3 support</flag>
 	</use>
     <upstream>
         <remote-id type="github">mate-desktop/mate-utils</remote-id>

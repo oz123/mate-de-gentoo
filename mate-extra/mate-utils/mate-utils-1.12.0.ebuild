@@ -78,7 +78,7 @@ src_configure() {
 	if ! use debug; then
 		use_gtk3="${use_gtk3} --enable-debug=minimum"
 	fi
-        
+
 	use gtk3 && use_gtk3="${use_gtk3} --with-gtk=3.0"
 	use !gtk3 && use_gtk3="${use_gtk3} --with-gtk=2.0"
 	gnome2_src_configure \
