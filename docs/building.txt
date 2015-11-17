@@ -24,8 +24,8 @@ extras
 16. mate-media                mate-extra/mate-media                    +
 17. mate-netbook              not packaged
 18. caja-extensions	      mate-extra/caja-extensions               +
-19. caja-dropbox
-20. mate-backgrounds
+19. caja-dropbox	      mate-extra/caja-dropbox                  +
+20. mate-backgrounds	      x11-themes/mate-backgrounds              +
 21. mate-indicator-applet
 22. mate-notification-daemon
 23. mate-sensors-applet
