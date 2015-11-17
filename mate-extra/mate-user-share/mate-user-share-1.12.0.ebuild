@@ -19,7 +19,7 @@ LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
 
-IUSE="X +bluetooth gtk3"
+IUSE="X bluetooth gtk3"
 
 RDEPEND=">=app-mobilephone/obex-data-server-0.4:0
 	>=dev-libs/dbus-glib-0.70:0
