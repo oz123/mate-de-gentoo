@@ -21,8 +21,8 @@ extras
 ------
 14. mate-polkit		      mate-extra/mate-polkit                   +
 15. mate-applets              mate-base/mate-applets                   +
-16. mate-media
-17. mate-netbook
+16. mate-media                mate-extra/mate-media                    +
+17. mate-netbook              not packaged
 18. caja-extensions
 19. caja-dropbox
 20. mate-backgrounds
