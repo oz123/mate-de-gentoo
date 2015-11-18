@@ -5,4 +5,7 @@
     <upstream>
         <remote-id type="github">mate-desktop/python-caja</remote-id>
     </upstream>
+	<use>
+		<flag name="gtk3">Build with GTK3</flag>
+	</use>
 </pkgmetadata>

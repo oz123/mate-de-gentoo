@@ -25,8 +25,7 @@ IUSE="doc gtk3"
 
 RDEPEND="dev-libs/glib:2
 	dev-python/pygobject:3[${PYTHON_USEDEP}]
-		>=mate-base/caja-1.12:0[introspection]
-	)
+	>=mate-base/caja-1.12:0[introspection]
 	!gtk3? ( x11-libs/gtk+:2 )
 	gtk3? ( x11-libs/gtk+:3 )
 	${PYTHON_DEPS}"
@@ -37,18 +36,18 @@ DEPEND="${RDEPEND}
 		app-text/docbook-xml-dtd:4.1.2
 		)"
 
-	DOCS="AUTHORS ChangeLog NEWS README"
+DOCS="AUTHORS ChangeLog NEWS README"
 
-	src_install() {
-		gnome2_src_install
+src_install() {
+	gnome2_src_install
 
-		# Keep the directory for systemwide extensions.
-		keepdir /usr/share/python-caja/extensions/
+	# Keep the directory for systemwide extensions.
+	keepdir /usr/share/python-caja/extensions/
 
-		# The HTML documentation generation is broken and commented out by upstream.
-		#
-		#if use doc ; then
-		#	insinto /usr/share/gtk-doc/html/nautilus-python # for dev-util/devhelp
-		#	doins -r docs/html/*
-		#fi
-	}
+	# The HTML documentation generation is broken and commented out by upstream.
+	#
+	#if use doc ; then
+	#	insinto /usr/share/gtk-doc/html/nautilus-python # for dev-util/devhelp
+	#	doins -r docs/html/*
+	#fi
+}
