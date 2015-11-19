@@ -33,19 +33,19 @@ extras
 25. mate-user-guide	      mate-extra/mate-user-guide               +
 26. mate-user-share           mate-extra/mate-user-share               +
 27. mate-utils                mate-extra/mate-utils                    +
-28. python-caja
+28. python-caja               dev-python/python-caja                   +
 
 mate-applications
 -----------------
-29. mate-netspeed
+29. mate-netspeed             net-analyzer/mate-netspeed               +
 30. mate-power-manager
-31. mate-terminal
+31. mate-terminal             x11-terms/mate-terminal                  +
 32. engrampa
 33. eom
 34. atril
 35. mate-screensaver
 36. mozo
-37. pluma
+37. pluma                     app-editors/pluma                        +
 
 mate-themes-extra
 -----------------
