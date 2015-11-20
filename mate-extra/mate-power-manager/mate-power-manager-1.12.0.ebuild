@@ -83,7 +83,6 @@ src_configure() {
 	gnome2_src_configure \
 		$(use_enable applet applets) \
 		$(use_enable test tests) \
-		$(use_enable unique) \
 		$(use_with gnome-keyring keyring) \
 		--enable-compile-warnings=minimum \
 		${use_gtk3}
