@@ -38,7 +38,7 @@ extras
 mate-applications
 -----------------
 29. mate-netspeed             net-analyzer/mate-netspeed               +
-30. mate-power-manager
+30. mate-power-manager	      mate-extra/mate-power-manager            +
 31. mate-terminal             x11-terms/mate-terminal                  +
 32. engrampa
 33. eom
