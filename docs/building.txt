@@ -42,7 +42,7 @@ mate-applications
 31. mate-terminal             x11-terms/mate-terminal                  +
 32. engrampa		      app-arch/engrampa			       +
 33. eom                       media-gfx/eom                            +
-34. atril
+34. atril	              app-text/atril                           +
 35. mate-screensaver          mate-extra/mate-screensaver              +
 36. mozo
 37. pluma                     app-editors/pluma                        +

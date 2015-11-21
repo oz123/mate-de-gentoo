@@ -89,8 +89,6 @@ src_configure() {
 		--enable-pdf \
 		--enable-pixbuf \
 		--enable-thumbnailer \
-		--with-smclient=xsmp \
-		--with-platform=mate \
 		$(use_enable dbus) \
 		$(use_enable djvu) \
 		$(use_enable dvi) \
