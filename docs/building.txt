@@ -43,7 +43,7 @@ mate-applications
 32. engrampa		      app-arch/engrampa			       +
 33. eom
 34. atril
-35. mate-screensaver
+35. mate-screensaver          mate-extra/mate-screensaver              +
 36. mozo
 37. pluma                     app-editors/pluma                        +
 
