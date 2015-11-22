@@ -44,7 +44,7 @@ mate-applications
 33. eom                       media-gfx/eom                            +
 34. atril	              app-text/atril                           +
 35. mate-screensaver          mate-extra/mate-screensaver              +
-36. mozo
+36. mozo                      x11-misc/mozo                            +
 37. pluma                     app-editors/pluma                        +
 
 mate-themes-extra

@@ -19,7 +19,7 @@ LICENSE="GPL-2 LGPL-2 FDL-1.1"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
 
-IUSE="X +mate +introspection xmp +unique gtk3"
+IUSE="X +mate +introspection xmp gtk3"
 
 RDEPEND="dev-libs/atk:0
 	>=dev-libs/glib-2.28:2
@@ -78,7 +78,6 @@ src_configure() {
 	gnome2_src_configure \
 		--disable-packagekit \
 		--disable-update-mimedb \
-		--enable-unique \
 		$(use_enable introspection) \
 		$(use_enable xmp) \
 		${use_gtk3}
