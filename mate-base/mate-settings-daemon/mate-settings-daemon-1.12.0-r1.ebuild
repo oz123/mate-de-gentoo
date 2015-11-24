@@ -95,7 +95,6 @@ src_configure() {
 		$(use_enable debug) \
 		$(use_enable policykit polkit) \
 		$(use_enable pulseaudio pulse) \
-		$(use_enable !pulseaudio gstreamer) \
 		$(use_enable smartcard smartcard-support) \
 		$(use_with X x) \
                 ${use_gtk3}
