@@ -1,4 +1,4 @@
-# Copyright 1999-2015 Gentoo Foundation
+# Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Id$
 
@@ -46,7 +46,7 @@ RDEPEND=">=dev-libs/dbus-glib-0.76
 	elibc_FreeBSD? ( dev-libs/libexecinfo )
 	gnome-keyring? ( gnome-base/gnome-keyring )
 	systemd? ( sys-apps/systemd )
-	upower? ( >=sys-power/upower-pm-utils-0.9.23 )"
+	upower? ( || ( >=sys-power/upower-0.9.23 >=sys-power/upower-pm-utils-0.9.23 ) )"
 
 DEPEND="${RDEPEND}
 	>=dev-util/intltool-0.40:*
@@ -61,6 +61,9 @@ src_prepare() {
 	# Add "session saving" button back,
 	# see https://bugzilla.gnome.org/show_bug.cgi?id=575544
 	epatch "${FILESDIR}"/${PN}-1.5.2-save-session-ui.patch
+
+	# Upstream patch by oleid to fix building with upower 0.99
+	epatch "${FILESDIR}"/${PN}-1.10.3-upower-0.99-series.patch
 
 	eautoreconf
 	gnome2_src_prepare
