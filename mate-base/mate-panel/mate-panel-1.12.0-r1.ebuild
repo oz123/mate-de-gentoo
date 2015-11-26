@@ -19,7 +19,7 @@ LICENSE="GPL-2 FDL-1.1 LGPL-2"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
 
-IUSE="X +introspection gtk3 networkmanager"
+IUSE="X +introspection gtk3"
 
 RDEPEND="
 	dev-libs/atk:0
@@ -81,8 +81,7 @@ src_configure() {
 	gnome2_src_configure \
 		--libexecdir=/usr/libexec/mate-applets \
 		--disable-deprecation-flags \
-		$(use_enable networkmanager network-manager) \
-		$(use_enable introspection) \
+			$(use_enable introspection) \
 		$(use_with X x) \
         ${use_gtk3}
 }
