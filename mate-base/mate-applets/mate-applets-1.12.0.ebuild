@@ -91,7 +91,7 @@ src_test() {
 DOCS="AUTHORS ChangeLog NEWS README"
 
 src_install() {
-	python_fix_shebang invest-applet timer-applet/src
+	python_fix_shebang invest-applet timerapplet
 	gnome2_src_install
 
 	local APPLETS="accessx-status battstat charpick command cpufreq drivemount
