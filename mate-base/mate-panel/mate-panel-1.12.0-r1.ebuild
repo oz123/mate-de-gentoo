@@ -40,7 +40,6 @@ RDEPEND="
 	>=x11-libs/libXrandr-1.2:0
 	virtual/libintl:0
 	introspection? ( >=dev-libs/gobject-introspection-0.6.7:0 )
-	networkmanager? ( >=net-misc/networkmanager-0.6:0 )
 	!gtk3? ( >=x11-libs/gdk-pixbuf-2.7.1:2
 			>=x11-libs/libwnck-2.30:1[introspection?]
 			>=x11-libs/gtk+-2.19.7:2[introspection?]
