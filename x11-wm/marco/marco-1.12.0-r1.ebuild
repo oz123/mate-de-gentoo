@@ -26,10 +26,9 @@ RDEPEND="
 	>=dev-libs/glib-2.32.10:2
 	!>=mate-extra/mate-dialogs-1.6:0
 	!gtk3? ( media-libs/libcanberra:0[gtk]
-    	         x11-libs/gdk-pixbuf:2
-	         >=x11-libs/gtk+-2.24:2
-        )
-        gtk3? ( x11-libs/gtk+:3 media-libs/libcanberra[gtk3] ) 
+			 x11-libs/gdk-pixbuf:2
+			 >=x11-libs/gtk+-2.24:2 )
+    gtk3? ( x11-libs/gtk+:3 media-libs/libcanberra[gtk3] ) 
 	>=gnome-base/libgtop-2:2=
 	gnome-extra/zenity:0
 	x11-libs/cairo:0
@@ -60,9 +59,9 @@ DEPEND="${RDEPEND}
 	xinerama? ( x11-proto/xineramaproto:0 )"
 
 src_configure() {
-        local use_gtk3 
-        use gtk3 && myconf="${use_gtk3} --with-gtk=3.0"
-        use !gtk3 && myconf="${use_gtk3} --with-gtk=2.0"
+        local use_gtk
+        use gtk3 && use_gtk="--with-gtk=3.0"
+        use !gtk3 && use_gtk="--with-gtk=2.0"
 	gnome2_src_configure \
 		--enable-compositor \
 		--enable-render \
@@ -71,7 +70,7 @@ src_configure() {
 		--enable-xsync \
 		$(use_enable startup-notification) \
 		$(use_enable xinerama) \
-                ${use_gtk3}
+		${use_gtk}
 }
 
 DOCS="AUTHORS ChangeLog HACKING NEWS README *.txt doc/*.txt"
