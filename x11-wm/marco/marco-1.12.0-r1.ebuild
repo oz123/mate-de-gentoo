@@ -28,7 +28,7 @@ RDEPEND="
 	!gtk3? ( media-libs/libcanberra:0[gtk]
 			 x11-libs/gdk-pixbuf:2
 			 >=x11-libs/gtk+-2.24:2 )
-    gtk3? ( x11-libs/gtk+:3 media-libs/libcanberra[gtk3] ) 
+	gtk3? ( x11-libs/gtk+:3 media-libs/libcanberra[gtk3] ) 
 	>=gnome-base/libgtop-2:2=
 	gnome-extra/zenity:0
 	x11-libs/cairo:0
