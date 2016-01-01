@@ -1,4 +1,4 @@
-# Copyright 1999-2015 Gentoo Foundation
+# Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Id$
 
@@ -20,7 +20,7 @@ LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
 
-IUSE="caja dbus debug djvu dvi epub +introspection gnome-keyring +ps t1lib tiff xps"
+IUSE="caja dbus debug djvu dvi epub +introspection gnome-keyring +postscript t1lib tiff xps"
 
 RDEPEND=">=app-text/poppler-0.16:0=[cairo]
 	app-text/rarian:0
@@ -46,7 +46,7 @@ RDEPEND=">=app-text/poppler-0.16:0=[cairo]
 	epub? ( net-libs/webkit-gtk:2 )
 	gnome-keyring? ( >=app-crypt/libsecret-0.5:0 )
 	introspection? ( >=dev-libs/gobject-introspection-0.6:0 )
-	ps? ( >=app-text/libspectre-0.2:0 )
+	postscript? ( >=app-text/libspectre-0.2:0 )
 	tiff? ( >=media-libs/tiff-3.6:0 )
 	xps? ( >=app-text/libgxps-0.2.0:0 )
 	!!app-text/mate-document-viewer"
@@ -90,7 +90,7 @@ src_configure() {
 		$(use_with gnome-keyring keyring) \
 		$(use_enable introspection) \
 		$(use_enable caja) \
-		$(use_enable ps) \
+		$(use_enable postscript ps) \
 		$(use_enable t1lib) \
 		$(use_enable tiff) \
 		$(use_enable xps)
