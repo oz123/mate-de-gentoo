@@ -1,5 +1,5 @@
-MATE-DESKTOP 1.12
-=================
+MATE-DESKTOP OVERLAY For Gentoo
+===============================
 
 This is an overlay intended to be used in Gentoo. It is based
 on packages by gentoo upstream Maintainer (NP-Completeass) and pacakges
