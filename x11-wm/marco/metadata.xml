@@ -2,6 +2,11 @@
 <!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
 <pkgmetadata>
     <herd>mate</herd>
+		<use>
+			<flag name="startup-notification">disable marco's startup notification support, for embedded/size-sensitive custom non-MATE builds</flag>
+			<flag name="gtk3">Build with GTK3+</flag>
+			<flag name="xinerama">Enable support for multiple screens using xinerama</flag>
+		</use>
     <upstream>
         <remote-id type="github">mate-desktop/marco</remote-id>
     </upstream>
