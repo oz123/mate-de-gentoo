@@ -10,12 +10,12 @@ mate-base                     ebuild name                        1.12 ebuild
 5.  mate-icon-theme           x11-themes/mate-icon-theme               +
 6.  caja                      mate-base/caja                           +
 7.  marco                     x11-wm/marco                             +
-8.  libmatemixer              media-libs/libmatemedia                  +
+8.  libmatemixer              media-libs/libmatemixer                  +
 9.  mate-settings-daemon      mate-base/mate-settings-daemon           +
 10. mate-session-manager      mate-base/mate-session-manager           +
 11. mate-menus                mate-base/mate-menus                     +
 12. mate-panel                mate-base/mate-panel                     +
-13. mate-control-center       mate-base/mate-contor-center             +
+13. mate-control-center       mate-base/mate-control-center             +
 
 extras
 ------
