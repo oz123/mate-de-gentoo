@@ -29,7 +29,7 @@ RDEPEND="
 	=x11-wm/marco-${MATE_MV}*:0
 	base? (
 		=mate-base/caja-${MATE_MV}*:0
-		=mate-base/mate-applets-${MATE_MV}*:0
+		=mate-base/mate-applets-meta-${MATE_MV}*:0
 		=mate-base/mate-control-center-${MATE_MV}*:0
 		=mate-extra/mate-media-${MATE_MV}*:0
 		=x11-misc/mozo-${MATE_MV}*:0
