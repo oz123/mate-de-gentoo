@@ -1,4 +1,4 @@
-# Copyright 1999-2015 Gentoo Foundation
+# Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Id$
 
@@ -18,13 +18,15 @@ LICENSE="LGPL-2"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
 
-IUSE="+introspection"
+IUSE="accountsservice appindicator +introspection"
 
 RDEPEND=">=dev-libs/glib-2.36:2
 	>=sys-auth/polkit-0.102:0[introspection?]
 	>=x11-libs/gtk+-2.24:2[introspection?]
 	x11-libs/gdk-pixbuf:2[introspection?]
 	virtual/libintl:0
+	accountsservice? ( sys-apps/accountsservice:0[introspection?] )
+	appindicator? ( dev-libs/libappindicator:2 )
 	introspection? ( >=dev-libs/gobject-introspection-0.6.2:0 )"
 
 # We call gtkdocize so we need to depend on gtk-doc.
@@ -42,6 +44,8 @@ ENTROPY_RDEPEND="!lxde-base/lxpolkit"
 src_configure() {
 	gnome2_src_configure \
 		--disable-static \
+		$(use_enable accountsservice) \
+		$(use_enable appindicator) \
 		$(use_enable introspection)
 }
 
