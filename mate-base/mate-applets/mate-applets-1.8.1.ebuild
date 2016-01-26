@@ -1,4 +1,4 @@
-# Copyright 1999-2015 Gentoo Foundation
+# Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Id$
 
@@ -84,7 +84,7 @@ src_test() {
 DOCS="AUTHORS ChangeLog NEWS README"
 
 src_install() {
-	python_fix_shebang invest-applet timer-applet/src
+	python_fix_shebang invest-applet
 	gnome2_src_install
 
 	local APPLETS="accessx-status battstat charpick command cpufreq drivemount
