@@ -55,7 +55,7 @@ DEPEND="${RDEPEND}
 	app-text/docbook-xml-dtd:4.1.2
 	app-text/yelp-tools:0
 	>=app-text/scrollkeeper-dtd-1:1.0
-	>=dev-util/intltool-0.35:*
+	>=dev-util/intltool-0.50.1:*
 	virtual/pkgconfig:*
 	sys-devel/gettext:*"
 
