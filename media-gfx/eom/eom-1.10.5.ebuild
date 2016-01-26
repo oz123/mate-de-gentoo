@@ -1,4 +1,4 @@
-# Copyright 1999-2015 Gentoo Foundation
+# Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Id$
 
@@ -25,7 +25,7 @@ REQUIRED_USE="python? ( ${PYTHON_REQUIRED_USE} )"
 
 RDEPEND="
 	dev-libs/atk:0
-	>=dev-libs/glib-2.25.9:2
+	>=dev-libs/glib-2.36:2
 	>=dev-libs/libxml2-2:2
 	gnome-base/dconf:0
 	>=mate-base/mate-desktop-1.10:0
