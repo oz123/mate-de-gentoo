@@ -1,4 +1,4 @@
-# Copyright 1999-2015 Gentoo Foundation
+# Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Id$
 
@@ -58,13 +58,6 @@ DEPEND="${RDEPEND}
 	virtual/pkgconfig:0
 	x11-proto/inputproto:0
 	x11-proto/xproto:0"
-
-src_prepare() {
-	# mouse: Use event driven mode for syndaemon
-	epatch "${FILESDIR}/${PN}-1.2.0-syndaemon-mode.patch"
-
-	gnome2_src_prepare
-}
 
 src_configure() {
 	gnome2_src_configure \
