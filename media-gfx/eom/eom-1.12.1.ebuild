@@ -21,7 +21,9 @@ KEYWORDS="~amd64 ~x86"
 
 IUSE="X dbus exif gtk3 +introspection jpeg lcms python svg tiff xmp"
 
-REQUIRED_USE="python? ( ${PYTHON_REQUIRED_USE} )"
+REQUIRED_USE="
+	python? ( ${PYTHON_REQUIRED_USE} )
+	gtk3? (!dbus)"
 
 RDEPEND="
 	dev-libs/atk:0
