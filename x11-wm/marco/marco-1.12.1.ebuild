@@ -1,4 +1,4 @@
-# Copyright 1999-2015 Gentoo Foundation
+# Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Id$
 
@@ -28,7 +28,7 @@ RDEPEND="
 	!gtk3? ( media-libs/libcanberra:0[gtk]
 			 x11-libs/gdk-pixbuf:2
 			 >=x11-libs/gtk+-2.24:2 )
-	gtk3? ( x11-libs/gtk+:3 media-libs/libcanberra[gtk3] ) 
+	gtk3? ( x11-libs/gtk+:3 media-libs/libcanberra[gtk3] )
 	>=gnome-base/libgtop-2:2=
 	gnome-extra/zenity:0
 	x11-libs/cairo:0
@@ -59,9 +59,9 @@ DEPEND="${RDEPEND}
 	xinerama? ( x11-proto/xineramaproto:0 )"
 
 src_configure() {
-        local use_gtk
-        use gtk3 && use_gtk="--with-gtk=3.0"
-        use !gtk3 && use_gtk="--with-gtk=2.0"
+	local use_gtk
+	use gtk3 && use_gtk="--with-gtk=3.0"
+	use !gtk3 && use_gtk="--with-gtk=2.0"
 	gnome2_src_configure \
 		--enable-compositor \
 		--enable-render \
