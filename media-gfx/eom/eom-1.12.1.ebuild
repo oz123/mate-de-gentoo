@@ -23,7 +23,7 @@ IUSE="X dbus exif gtk3 +introspection jpeg lcms python svg tiff xmp"
 
 REQUIRED_USE="
 	python? ( ${PYTHON_REQUIRED_USE} )
-	gtk3? (!dbus)"
+	gtk3? ( !dbus )"
 
 RDEPEND="
 	dev-libs/atk:0

@@ -21,7 +21,7 @@ LICENSE="GPL-2 FDL-1.1 LGPL-2"
 SLOT="0"
 KEYWORDS="~amd64 ~x86 ~arm"
 
-IUSE="X gtk3 +introspection startup-notification +user-guide"
+IUSE="X gtk3 +introspection startup-notification"
 REQUIRED_USE="${PYTHON_REQUIRED_USE}"
 
 RDEPEND="${PYTHON_DEPS}
@@ -37,7 +37,7 @@ RDEPEND="${PYTHON_DEPS}
 	>=x11-libs/gdk-pixbuf-2.4:2[introspection?]
 	>=x11-libs/gtk+-2.24:2[introspection?]
 	x11-libs/libX11:0
-	>=x11-libs/libXrandr-1.2:0
+	>=x11-libs/libXrandr-1.3:0
 	virtual/libintl:0
 	introspection? ( >=dev-libs/gobject-introspection-0.9.7 )
 	startup-notification? ( >=x11-libs/startup-notification-0.5:0 )"
@@ -46,7 +46,7 @@ DEPEND="${RDEPEND}
 	app-text/docbook-xml-dtd:4.1.2
 	app-text/yelp-tools:0
 	>=dev-util/intltool-0.50.2-r1
-	>=gnome-base/dconf-0.10:0
+	>=gnome-base/dconf-0.13.4:0
 	sys-devel/gettext:*
 	>=x11-proto/randrproto-1.2:0
 	x11-proto/xproto:0
@@ -59,12 +59,9 @@ src_configure() {
 
 	gnome2_src_configure \
 		--enable-mate-about \
-		--enable-mate-conf-import \
-		--with-gtk=2.0 \
 		$(use_with X x) \
 		$(use_enable introspection) \
 		$(use_enable startup-notification) \
-		$(use_enable user-guide) \
 		${use_gtk3}
 }
 
@@ -73,5 +70,5 @@ DOCS="AUTHORS ChangeLog HACKING NEWS README"
 src_install() {
 	gnome2_src_install
 
-	python_replicate_script "${ED}"/usr/bin/mate-conf-import
+#	python_replicate_script "${ED}"/usr/bin/mate-conf-import
 }
