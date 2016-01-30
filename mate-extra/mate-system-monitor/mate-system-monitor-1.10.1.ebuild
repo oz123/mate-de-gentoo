@@ -1,4 +1,4 @@
-# Copyright 1999-2015 Gentoo Foundation
+# Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Id$
 
@@ -6,7 +6,7 @@ EAPI="5"
 
 GCONF_DEBUG="no"
 
-inherit gnome2 versionator
+inherit autotools gnome2 versionator
 
 MATE_BRANCH="$(get_version_component_range 1-2)"
 
@@ -41,8 +41,17 @@ RDEPEND="
 DEPEND="${RDEPEND}
 	app-text/yelp-tools:0
 	>=dev-util/intltool-0.35:*
+	mate-base/mate-common
 	sys-devel/gettext:*
 	>=sys-devel/autoconf-2.63:*
 	virtual/pkgconfig:*"
 
 DOCS="AUTHORS ChangeLog NEWS README"
+
+src_prepare() {
+	# Add support for "smart" CXXFLAGS and C++11 switch
+	# see https://github.com/mate-desktop/mate-system-monitor/commit/56594f
+	epatch "${FILESDIR}/${P}-cxxflags-cpp11.patch"
+	eautoreconf
+	default
+}
