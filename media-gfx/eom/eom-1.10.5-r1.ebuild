@@ -7,7 +7,7 @@ EAPI="5"
 GCONF_DEBUG="yes"
 PYTHON_COMPAT=( python2_7 )
 
-inherit gnome2 python-single-r1 versionator
+inherit gnome2 autotools python-single-r1 versionator
 
 MATE_BRANCH="$(get_version_component_range 1-2)"
 
@@ -62,8 +62,14 @@ pkg_setup() {
 	use python && python-single-r1_pkg_setup
 }
 
+src_prepare() {
+	epatch "${FILESDIR}/eom-1.10-fix-introspection.patch"
+	eautoreconf
+}
+
 src_configure() {
 	gnome2_src_configure \
+		$(use_enable introspection) \
 		$(use_enable python) \
 		$(use_with jpeg libjpeg) \
 		$(use_with exif libexif) \
