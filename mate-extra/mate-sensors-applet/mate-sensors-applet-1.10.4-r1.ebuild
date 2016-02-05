@@ -1,4 +1,4 @@
-# Copyright 1999-2015 Gentoo Foundation
+# Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Id$
 
@@ -37,7 +37,7 @@ RDEPEND="app-text/rarian:0
 	lm_sensors? ( sys-apps/lm_sensors:0 )
 	video_cards_fglrx? ( x11-drivers/ati-drivers:* )
 	video_cards_nvidia? ( || (
-		>=x11-drivers/nvidia-drivers-100.14.09:0
+		>=x11-drivers/nvidia-drivers-100.14.09:0[static-libs,tools]
 		media-video/nvidia-settings:0
 	) )"
 
