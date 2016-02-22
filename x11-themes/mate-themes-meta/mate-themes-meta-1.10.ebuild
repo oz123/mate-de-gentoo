@@ -16,12 +16,12 @@ IUSE=""
 DEPEND=""
 RDEPEND="|| (
 		(
-			=x11-themes/mate-themes-1.10*:0/3.16
 			=x11-libs/gtk+-3.16*:3
+			=x11-themes/mate-themes-1.10*:0/3.16
 		)
 		(
-			=x11-themes/mate-themes-1.10*:0/3.18
 			=x11-libs/gtk+-3.18*:3
+			=x11-themes/mate-themes-1.10*:0/3.18
 		)
 		=x11-themes/mate-themes-1.10*:0
 	)"
