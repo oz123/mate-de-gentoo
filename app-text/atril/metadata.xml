@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
 <pkgmetadata>
-	<herd>mate</herd>
+	<maintainer> 
+	  <email>oz.tiram@gmail.com</email>
+	  <name>Oz N Tiram</name>
+	</maintainer>
 	<use>
 		<flag name="caja">Enable property page extension in 
 			<pkg>mate-base/caja</pkg></flag>
