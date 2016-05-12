@@ -28,9 +28,9 @@ RDEPEND="
 	>=dev-libs/dbus-glib-0.71:0
 	>=dev-libs/glib-2.36:2
 	gnome-base/dconf:0
-	>=mate-base/libmatekbd-1.12:0[gtk3?]
-	>=mate-base/mate-desktop-1.12:0[gtk3?]
-	>=mate-base/mate-menus-1.12:0
+	=mate-base/libmatekbd-${MATE_BRANCH}*:0[gtk3?]
+	=mate-base/mate-desktop-${MATE_BRANCH}*:0[gtk3?]
+	=mate-base/mate-menus-${MATE_BRANCH}*:0
 	>=sys-apps/dbus-0.30:0
 	!gtk3? ( >=x11-libs/gdk-pixbuf-2.14:2
 			>=x11-libs/gtk+-2.24:2

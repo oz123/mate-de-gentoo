@@ -2,7 +2,9 @@
 
 EAPI="5"
 
-inherit multilib
+inherit multilib versionator
+
+MATE_MV="$(get_version_component_range 1-2)"
 
 SRC_URI=""
 DESCRIPTION="Meta ebuild for MATE, a traditional desktop environment"
@@ -17,37 +19,40 @@ IUSE="+base -bluetooth +themes +extras gtk3"
 S="${WORKDIR}"
 
 RDEPEND="
-	>=mate-base/mate-desktop-1.12:0[gtk3?]
-	>=mate-base/mate-menus-1.12:0
-	>=mate-base/mate-panel-1.12:0[gtk3?]
-	>=mate-base/mate-session-manager-1.12:0[gtk3?]
-	>=mate-base/mate-settings-daemon-1.12:0[gtk3?]
-	>=x11-wm/marco-1.12:0[gtk3?]
+	=mate-base/mate-desktop-${MATE_MV}*:0[gtk3?]
+	=mate-base/mate-menus-${MATE_MV}*:0
+	=mate-base/mate-panel-${MATE_MV}*:0[gtk3?]
+	=mate-base/mate-session-manager-${MATE_MV}*:0[gtk3?]
+	=mate-base/mate-settings-daemon-${MATE_MV}*:0[gtk3?]
+	=x11-wm/marco-${MATE_MV}*:0[gtk3?]
 	base? (
-		>=mate-base/caja-1.12:0[gtk3?]
-		>=mate-base/mate-applets-1.12:0[gtk3?]
-		>=mate-base/mate-control-center-1.12:0[gtk3?]
-		>=mate-extra/mate-media-1.12:0
-		>=x11-misc/mozo-1.12:0
-		>=x11-terms/mate-terminal-1.12:0[gtk3?]
+		=mate-base/caja-${MATE_MV}*:0[gtk3?]
+		=mate-base/mate-applets-${MATE_MV}*:0[gtk3?]
+		=mate-base/mate-control-center-${MATE_MV}*:0[gtk3?]
+		=mate-extra/mate-media-${MATE_MV}*:0
+		=x11-misc/mozo-${MATE_MV}*:0
+		=x11-terms/mate-terminal-${MATE_MV}*:0[gtk3?]
 	)
 	bluetooth? ( net-wireless/blueman:0 )
 	themes? (
-		>=x11-themes/mate-backgrounds-1.12:0
-		>=x11-themes/mate-icon-theme-1.12:0
-		>=x11-themes/mate-themes-1.12:0
+		=x11-themes/mate-backgrounds-${MATE_MV}*:0
+		=x11-themes/mate-icon-theme-${MATE_MV}*:0
+		=x11-themes/mate-themes-${MATE_MV}*:0
 	)
 	extras? (
-		>=app-arch/engrampa-1.12:0[gtk3?]
-		>=app-editors/pluma-1.12:0[gtk3?]
-		>=app-text/atril-1.12:0[gtk3?]
-		!gtk3? ( >=mate-extra/mate-calc-1.8:0 )
+		=app-arch/engrampa-${MATE_MV}*:0[gtk3?]
+		=app-editors/pluma-${MATE_MV}*:0[gtk3?]
+		=app-text/atril-${MATE_MV}*:0[gtk3?]
+		!gtk3? ( gnome-extra/gnome-calculator:0 )
 		gtk3? ( sci-calculators/galculator )
-                >=mate-extra/mate-power-manager-1.12:0[gtk3?]
-		>=mate-extra/mate-screensaver-1.12:0
-		>=mate-extra/mate-system-monitor-1.12:0[gtk3?]
-		>=mate-extra/mate-utils-1.12:0
-		>=media-gfx/eom-1.12:0[gtk3?]
+        =mate-extra/caja-extensions-${MATE_MV}*:0
+		=mate-extra/mate-netbook-${MATE_MV}*:0
+		=mate-extra/mate-power-manager-${MATE_MV}*:0[gtk3?]
+		=mate-extra/mate-screensaver-${MATE_MV}*:0
+		=mate-extra/mate-system-monitor-${MATE_MV}*:0[gtk3?]
+		=mate-extra/mate-utils-${MATE_MV}*:0
+		=media-gfx/eom-${MATE_MV}*:0[gtk3?]
+		sys-apps/gnome-disk-utility:0
 	)
 "
 
@@ -69,6 +74,6 @@ pkg_postinst() {
     elog ""
     elog ""
     elog "Please report any issues you encounter in "
-    elog "https://github.com/oz123/gentoo-mate-112"
+    elog "https://github.com/oz123/mate-de-gentoo"
     elog ""
 }

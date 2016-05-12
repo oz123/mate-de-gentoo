@@ -44,15 +44,15 @@ RDEPEND="
 			>=x11-libs/libwnck-2.30:1[introspection?]
 			>=x11-libs/gtk+-2.19.7:2[introspection?]
 			>=media-libs/libcanberra-0.23:0[gtk]
-			>=dev-libs/libmateweather-1.10
-			>=mate-base/mate-desktop-1.10:0
-			>=mate-base/mate-menus-1.10:0
+			=dev-libs/libmateweather-${MATE_BRANCH}*
+			=mate-base/mate-desktop-${MATE_BRANCH}*:0
+			=mate-base/mate-menus-${MATE_BRANCH}*:0
 	)
 	gtk3? ( x11-libs/gtk+:3[introspection?]
 			x11-libs/libwnck:3[introspection?]
 			media-libs/libcanberra[gtk3]
-			>=dev-libs/libmateweather-1.10[gtk3]
-			>=mate-base/mate-desktop-1.10:0[gtk3?]
+			=dev-libs/libmateweather-${MATE_BRANCH}*[gtk3]
+			=mate-base/mate-desktop-${MATE_BRANCH}*:0[gtk3?]
 	)"
 
 DEPEND="${RDEPEND}
@@ -60,7 +60,7 @@ DEPEND="${RDEPEND}
 	app-text/yelp-tools:0
 	>=dev-lang/perl-5:0=
 	>=dev-util/intltool-0.50.2-r1
-	>=mate-base/mate-common-1.10:0
+	=mate-base/mate-common-${MATE_BRANCH}*:0
 	sys-devel/gettext:*
 	virtual/pkgconfig:*"
 

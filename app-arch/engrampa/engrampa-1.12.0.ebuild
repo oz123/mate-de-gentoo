@@ -32,13 +32,13 @@ RDEPEND="gtk3? ( x11-libs/gtk+:3 )
 	>=dev-libs/json-glib-0.14:0
 	x11-libs/pango:0
 	virtual/libintl:0
-	>=mate-base/caja-1.12:0[gtk3?]
+	=mate-base/caja-${MATE_BRANCH}*:0[gtk3?]
 	!!app-arch/mate-file-archiver"
 
 DEPEND="${RDEPEND}
 	>=dev-util/intltool-0.50.2-r1
 	dev-util/itstool:0
-	>=mate-base/mate-common-1.12:0
+	=mate-base/mate-common-${MATE_BRANCH}*:0
 	sys-devel/gettext:*
 	virtual/pkgconfig:*"
 
