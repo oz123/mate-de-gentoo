@@ -1,4 +1,4 @@
-# Copyright 1999-2015 Gentoo Foundation
+# Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Id$
 
@@ -27,7 +27,7 @@ RDEPEND=">=app-text/poppler-0.16:0=[cairo]
 	dev-libs/atk:0
 	>=dev-libs/glib-2.36:2
 	>=dev-libs/libxml2-2.5:2
-	>=mate-base/mate-desktop-1.12:0[gtk3?]
+	=mate-base/mate-desktop-${MATE_BRANCH}*:0[gtk3?]
 	sys-libs/zlib:0
 	x11-libs/libICE:0
 	>=x11-libs/libSM-1:0
@@ -35,7 +35,7 @@ RDEPEND=">=app-text/poppler-0.16:0=[cairo]
 	>=x11-libs/cairo-1.9.10:0
 	x11-libs/pango:0
 	>=x11-themes/mate-icon-theme-1.12:0
-	caja? ( >=mate-base/caja-1.12:0[introspection?] )
+	caja? ( =mate-base/caja-${MATE_BRANCH}*:0[introspection?] )
 	djvu? ( >=app-text/djvu-3.5.17:0 )
 	dvi? (
 		virtual/tex-base:0
