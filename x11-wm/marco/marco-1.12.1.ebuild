@@ -23,13 +23,14 @@ IUSE="gtk3 startup-notification test xinerama"
 
 RDEPEND="
 	dev-libs/atk:0
-	>=dev-libs/glib-2.32.10:2
+	>=dev-libs/glib-2.36.0:2
 	!>=mate-extra/mate-dialogs-1.6:0
 	!gtk3? ( media-libs/libcanberra:0[gtk]
 			 x11-libs/gdk-pixbuf:2
 			 >=x11-libs/gtk+-2.24:2 )
 	gtk3? ( x11-libs/gtk+:3 media-libs/libcanberra[gtk3] )
 	>=gnome-base/libgtop-2:2=
+	>=gnome-base/dconf-0.13
 	gnome-extra/zenity:0
 	x11-libs/cairo:0
 	>=x11-libs/pango-1.2:0[X]
@@ -41,7 +42,7 @@ RDEPEND="
 	x11-libs/libXdamage:0
 	x11-libs/libXext:0
 	x11-libs/libXfixes:0
-	x11-libs/libXrandr:0
+	>=x11-libs/libXrandr-1.3:0
 	x11-libs/libXrender:0
 	>=x11-libs/startup-notification-0.7:0
 	virtual/libintl:0
@@ -50,7 +51,7 @@ RDEPEND="
 
 DEPEND="${RDEPEND}
 	app-text/yelp-tools:0
-	>=dev-util/intltool-0.34.90:*
+	>=dev-util/intltool-0.50.1:*
 	sys-devel/gettext:*
 	virtual/pkgconfig:*
 	x11-proto/xextproto:0
