@@ -1,4 +1,4 @@
-# Copyright 1999-2015 Gentoo Foundation
+# Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Id$
 
@@ -22,8 +22,8 @@ RDEPEND="
 	app-text/docbook-xml-dtd:4.1.2
 	>=dev-libs/glib-2.36:2
 	sys-devel/gettext:*
-	alsa? ( >=media-libs/alsa-lib-1.0.0 )
-	pulseaudio? ( >=media-sound/pulseaudio-0.9.23:0[alsa?,glib] )"
+	alsa? ( >=media-libs/alsa-lib-1.0.5 )
+	pulseaudio? ( >=media-sound/pulseaudio-2.0.0:0[alsa?,glib] )"
 
 DEPEND="${RDEPEND}
 	>=dev-util/intltool-0.50.2
