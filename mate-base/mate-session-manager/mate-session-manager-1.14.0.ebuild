@@ -1,4 +1,4 @@
-# Copyright 1999-2015 Gentoo Foundation
+# Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Id$
 
@@ -6,7 +6,7 @@ EAPI="5"
 
 GCONF_DEBUG="yes"
 
-inherit autotools gnome2 versionator
+inherit gnome2 versionator
 
 MATE_BRANCH="$(get_version_component_range 1-2)"
 
@@ -36,7 +36,6 @@ RDEPEND=">=dev-libs/dbus-glib-0.76
 	x11-libs/libXext
 	x11-libs/libXrender
 	x11-libs/libXtst
-	>=mate-base/mate-desktop-1.9:0[gtk3?]
 	x11-libs/pango
 	x11-libs/xtrans
 	x11-misc/xdg-user-dirs
@@ -52,10 +51,10 @@ RDEPEND=">=dev-libs/dbus-glib-0.76
 	gtk3? ( x11-libs/gtk+:3 )"
 
 DEPEND="${RDEPEND}
-	>=dev-util/intltool-0.40:*
+	>=dev-util/intltool-0.50.1:*
 	>=dev-lang/perl-5
-	>=mate-base/mate-common-1.10
-	>=mate-base/mate-desktop-1.10
+	>=mate-base/mate-common-${MATE_BRANCH}
+	>=mate-base/mate-desktop-${MATE_BRANCH}
 	>=sys-devel/gettext-0.10.40:*
 	virtual/pkgconfig:*
 	!<gnome-base/gdm-2.20.4"
