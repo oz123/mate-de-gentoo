@@ -11,14 +11,14 @@ inherit gnome2 versionator
 MATE_BRANCH="$(get_version_component_range 1-2)"
 
 SRC_URI="http://pub.mate-desktop.org/releases/${MATE_BRANCH}/${P}.tar.xz"
-DESCRIPTION="A MATE specific DBUS session bus service to bring up authentication dialogs"
+DESCRIPTION="A MATE specific DBUS session bus service used to bring up authentication dialogs"
 HOMEPAGE="https://github.com/mate-desktop/mate-polkit"
 
 LICENSE="LGPL-2"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
 
-IUSE="+introspection"
+IUSE="+introspection gtk3 indicator"
 
 RDEPEND=">=dev-libs/glib-2.36:2
 	>=sys-auth/polkit-0.102:0[introspection?]
@@ -31,7 +31,9 @@ RDEPEND=">=dev-libs/glib-2.36:2
 DEPEND="${RDEPEND}
 	>=dev-util/gtk-doc-1.3:0
 	>=dev-util/intltool-0.35:*
-	>=mate-base/mate-common-1.10:0
+	indicator? ( gtk3? ( dev-libs/libappindicator:3 ) !gtk3? ( dev-libs/libappindicator:2 ) )
+	>=sys-devel/libtool-2.2.6
+	>=mate-base/mate-common-${MATE_BRANCH}:0
 	sys-devel/gettext:*
 	virtual/pkgconfig:*
 	!<gnome-extra/polkit-gnome-0.102:0"
