@@ -1,10 +1,12 @@
-# Copyright open-overlay 2015 by Alex
+# Copyright 1999-2016 Gentoo Foundation
+# Distributed under the terms of the GNU General Public License v2
+# $Id$
 
 EAPI="5"
 
 GCONF_DEBUG="no"
 GNOME2_LA_PUNT="yes"
-PYTHON_COMPAT=( python2_{6,7} )
+PYTHON_COMPAT=( python2_7 )
 
 inherit gnome2 python-r1
 
@@ -18,11 +20,11 @@ LICENSE="GPL-2 LGPL-2"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
 
-IUSE="gtk3 debug +introspection python"
+IUSE="debug gtk3 +introspection python"
 
 REQUIRED_USE="python? ( ${PYTHON_REQUIRED_USE} )"
 
-RDEPEND=">=dev-libs/glib-2.15.2:2
+RDEPEND=">=dev-libs/glib-2.36.0:2
 	virtual/libintl:0
 	introspection? ( >=dev-libs/gobject-introspection-0.6.7:0 )
 	python? (
@@ -31,8 +33,8 @@ RDEPEND=">=dev-libs/glib-2.15.2:2
 	)"
 
 DEPEND="${RDEPEND}
-	>=dev-util/intltool-0.50.2-r1
-	>=mate-base/mate-common-1.6:0
+	>=dev-util/intltool-0.50
+	>=mate-base/mate-common-${MATE_BRANCH}:0
 	sys-devel/gettext:*
 	virtual/pkgconfig:*"
 

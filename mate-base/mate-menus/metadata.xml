@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
 <pkgmetadata>
-	<herd>mate</herd>
-    <use>
+    <maintainer>
+        <email>oz.tiram@gmail.com</email>
+		<name>Oz N Tiram</name>
+	</maintainer>
+	<use>
 		<flag name="gtk3">Build with GTK3 support</flag>
 	</use>
     <upstream>
