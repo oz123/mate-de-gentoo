@@ -20,8 +20,8 @@ KEYWORDS="~amd64 ~x86"
 
 IUSE="gtk3"
 
-RDEPEND=">=mate-base/mate-desktop-1.12.0:0
-	>=mate-base/mate-panel-1.12.0:0
+RDEPEND=">=mate-base/mate-desktop-${MATE_BRANCH}
+	>=mate-base/mate-panel-${MATE_BRANCH}
 	>=dev-libs/glib-2.36:2
 	dev-libs/libunique:1
 	x11-libs/gtk+:2
@@ -34,7 +34,7 @@ RDEPEND=">=mate-base/mate-desktop-1.12.0:0
 
 DEPEND="${RDEPEND}
 	x11-proto/xproto:0
-	>=dev-util/intltool-0.34:*
+	>=dev-util/intltool-0.50.1:*
 	sys-devel/gettext:*
 	virtual/pkgconfig:*"
 
