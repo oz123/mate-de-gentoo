@@ -1,4 +1,4 @@
-# Copyright 1999-2015 Gentoo Foundation
+# Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Id$
 
@@ -17,16 +17,18 @@ HOMEPAGE="http://mate-desktop.org"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="amd64 x86"
+KEYWORDS="~amd64 ~x86"
 
-IUSE="+dbus hddtemp libnotify lm_sensors video_cards_fglrx video_cards_nvidia"
+IUSE="+dbus gtk3 hddtemp libnotify lm_sensors video_cards_fglrx video_cards_nvidia"
 
 RDEPEND="app-text/rarian:0
 	>=dev-libs/glib-2.26:2
-	>=mate-base/mate-panel-1.8:0
+	>=mate-base/mate-panel-${MATE_BRANCH}:0[gtk3?]
 	>=x11-libs/cairo-1.0.4:0
-	x11-libs/gdk-pixbuf:2
-	>=x11-libs/gtk+-2.14:2
+	!gtk3? ( x11-libs/gdk-pixbuf:2
+			>=x11-libs/gtk+-2.14:2
+			)
+	gtk3? ( x11-libs/gtk+:3 )
 	virtual/libintl:0
 	hddtemp? (
 		dbus? (
@@ -44,7 +46,7 @@ RDEPEND="app-text/rarian:0
 DEPEND="${RDEPEND}
 	>=app-text/scrollkeeper-dtd-1:1.0
 	app-text/yelp-tools:0
-	dev-util/intltool:*
+	>=dev-util/intltool-0.50.1
 	sys-devel/gettext:*
 	virtual/pkgconfig:*"
 
@@ -52,12 +54,14 @@ DEPEND="${RDEPEND}
 PDEPEND="hddtemp? ( dbus? ( sys-fs/udisks:0 ) )"
 
 src_configure() {
-	local myconf
+	local use_gtk3
+	use gtk3 && use_gtk3="${use_gtk3} --with-gtk=3.0"
+	use !gtk3 && use_gtk3="${use_gtk3} --with-gtk=2.0"
 
 	if use hddtemp && use dbus; then
-		myconf="${myconf} $(use_enable dbus udisks)"
+		use_gtk3="${use_gtk3} $(use_enable dbus udisks)"
 	else
-		myconf="${myconf} --disable-udisks"
+		use_gtk3="${use_gtk3} --disable-udisks"
 	fi
 
 	gnome2_src_configure \
@@ -66,7 +70,7 @@ src_configure() {
 		$(use_with lm_sensors libsensors) \
 		$(use_with video_cards_fglrx aticonfig) \
 		$(use_with video_cards_nvidia nvidia) \
-		${myconf}
+		${use_gtk3}
 }
 
 DOCS="AUTHORS ChangeLog NEWS README TODO"
