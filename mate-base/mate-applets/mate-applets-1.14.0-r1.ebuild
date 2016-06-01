@@ -19,7 +19,7 @@ LICENSE="GPL-2 FDL-1.1 LGPL-2"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
 
-IUSE="X gtk3 ipv6 policykit +upower iwlib"
+IUSE="X gtk3 ipv6 policykit +upower netspeed"
 REQUIRED_USE="${PYTHON_REQUIRED_USE}"
 
 RDEPEND="${PYTHON_DEPS}
@@ -47,7 +47,7 @@ RDEPEND="${PYTHON_DEPS}
 	)
 	upower?  ( || ( >=sys-power/upower-0.9.23
 					>=sys-power/upower-pm-utils-0.9.23 ) )
-	iwlib? ( net-wireless/wireless-tools )
+	netspeed? ( net-wireless/wireless-tools )
 	>=x11-libs/libnotify-0.7:0
 	x11-libs/libX11:0
 	>=x11-libs/libxklavier-4:0
@@ -80,7 +80,7 @@ src_configure() {
 		$(use_enable ipv6) \
 		$(use_enable policykit polkit) \
 		$(use_with upower) \
-		$(use_with iwlib) \
+		$(use_with netspeed) \
 		${use_gtk3} \
 		$(use_with X x)
 }
