@@ -10,6 +10,5 @@
 	</upstream>
 	<use>
 	<flag name="gtk3">Build mate-desktop with GTK3 support</flag>
-    <flag name="netspeed"> Build the netspeed applet</flag> 
 	</use>
 </pkgmetadata>
