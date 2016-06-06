@@ -33,7 +33,7 @@ RDEPEND="app-text/rarian:0
 	dev-libs/atk:0
 	>=dev-libs/glib-2.32:2
 	>=dev-libs/libxml2-2.5:2
-	>=mate-base/mate-desktop-1.12:0[gtk3?]
+	>=mate-base/mate-desktop-1.14:0[gtk3?]
 	x11-libs/cairo:0
 	!gtk3? ( x11-libs/gdk-pixbuf:2
 			>=x11-libs/gtk+-2.19:2
@@ -62,7 +62,7 @@ DEPEND="${RDEPEND}
 	app-text/yelp-tools:0
 	>=dev-util/intltool-0.50.2-r1
 	>=sys-devel/libtool-2.2.6:2
-	>=mate-base/mate-common-1.12:0
+	>=mate-base/mate-common-1.14:0
 	>=sys-devel/gettext-0.17:*
 	virtual/pkgconfig:*"
 
