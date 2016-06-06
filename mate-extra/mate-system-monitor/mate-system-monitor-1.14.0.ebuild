@@ -29,15 +29,9 @@ RDEPEND="app-text/rarian:0
 	>=gnome-base/librsvg-2.35:2
 	>=sys-apps/dbus-0.7:0
 	x11-libs/cairo:0
-	!gtk3? ( x11-libs/gdk-pixbuf:2
-			>=x11-libs/gtk+-2.20:2
-			>=x11-libs/libwnck-2.5:1
-			>=dev-cpp/gtkmm-2.22:2.4
-	)
-	gtk3? ( x11-libs/gtk+:3
-			dev-cpp/gtkmm:3.0
-			>=x11-libs/libwnck-3.4:3
-		)
+    x11-libs/gtk+:3
+	dev-cpp/gtkmm:3.0
+	>=x11-libs/libwnck-3.4:3
 	systemd? ( sys-apps/systemd )
 	>=x11-themes/mate-icon-theme-1.12:0
 	virtual/libintl:0"
@@ -53,12 +47,6 @@ DEPEND="${RDEPEND}
 DOCS="AUTHORS ChangeLog NEWS README"
 
 src_configure() {
-	local use_gtk3
-
-	use gtk3 && use_gtk3="${use_gtk3} --with-gtk=3.0"
-	use !gtk3 && use_gtk3="${use_gtk3} --with-gtk=2.0"
-
 	gnome2_src_configure \
-		$(use_enable systemd) \
-		${use_gtk3}
+		$(use_enable systemd) 
 }
