@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
 <pkgmetadata>
-    <herd>mate</herd>
+    <maintainer>
+        <email>oz.tiram@gmail.com</email>
+        <name>Oz N Tiram</name>
+    </maintainer>
 	<use>
 		<flag name="base">Install base MATE Desktop applications that are
 			recommended for the most common usage; for example, this installs
@@ -15,5 +18,7 @@
 			applications. Disable this if you plan to use your own non-MATE
 			Desktop alternatives or a custom mixture of MATE and non-MATE
 			packages.</flag>
+		<flag name="gtk3">Enable gtk3 support for pacakges that support this 
+		option</flag>
 	</use>
 </pkgmetadata>

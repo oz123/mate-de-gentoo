@@ -47,7 +47,7 @@ RDEPEND="
 		=app-text/atril-${MATE_MV}*:0[gtk3?]
 		!gtk3? ( gnome-extra/gnome-calculator:0 )
 		gtk3? ( sci-calculators/galculator )
-        =mate-extra/caja-extensions-${MATE_MV}*:0
+		=mate-extra/caja-extensions-${MATE_MV}*:0
 		=mate-extra/mate-netbook-${MATE_MV}*:0
 		=mate-extra/mate-power-manager-${MATE_MV}*:0[gtk3?]
 		=mate-extra/mate-screensaver-${MATE_MV}*:0
@@ -67,9 +67,9 @@ pkg_postinst() {
 	elog "MATE 1.14 removes the package net-anaylizer/mate-netspeed"
 	elog "This is now part of the package mate-applets."
 	elog ""
-    elog "For user guide information: emerge mate-user-guide-1.14.0"
-    elog ""
-    elog "Please report any issues you encounter in "
-    elog "https://github.com/oz123/mate-de-gentoo"
-    elog ""
+	elog "For user guide information: emerge mate-user-guide-1.14.0"
+	elog ""
+	elog "Please report any issues you encounter in "
+	elog "https://github.com/oz123/mate-de-gentoo"
+	elog ""
 }
