@@ -4,7 +4,10 @@
 	<longdescription lang="en">
 		MATE Desktop User Guide	
 	</longdescription>
-	<herd>mate</herd>
+    <maintainer>
+        <email>oz.tiram@gmail.com</email>
+        <name>Oz Tiram</name>
+    </maintainer>
     <upstream>
         <remote-id type="github">mate-desktop/mate-user-guide</remote-id>
     </upstream>

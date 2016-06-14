@@ -1,4 +1,4 @@
-# Copyright 1999-2015 Gentoo Foundation
+# Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Id$
 
@@ -19,21 +19,22 @@ HOMEPAGE="http://www.mate-desktop.org"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="amd64 x86"
+KEYWORDS="~amd64 ~x86"
 
-IUSE="doc"
+IUSE="doc gtk3"
 
 RDEPEND="dev-libs/glib:2
 	dev-python/pygobject:3[${PYTHON_USEDEP}]
-	>=mate-base/caja-1.8:0[introspection]
-	x11-libs/gtk+:2
+	>=mate-base/caja-1.12:0[introspection]
+	!gtk3? ( x11-libs/gtk+:2 )
+	gtk3? ( x11-libs/gtk+:3 )
 	${PYTHON_DEPS}"
 
 DEPEND="${RDEPEND}
 	virtual/pkgconfig:*
 	doc? (
 		app-text/docbook-xml-dtd:4.1.2
-	)"
+		)"
 
 DOCS="AUTHORS ChangeLog NEWS README"
 

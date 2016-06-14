@@ -1,4 +1,4 @@
-# Copyright 1999-2015 Gentoo Foundation
+# Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Id$
 
@@ -11,7 +11,7 @@ inherit autotools gnome2 versionator
 MATE_BRANCH="$(get_version_component_range 1-2)"
 
 SRC_URI="http://pub.mate-desktop.org/releases/${MATE_BRANCH}/${P}.tar.xz"
-DESCRIPTION="A session daemon for MATE that makes it easy to manage your laptop or desktop system"
+DESCRIPTION="A session daemon for MATE that eases your laptop or desktop system"
 HOMEPAGE="http://mate-desktop.org"
 
 LICENSE="GPL-2"
@@ -44,11 +44,11 @@ COMMON_DEPEND="app-text/rarian:0
 	x11-libs/libXrandr:0
 	>=x11-libs/libnotify-0.7:0
 	x11-libs/pango:0
-	applet? ( >=mate-base/mate-panel-1.12:0 )
+	applet? ( =mate-base/mate-panel-${MATE_BRANCH}*:0 )
 	gnome-keyring? ( >=gnome-base/libgnome-keyring-3:0 )"
 
 RDEPEND="${COMMON_DEPEND}
-	policykit? ( >=mate-extra/mate-polkit-1.10:0[gtk3?] )"
+	policykit? ( =mate-extra/mate-polkit-${MATE_BRANCH}*:0[gtk3?] )"
 
 DEPEND="${COMMON_DEPEND}
 	app-text/docbook-xml-dtd:4.3
