@@ -1,4 +1,6 @@
-# Copyright open-overlay 2015 by Alex
+# Copyright 1999-2016 Gentoo Foundation
+# Distributed under the terms of the GNU General Public License v2
+# $Id$
 
 EAPI="5"
 
@@ -45,7 +47,7 @@ RDEPEND="
 		=app-text/atril-${MATE_MV}*:0[gtk3?]
 		!gtk3? ( gnome-extra/gnome-calculator:0 )
 		gtk3? ( sci-calculators/galculator )
-        =mate-extra/caja-extensions-${MATE_MV}*:0
+		=mate-extra/caja-extensions-${MATE_MV}*:0
 		=mate-extra/mate-netbook-${MATE_MV}*:0
 		=mate-extra/mate-power-manager-${MATE_MV}*:0[gtk3?]
 		=mate-extra/mate-screensaver-${MATE_MV}*:0
@@ -69,11 +71,11 @@ pkg_postinst() {
 	elog ""
 	elog "For support with mate-conf-import see the following MATE forum topic:"
 	elog "http://forums.mate-desktop.org/viewtopic.php?f=16&t=1650"
-    elog ""
-    elog "For user guide information: emerge mate-user-guide-1.12.0"
-    elog ""
-    elog ""
-    elog "Please report any issues you encounter in "
-    elog "https://github.com/oz123/mate-de-gentoo"
-    elog ""
+	elog ""
+	elog "For user guide information: emerge mate-user-guide-1.12.0"
+	elog ""
+	elog ""
+	elog "Please report any issues you encounter in "
+	elog "https://github.com/oz123/mate-de-gentoo"
+	elog ""
 }

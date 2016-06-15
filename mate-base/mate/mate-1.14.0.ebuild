@@ -72,4 +72,7 @@ pkg_postinst() {
 	elog "Please report any issues you encounter in "
 	elog "https://github.com/oz123/mate-de-gentoo"
 	elog ""
+	elog "Gentoo's policy forbids supporting GTK+2 and GTK+3."
+	elog "The next stable release of mate 1.16 will be remove more GTK+2 code"
+	elog "This repository will contain only ebuilds that support GTK+3."
 }
