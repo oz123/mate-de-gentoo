@@ -18,7 +18,8 @@
 			applications. Disable this if you plan to use your own non-MATE
 			Desktop alternatives or a custom mixture of MATE and non-MATE
 			packages.</flag>
-		<flag name="gtk3">Enable gtk3 support for pacakges that support this 
+		<flag name="gnome">Install sys-apps/gnome-disk-utility</flag>
+		<flag name="gtk3">Enable gtk3 support for packages that support this 
 		option</flag>
 	</use>
 </pkgmetadata>
