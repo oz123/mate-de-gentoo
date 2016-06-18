@@ -23,9 +23,14 @@ IUSE="gtk3"
 RDEPEND=">=mate-base/mate-desktop-${MATE_BRANCH}
 	>=mate-base/mate-panel-${MATE_BRANCH}
 	>=dev-libs/glib-2.36:2
-	dev-libs/libunique:1
-	x11-libs/gtk+:2
-	x11-libs/libwnck:1
+	!gtk3? (
+		dev-libs/libunique:1
+		x11-libs/gtk+:2
+		x11-libs/libwnck:1 )
+	gtk3? (
+		dev-libs/libunique:3
+		x11-libs/gtk+:3
+		x11-libs/libwnck:3 )
 	x11-libs/libfakekey:0
 	x11-libs/libXtst:0
 	x11-libs/libX11:0
