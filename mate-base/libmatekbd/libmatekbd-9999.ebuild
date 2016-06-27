@@ -16,7 +16,7 @@ DESCRIPTION="MATE keyboard configuration library"
 LICENSE="LGPL-2"
 SLOT="0"
 
-IUSE="X gtk3 introspection test"
+IUSE="X gtk3 +introspection test"
 
 RDEPEND=">=dev-libs/glib-2.36:2
 	x11-libs/cairo:0
