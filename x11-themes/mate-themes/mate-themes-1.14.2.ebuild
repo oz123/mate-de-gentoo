@@ -22,7 +22,7 @@ KEYWORDS="~amd64 ~x86"
 
 S=${WORKDIR}/${PN}-${GTK_VERSION}.${GTK_MICRO}
 RDEPEND="
-	=x11-libs/gtk+-3.18*:3
+	>=x11-libs/gtk+-3.18*:3
 	x11-themes/murrine-themes:0"
 
 DEPEND="${RDEPEND}
