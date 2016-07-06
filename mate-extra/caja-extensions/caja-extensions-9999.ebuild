@@ -43,9 +43,9 @@ RDEPEND=">=dev-libs/glib-2.36:2
 	upnp? ( >=net-libs/gupnp-0.13:0= )"
 
 DEPEND="${RDEPEND}
+	dev-util/gtk-doc
 	dev-util/gtk-doc-am
 	>=dev-util/intltool-0.18:*
-	>=mate-base/mate-common-${MATE_BRANCH}
 	sys-devel/gettext:*
 	virtual/pkgconfig:*
 	!!mate-extra/mate-file-manager-open-terminal

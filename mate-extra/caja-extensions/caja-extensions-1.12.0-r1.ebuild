@@ -43,6 +43,7 @@ RDEPEND=">=dev-libs/glib-2.36:2
 	upnp? ( >=net-libs/gupnp-0.13:0= )"
 
 DEPEND="${RDEPEND}
+	dev-util/gtk-doc
 	dev-util/gtk-doc-am
 	>=dev-util/intltool-0.18:*
 	sys-devel/gettext:*
