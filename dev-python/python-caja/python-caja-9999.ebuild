@@ -27,6 +27,7 @@ RDEPEND="dev-libs/glib:2
 	${PYTHON_DEPS}"
 
 DEPEND="${RDEPEND}
+	dev-util/gtk-doc
 	dev-util/gtk-doc-am
 	virtual/pkgconfig:*
 	doc? ( app-text/docbook-xml-dtd:4.1.2 )"
