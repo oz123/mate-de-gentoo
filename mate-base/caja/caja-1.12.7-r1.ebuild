@@ -51,6 +51,7 @@ DEPEND="${RDEPEND}
 	!!mate-base/mate-file-manager
 	>=dev-lang/perl-5:0=
 	dev-util/gdbus-codegen:0
+	dev-util/gtk-doc
 	dev-util/gtk-doc-am
 	>=dev-util/intltool-0.40.1:*
 	sys-devel/gettext:*
