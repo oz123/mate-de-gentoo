@@ -23,6 +23,7 @@ RDEPEND="
 	alsa? ( >=media-libs/alsa-lib-1.0.5 )
 	pulseaudio? ( >=media-sound/pulseaudio-2.0.0:0[alsa?,glib] )"
 DEPEND="${RDEPEND}
+	dev-util/gtk-doc
 	dev-util/gtk-doc-am
 	>=dev-util/intltool-0.35.0:*
 	virtual/pkgconfig:*"
