@@ -56,6 +56,7 @@ RDEPEND="
 
 DEPEND="${RDEPEND}
 	app-text/yelp-tools:0
+	dev-util/gtk-doc
 	dev-util/gtk-doc-am
 	>=dev-util/intltool-0.50.1:*
 	sys-devel/gettext:*
