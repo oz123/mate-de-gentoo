@@ -34,6 +34,7 @@ RDEPEND="${PYTHON_DEPS}
 
 DEPEND="${RDEPEND}
 	app-text/docbook-xml-dtd:4.1.2
+	dev-util/gtk-doc
 	dev-util/gtk-doc-am
 	>=dev-util/intltool-0.40:*
 	>=gnome-base/dconf-0.13.4:0
