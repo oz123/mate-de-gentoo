@@ -15,9 +15,10 @@
 # fact that MATE is a GNOME fork. For additional functions, see gnome2-utils.eclass.
 
 # Check EAPI only
-if [[ "${EAPI:-0}" != "6" ]]; then
-	die "EAPI=${EAPI:-0} is not supported"
-fi
+case "${EAPI:-0}" in
+	6) ;;
+	*) die "EAPI=${EAPI:-0} is not supported" ;;
+esac
 
 # Inherit happens below after declaration of GNOME2_LA_PUNT
 
@@ -32,9 +33,10 @@ GNOME2_LA_PUNT=${MATE_LA_PUNT:-""}
 
 inherit gnome2 autotools mate-desktop.org
 
-if [[ "${EAPI:-0}" == "6" ]]; then
-	EXPORT_FUNCTIONS src_prepare src_configure src_install pkg_preinst pkg_postinst pkg_postrm
-fi
+case "${EAPI:-0}" in
+	6) EXPORT_FUNCTIONS src_prepare src_configure src_install pkg_preinst pkg_postinst pkg_postrm ;;
+	*) die "EAPI=${EAPI:-0} is not supported" ;;
+esac
 
 # Autotools requires our MATE m4 files
 DEPEND=">=mate-base/mate-common-${MATE_BRANCH}"

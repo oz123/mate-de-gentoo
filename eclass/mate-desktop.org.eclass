@@ -13,9 +13,10 @@
 # exporting some useful values like the MATE_BRANCH
 
 # EAPIs < 6 are banned.
-if [[ "${EAPI:-0}" != "6" ]]; then
-	die "EAPI=${EAPI:-0} is not supported"
-fi
+case "${EAPI:-0}" in
+	6) ;;
+	*) die "EAPI=${EAPI:-0} is not supported" ;;
+esac
 
 if [[ ${PV} == 9999 ]]; then
 	inherit git-r3
