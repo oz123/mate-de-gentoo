@@ -67,6 +67,7 @@ src_configure() {
 		--with-xf86gamma-ext \
 		--with-xscreensaverdir=/usr/share/xscreensaver/config \
 		--with-xscreensaverhackdir=/usr/$(get_libdir)/misc/xscreensaver \
+		--with-gtk=$(usex gtk3 3.0 2.0) \
 		$(use_with X x) \
 		$(use_with consolekit console-kit) \
 		$(use_with libnotify) \
