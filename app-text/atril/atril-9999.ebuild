@@ -45,7 +45,7 @@ RDEPEND=">=app-text/poppler-0.16:0=[cairo]
 		>=x11-libs/gtk+-2.24.0:2[introspection?]
 		epub? ( >=net-libs/webkit-gtk-2.4.3:2 )
 	)
-	!gtk3? (
+	gtk3? (
 		>=x11-libs/gtk+-3.0:3[introspection?]
 		epub? ( >=net-libs/webkit-gtk-2.4.3:4 )
 	)
