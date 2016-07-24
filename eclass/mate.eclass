@@ -104,7 +104,7 @@ mate_src_prepare() {
 
 	if [[ "${force_autoreconf}" == "true" ]] || [[ ${chksum} != $(gen_chksum) ]]; then
 		want_mate_doc && ematedocize
-		eautoreconf
+		AT_NOELIBTOOLIZE="yes" eautoreconf # gnome2_src_prepare calls elibtoolize
 	fi
 }
 
