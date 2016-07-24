@@ -30,3 +30,8 @@ RDEPEND="
 DEPEND="${RDEPEND}
 	>=dev-util/intltool-0.35.0
 	virtual/pkgconfig"
+
+src_configure() {
+	mate_src_configure \
+		--with-gtk=$(usex gtk3 3.0 2.0)
+}
