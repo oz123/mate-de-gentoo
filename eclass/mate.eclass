@@ -57,9 +57,9 @@ mate_py_cond_func_wrap() {
 	fi
 }
 
-# @ECLASS-VARIABLE: FORCE_AUTORECONF
+# @ECLASS-VARIABLE: MATE_FORCE_AUTORECONF
 # @DESCRIPTION:
-# Available values for FORCE_AUTORECONF:
+# Available values for MATE_FORCE_AUTORECONF:
 # - true: will always run eautoreconf
 # - false: will default to automatic detect
 # - If it is not set, it will default to false
