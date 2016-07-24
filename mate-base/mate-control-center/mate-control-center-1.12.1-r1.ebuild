@@ -76,6 +76,8 @@ DEPEND="${RDEPEND}
 	x11-proto/xproto:0
 	virtual/pkgconfig:*"
 
+PATCHES=( "${FILESDIR}/${PN}-1.12.1-backport-appindicator-configure.patch" )
+
 src_configure() {
 	mate_src_configure \
 		--disable-update-mimedb \
