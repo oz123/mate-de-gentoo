@@ -46,7 +46,7 @@ pkg_setup () {
 	enewgroup dropbox
 }
 
-FORCE_AUTORECONF=true
+MATE_FORCE_AUTORECONF=true
 
 src_prepare() {
 	# Use system dropbox.
@@ -57,7 +57,7 @@ src_prepare() {
 	# Use system rst2man.
 	epatch "${FILESDIR}"/${PN}-1.8.0-system-rst2man.patch
 
-	AT_NOELIBTOOLIZE=yes mate_src_prepare
+	mate_src_prepare
 }
 
 src_configure() {
