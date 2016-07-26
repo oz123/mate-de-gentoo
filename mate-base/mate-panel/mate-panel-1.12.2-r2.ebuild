@@ -60,7 +60,7 @@ DEPEND="${RDEPEND}
 	sys-devel/gettext:*
 	virtual/pkgconfig:*"
 
-FORCE_AUTORECONF=true
+MATE_FORCE_AUTORECONF=true
 
 src_prepare() {
 	# Disable python check.
