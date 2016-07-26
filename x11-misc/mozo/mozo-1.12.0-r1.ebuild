@@ -42,7 +42,7 @@ DEPEND="${COMMON_DEPEND}
 src_prepare() {
 	if use gtk3; then
 		eapply "${WORKDIR}/${P}-gtk3.patch"
-		FORCE_AUTORECONF=true
+		MATE_FORCE_AUTORECONF=true
 	fi
 	mate_src_prepare
 	python_copy_sources
