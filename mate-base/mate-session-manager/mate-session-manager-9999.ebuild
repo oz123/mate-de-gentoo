@@ -58,7 +58,7 @@ DEPEND="${RDEPEND}
 # see https://bugzilla.gnome.org/show_bug.cgi?id=575544
 PATCHES=( "${FILESDIR}"/${PN}-1.12.2-save-session-ui.patch )
 
-FORCE_AUTORECONF=true
+MATE_FORCE_AUTORECONF=true
 
 src_configure() {
 	mate_src_configure \
