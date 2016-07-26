@@ -22,7 +22,7 @@ RDEPEND="x11-themes/hicolor-icon-theme:0
 RESTRICT="binchecks strip"
 
 # https://github.com/mate-desktop/mate-icon-theme-faenza/issues/13
-FORCE_AUTORECONF=true
+MATE_FORCE_AUTORECONF=true
 
 src_prepare() {
 	# Remove broken libreoffice icons (dangling symlinks).
