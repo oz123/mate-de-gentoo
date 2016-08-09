@@ -6,7 +6,6 @@
 		<name>Gentoo MATE Desktop</name>
 	</maintainer>
 	<use>
-		<flag name="unsupported-gtk3">Allow unsupported GTK+3 or no GTK+3</flag>
 		<flag name="gtk2-only">Allow dependency-resolution for a system without GTK+3</flag>
 	</use>
 </pkgmetadata>

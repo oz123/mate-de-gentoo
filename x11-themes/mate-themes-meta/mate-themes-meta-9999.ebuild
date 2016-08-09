@@ -5,11 +5,9 @@
 EAPI=6
 
 if [[ ${PV} == 9999 ]]; then
-	MATE_BRANCH=9999
-	KEYWORDS=""
+	MATE_THEMES_V=".9999"
 else
-	inherit versionator
-	MATE_BRANCH="$(get_version_component_range 1-2)"
+	MATE_THEMES_V="*"
 	KEYWORDS="~amd64 ~arm ~x86"
 fi
 
@@ -19,21 +17,24 @@ SRC_URI=""
 
 LICENSE="metapackage"
 SLOT="0"
-IUSE="unsupported-gtk3"
+IUSE="gtk2-only"
 
 DEPEND=""
 RDEPEND="|| (
+		gtk2-only? (
+			!!11-libs/gtk+:3
+			x11-themes/mate-themes:0
+		)
 		(
 			=x11-libs/gtk+-3.16*:3
-			=x11-themes/mate-themes-${MATE_BRANCH}*:0/3.16
+			=x11-themes/mate-themes-3.16${MATE_THEMES_V}:0/3.16
 		)
 		(
 			=x11-libs/gtk+-3.18*:3
-			=x11-themes/mate-themes-${MATE_BRANCH}*:0/3.18
+			=x11-themes/mate-themes-3.18${MATE_THEMES_V}:0/3.18
 		)
 		(
 			=x11-libs/gtk+-3.20*:3
-			=x11-themes/mate-themes-${MATE_BRANCH}*:0/3.20
+			=x11-themes/mate-themes-3.20${MATE_THEMES_V}:0/3.20
 		)
-		unsupported-gtk3? ( =x11-themes/mate-themes-${MATE_BRANCH}*:0 )
 	)"
