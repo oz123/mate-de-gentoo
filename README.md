@@ -13,7 +13,7 @@ are a few things you should consider before you use this overlay:
 
 If you find this work useful, you can do one or more of the following:
 
- * Install and use these package. Give me usefull feedback
+ * Install and use these packages. Give me usefull feedback
  * Star this repository.
  * Tweeter me with a thank you.
  * Donate me a humlbe sum of 2-5€.
