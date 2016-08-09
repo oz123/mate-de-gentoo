@@ -6,9 +6,11 @@ EAPI=6
 
 if [[ ${PV} == 9999 ]]; then
 	MATE_BRANCH=9999
+	MATE_THEMES_V=9999
 else
 	inherit versionator
 	MATE_BRANCH="$(get_version_component_range 1-2)"
+	MATE_THEMES_V=3
 	KEYWORDS="~amd64 ~arm ~x86"
 fi
 
@@ -42,7 +44,7 @@ RDEPEND="
 	themes? (
 		=x11-themes/mate-backgrounds-${MATE_BRANCH}*:0
 		=x11-themes/mate-icon-theme-${MATE_BRANCH}*:0
-		=x11-themes/mate-themes-meta-${MATE_BRANCH}*:0
+		>=x11-themes/mate-themes-meta-${MATE_THEMES_V}:0
 	)
 	extras? (
 		=app-arch/engrampa-${MATE_BRANCH}*:0[gtk3(-)?]
