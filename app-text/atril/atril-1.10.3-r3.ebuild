@@ -45,7 +45,7 @@ RDEPEND=">=app-text/poppler-0.16:0=[cairo]
 	)
 	epub? ( >=net-libs/webkit-gtk-2.4.3:2 )
 	gnome-keyring? ( >=app-crypt/libsecret-0.5:0 )
-	introspection? ( >=dev-libs/gobject-introspection-0.6:0 )
+	introspection? ( >=dev-libs/gobject-introspection-0.6:= )
 	postscript? ( >=app-text/libspectre-0.2:0 )
 	tiff? ( >=media-libs/tiff-3.6:0 )
 	xps? ( >=app-text/libgxps-0.2.0:0 )
