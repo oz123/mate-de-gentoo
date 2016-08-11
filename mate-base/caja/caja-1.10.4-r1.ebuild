@@ -40,7 +40,7 @@ RDEPEND="dev-libs/atk:0
 	x11-libs/libXrender:0
 	>=x11-libs/pango-1.1.2:0
 	virtual/libintl:0
-	introspection? ( >=dev-libs/gobject-introspection-0.6.4:0 )
+	introspection? ( >=dev-libs/gobject-introspection-0.6.4:= )
 	xmp? ( >=media-libs/exempi-1.99.5:2 )"
 
 DEPEND="${RDEPEND}

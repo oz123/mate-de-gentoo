@@ -43,7 +43,7 @@ RDEPEND="dev-libs/atk:0
 		>=dev-libs/libunique-3:3
 		>=x11-libs/gtk+-3.0:3[introspection?]
 	)
-	introspection? ( >=dev-libs/gobject-introspection-0.6.4:0 )
+	introspection? ( >=dev-libs/gobject-introspection-0.6.4:= )
 	packagekit? ( app-admin/packagekit-base )
 	xmp? ( >=media-libs/exempi-1.99.5:2 )"
 
