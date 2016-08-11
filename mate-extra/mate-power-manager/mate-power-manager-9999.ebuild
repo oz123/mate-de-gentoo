@@ -14,7 +14,7 @@ DESCRIPTION="A session daemon for MATE that makes it easy to manage your laptop 
 LICENSE="GPL-2"
 SLOT="0"
 
-IUSE="+applet gnome-keyring gtk3 man policykit test"
+IUSE="+applet gnome-keyring gtk3 man pm-utils policykit test"
 
 # Interactive testsuite.
 RESTRICT="test"
@@ -24,7 +24,6 @@ COMMON_DEPEND="app-text/rarian:0
 	>=dev-libs/glib-2.36:2
 	>=mate-base/mate-desktop-1.9[gtk3(-)=]
 	>=sys-apps/dbus-1:0
-	|| ( >=sys-power/upower-0.9.23:= >=sys-power/upower-pm-utils-0.9.23 )
 	>=x11-apps/xrandr-1.3:0
 	>=x11-libs/cairo-1:0
 	>=x11-libs/gdk-pixbuf-2.11:2
@@ -44,7 +43,9 @@ COMMON_DEPEND="app-text/rarian:0
 		>=dev-libs/libunique-3:3
 		>=media-libs/libcanberra-0.10:0[gtk3]
 		>=x11-libs/gtk+-3.0:3
-	)"
+	)
+	pm-utils? ( >=sys-power/upower-pm-utils-0.9.23 )
+	!pm-utils? ( >=sys-power/upower-0.9.23:= )"
 
 RDEPEND="${COMMON_DEPEND}
 	policykit? ( >=mate-extra/mate-polkit-1.6[gtk3(-)=] )"
