@@ -2,20 +2,23 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Id$
 
-EAPI=6
+EAPI="5"
 
+GCONF_DEBUG="no"
 GNOME2_LA_PUNT="yes"
 PYTHON_COMPAT=( python2_7 )
 
-inherit python-r1 mate
+inherit gnome2 python-r1
 
-if [[ ${PV} != 9999 ]]; then
-	KEYWORDS="~amd64 ~arm ~x86"
-fi
+MATE_BRANCH="$(get_version_component_range 1-2)"
 
+SRC_URI="http://pub.mate-desktop.org/releases/${MATE_BRANCH}/${P}.tar.xz"
 DESCRIPTION="MATE menu system, implementing the F.D.O cross-desktop spec"
+HOMEPAGE="http://mate-desktop.org"
+
 LICENSE="GPL-2 LGPL-2"
 SLOT="0"
+KEYWORDS="~amd64 ~arm ~x86"
 
 IUSE="debug +introspection python"
 
@@ -23,7 +26,7 @@ REQUIRED_USE="python? ( ${PYTHON_REQUIRED_USE} )"
 
 RDEPEND=">=dev-libs/glib-2.36.0:2
 	virtual/libintl:0
-	introspection? ( >=dev-libs/gobject-introspection-0.6.7:0 )
+	introspection? ( >=dev-libs/gobject-introspection-0.6.7:= )
 	python? (
 		dev-python/pygtk:2[${PYTHON_USEDEP}]
 		${PYTHON_DEPS}
@@ -31,43 +34,49 @@ RDEPEND=">=dev-libs/glib-2.36.0:2
 
 DEPEND="${RDEPEND}
 	>=dev-util/intltool-0.40:*
+	>=mate-base/mate-common-1.10:0
 	sys-devel/gettext:*
 	virtual/pkgconfig:*"
 
-src_prepare() {
-	mate_src_prepare
-	use python && python_copy_sources
+my_command() {
+	if use python ; then
+		python_foreach_impl run_in_build_dir $@
+	else
+		$@
+	fi
 }
 
 src_configure() {
+	G2CONF="${G2CONF} \
+		$(use_enable python) \
+		$(use_enable introspection)"
+
 	# Do NOT compile with --disable-debug/--enable-debug=no as it disables API
 	# usage checks.
-	mate_py_cond_func_wrap mate_src_configure \
-		--enable-debug=$(usex debug yes minimum) \
-		$(use_enable python) \
-		$(use_enable introspection)
+	if ! use debug ; then
+		G2CONF="${G2CONF} --enable-debug=minimum"
+	fi
+
+	if use python ; then
+		python_copy_sources
+	fi
+
+	my_command gnome2_src_configure
 }
 
 src_compile() {
-	mate_py_cond_func_wrap default
+	my_command gnome2_src_compile
 }
 
 src_test() {
-	mate_py_cond_func_wrap emake check
+	my_command emake check
 }
 
+DOCS="AUTHORS ChangeLog NEWS README"
+
 src_install() {
-	mate_py_cond_func_wrap mate_src_install
+	my_command gnome2_src_install
 
 	exeinto /etc/X11/xinit/xinitrc.d/
 	doexe "${FILESDIR}/10-xdg-menu-mate"
-}
-
-pkg_postinst() {
-	mate_pkg_postinst
-	einfo "Due to upstream bug"
-	einfo "https://github.com/mate-desktop/mate-menus/issues/2,"
-	einfo "it is highly recommended to run the following command"
-	einfo "once you have logged in to your desktop for the first time:"
-	einfo "cd ~/.config/menus && ln -s {,mate-}applications-merged"
 }
