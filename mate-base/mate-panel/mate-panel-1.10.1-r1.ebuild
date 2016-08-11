@@ -1,4 +1,4 @@
-# Copyright 1999-2015 Gentoo Foundation
+# Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Id$
 
@@ -44,7 +44,7 @@ RDEPEND="
 	x11-libs/libXau:0
 	>=x11-libs/libXrandr-1.2:0
 	virtual/libintl:0
-	introspection? ( >=dev-libs/gobject-introspection-0.6.7:0 )"
+	introspection? ( >=dev-libs/gobject-introspection-0.6.7:= )"
 
 DEPEND="${RDEPEND}
 	app-text/docbook-xml-dtd:4.1.2
