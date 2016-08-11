@@ -27,7 +27,7 @@ RDEPEND=">=dev-libs/glib-2.36:2
 	virtual/libintl:0
 	!gtk3? ( >=x11-libs/gtk+-2.24:2[introspection?] )
 	gtk3? ( >=x11-libs/gtk+-3.0:3[introspection?] )
-	introspection? ( >=dev-libs/gobject-introspection-0.6.7:0 )"
+	introspection? ( >=dev-libs/gobject-introspection-0.6.7:= )"
 
 DEPEND="${RDEPEND}
 	sys-devel/gettext:*
