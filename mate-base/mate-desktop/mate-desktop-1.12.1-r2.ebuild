@@ -29,7 +29,7 @@ RDEPEND="${PYTHON_DEPS}
 	virtual/libintl:0
 	!gtk3? ( >=x11-libs/gtk+-2.24:2[introspection?] )
 	gtk3? ( >=x11-libs/gtk+-3.0:3[introspection?] )
-	introspection? ( >=dev-libs/gobject-introspection-0.9.7 )
+	introspection? ( >=dev-libs/gobject-introspection-0.9.7:= )
 	startup-notification? ( >=x11-libs/startup-notification-0.5:0 )"
 
 DEPEND="${RDEPEND}

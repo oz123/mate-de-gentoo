@@ -32,7 +32,7 @@ RDEPEND="${PYTHON_DEPS}
 	x11-libs/libX11:0
 	>=x11-libs/libXrandr-1.2:0
 	virtual/libintl:0
-	introspection? ( >=dev-libs/gobject-introspection-0.9.7 )
+	introspection? ( >=dev-libs/gobject-introspection-0.9.7:= )
 	startup-notification? ( >=x11-libs/startup-notification-0.5:0 )"
 
 DEPEND="${RDEPEND}
