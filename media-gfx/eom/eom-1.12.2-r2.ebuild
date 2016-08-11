@@ -42,7 +42,7 @@ RDEPEND="
 	)
 	!gtk3? ( >=x11-libs/gtk+-2.18:2[introspection?] )
 	gtk3? ( >=x11-libs/gtk+-3.0:3[introspection?] )
-	introspection? ( >=dev-libs/gobject-introspection-0.9.3 )
+	introspection? ( >=dev-libs/gobject-introspection-0.9.3:= )
 	jpeg? ( virtual/jpeg:0 )
 	lcms? ( media-libs/lcms:2 )
 	python? (

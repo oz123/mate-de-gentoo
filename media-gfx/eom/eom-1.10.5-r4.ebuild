@@ -41,7 +41,7 @@ RDEPEND="
 	exif? (
 		>=media-libs/libexif-0.6.14:0
 		virtual/jpeg:0 )
-	introspection? ( >=dev-libs/gobject-introspection-0.9.3 )
+	introspection? ( >=dev-libs/gobject-introspection-0.9.3:= )
 	jpeg? ( virtual/jpeg:0 )
 	lcms? ( media-libs/lcms:2 )
 	python? (
