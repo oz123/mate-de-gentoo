@@ -29,7 +29,7 @@ RDEPEND=">=dev-libs/glib-2.36:2
 		>=x11-libs/gtk+-3.0:3[introspection?]
 		appindicator? ( dev-libs/libappindicator:3 )
 	)
-	introspection? ( >=dev-libs/gobject-introspection-0.6.2:0 )"
+	introspection? ( >=dev-libs/gobject-introspection-0.6.2:= )"
 
 DEPEND="${RDEPEND}
 	dev-util/gtk-doc

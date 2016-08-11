@@ -27,7 +27,7 @@ RDEPEND=">=dev-libs/glib-2.36:2
 	virtual/libintl:0
 	accountsservice? ( sys-apps/accountsservice:0[introspection?] )
 	appindicator? ( dev-libs/libappindicator:2 )
-	introspection? ( >=dev-libs/gobject-introspection-0.6.2:0 )"
+	introspection? ( >=dev-libs/gobject-introspection-0.6.2:= )"
 
 # We call gtkdocize so we need to depend on gtk-doc.
 DEPEND="${RDEPEND}
