@@ -17,7 +17,7 @@ DESCRIPTION="Mozo menu editor for MATE"
 LICENSE="GPL-2"
 SLOT="0"
 
-IUSE="gtk3"
+IUSE=""
 
 RDEPEND="${PYTHON_DEPS}
 	>=dev-python/pygobject-3:3[${PYTHON_USEDEP}]
