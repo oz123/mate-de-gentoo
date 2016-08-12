@@ -37,7 +37,7 @@ RDEPEND="
 		=mate-base/mate-applets-meta-${MATE_BRANCH}*:0[gtk3(-)?]
 		=mate-base/mate-control-center-${MATE_BRANCH}*:0[gtk3(-)?]
 		=mate-extra/mate-media-${MATE_BRANCH}*:0[gtk3(-)?]
-		=x11-misc/mozo-${MATE_BRANCH}*:0[gtk3(-)?]
+		=x11-misc/mozo-${MATE_BRANCH}*:0
 		=x11-terms/mate-terminal-${MATE_BRANCH}*:0[gtk3(-)?]
 	)
 	bluetooth? ( net-wireless/blueman:0 )
@@ -55,7 +55,7 @@ RDEPEND="
 		=mate-extra/mate-netbook-${MATE_BRANCH}*:0[gtk3(-)?]
 		=mate-extra/mate-power-manager-${MATE_BRANCH}*:0[gtk3(-)?]
 		=mate-extra/mate-screensaver-${MATE_BRANCH}*:0[gtk3(-)?]
-		=mate-extra/mate-system-monitor-${MATE_BRANCH}*:0[gtk3(-)?]
+		=mate-extra/mate-system-monitor-${MATE_BRANCH}*:0
 		=mate-extra/mate-utils-${MATE_BRANCH}*:0[gtk3(-)?]
 		=media-gfx/eom-${MATE_BRANCH}*:0[gtk3(-)?]
 		sys-apps/gnome-disk-utility:0
