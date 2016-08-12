@@ -1,4 +1,0 @@
-# Forced GTK3 as upstream dropped gtk2
-# Keeping use flag for a little while for smooth transition
->=mate-extra/mate-system-monitor-1.14 gtk3
->=x11-misc/mozo-1.14 gtk3
