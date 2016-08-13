@@ -23,7 +23,7 @@ REQUIRED_USE="
 	python? ( ${PYTHON_REQUIRED_USE} )
 	"
 
-RDEPEND="
+COMMON_DEPEND="
 	dev-libs/atk:0
 	>=dev-libs/glib-2.36:2
 	>=dev-libs/libxml2-2:2
@@ -54,7 +54,9 @@ RDEPEND="
 	xmp? ( >=media-libs/exempi-1.99.5:2 )
 	!!media-gfx/mate-image-viewer"
 
-DEPEND="${RDEPEND}
+RDEPEND="${COMMON_DEPEND}"
+
+DEPEND="${COMMON_DEPEND}
 	app-text/yelp-tools:0
 	dev-util/gtk-doc
 	dev-util/gtk-doc-am
