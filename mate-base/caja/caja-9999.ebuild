@@ -18,7 +18,7 @@ SLOT="0"
 
 IUSE="gtk3 +introspection +mate packagekit xmp"
 
-RDEPEND="dev-libs/atk:0
+COMMON_DEPEND="dev-libs/atk:0
 	>=dev-libs/glib-2.36:2
 	>=dev-libs/libxml2-2.4.7:2
 	gnome-base/dconf:0
@@ -45,10 +45,12 @@ RDEPEND="dev-libs/atk:0
 	)
 	introspection? ( >=dev-libs/gobject-introspection-0.6.4:= )
 	packagekit? ( app-admin/packagekit-base )
-	xmp? ( >=media-libs/exempi-1.99.5:2 )"
+	xmp? ( >=media-libs/exempi-1.99.5:2 )
+	!!mate-base/mate-file-manager"
 
-DEPEND="${RDEPEND}
-	!!mate-base/mate-file-manager
+RDEPEND="${COMMON_DEPEND}"
+
+DEPEND="${COMMON_DEPEND}
 	>=dev-lang/perl-5:0=
 	dev-util/gdbus-codegen:0
 	dev-util/gtk-doc
