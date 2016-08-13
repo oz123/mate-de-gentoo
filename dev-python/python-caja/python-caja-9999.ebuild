@@ -19,14 +19,16 @@ SLOT="0"
 
 IUSE="doc gtk3"
 
-RDEPEND="dev-libs/glib:2
+COMMON_DEPEND="${PYTHON_DEPS}
+	dev-libs/glib:2
 	dev-python/pygobject:3[${PYTHON_USEDEP}]
 	>=mate-base/caja-1.8[gtk3(-)=,introspection]
 	!gtk3? ( x11-libs/gtk+:2 )
-	gtk3? ( x11-libs/gtk+:3 )
-	${PYTHON_DEPS}"
+	gtk3? ( x11-libs/gtk+:3 )"
 
-DEPEND="${RDEPEND}
+RDEPEND="${COMMON_DEPEND}"
+
+DEPEND="${COMMON_DEPEND}
 	dev-util/gtk-doc
 	dev-util/gtk-doc-am
 	virtual/pkgconfig:*
