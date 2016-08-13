@@ -18,7 +18,7 @@ SLOT="0"
 
 IUSE="caja gtk3 magic packagekit"
 
-RDEPEND="
+COMMON_DEPEND="
 	>=dev-libs/glib-2.32.0:2
 	>=dev-libs/json-glib-0.14:0
 	x11-libs/gdk-pixbuf:2
@@ -31,7 +31,9 @@ RDEPEND="
 	packagekit? ( app-admin/packagekit-base )
 	!!app-arch/mate-file-archiver"
 
-DEPEND="${RDEPEND}
+RDEPEND="${COMMON_DEPEND}"
+
+DEPEND="${COMMON_DEPEND}
 	>=dev-util/intltool-0.50.1:*
 	dev-util/itstool:0
 	sys-devel/gettext:*
