@@ -16,11 +16,12 @@ DESCRIPTION="User documentation for MATE Desktop"
 LICENSE="GPL-2 LGPL-2"
 SLOT="0"
 
-RDEPEND="
-	gnome-extra/yelp
-	virtual/libintl:0"
+COMMON_DEPEND="virtual/libintl:0"
 
-DEPEND="${RDEPEND}
+RDEPEND="${COMMON_DEPEND}
+	gnome-extra/yelp"
+
+DEPEND="${COMMON_DEPEND}
 	>=dev-util/intltool-0.40:*
 	app-text/yelp-tools
 	sys-devel/gettext:*
