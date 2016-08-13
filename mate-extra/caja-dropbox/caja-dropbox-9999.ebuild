@@ -19,7 +19,7 @@ SLOT="0"
 
 IUSE="debug"
 
-RDEPEND="
+COMMON_DEPEND="
 	dev-libs/atk:0
 	>=dev-libs/glib-2.14:2
 	dev-python/pygtk:2[${PYTHON_USEDEP}]
@@ -34,7 +34,9 @@ RDEPEND="
 	x11-libs/libXinerama:0
 	x11-libs/pango:0"
 
-DEPEND="${RDEPEND}
+RDEPEND="${COMMON_DEPEND}"
+
+DEPEND="${COMMON_DEPEND}
 	dev-python/docutils:0
 	virtual/pkgconfig:*"
 
