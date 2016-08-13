@@ -18,8 +18,7 @@ SLOT="0"
 
 IUSE="+dbus gtk3 hddtemp libnotify lm_sensors video_cards_fglrx video_cards_nvidia"
 
-RDEPEND="app-text/rarian:0
-	>=dev-libs/glib-2.36:2
+COMMON_DEPEND=">=dev-libs/glib-2.36:2
 	>=mate-base/mate-panel-1.6[gtk3(-)=]
 	>=x11-libs/cairo-1.0.4:0
 	x11-libs/gdk-pixbuf:2
@@ -39,7 +38,10 @@ RDEPEND="app-text/rarian:0
 		media-video/nvidia-settings:0
 	) )"
 
-DEPEND="${RDEPEND}
+RDEPEND="${COMMON_DEPEND}"
+
+DEPEND="${COMMON_DEPEND}
+	app-text/rarian:0
 	>=app-text/scrollkeeper-dtd-1:1.0
 	app-text/yelp-tools:0
 	>=dev-util/intltool-0.50.1:*
