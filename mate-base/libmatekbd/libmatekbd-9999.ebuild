@@ -18,7 +18,7 @@ SLOT="0"
 
 IUSE="X gtk3 +introspection test"
 
-RDEPEND=">=dev-libs/glib-2.36:2
+COMMON_DEPEND=">=dev-libs/glib-2.36:2
 	x11-libs/cairo:0
 	>=x11-libs/gdk-pixbuf-2.24:2
 	x11-libs/libX11:0
@@ -29,7 +29,9 @@ RDEPEND=">=dev-libs/glib-2.36:2
 	gtk3? ( >=x11-libs/gtk+-3.0:3[introspection?] )
 	introspection? ( >=dev-libs/gobject-introspection-0.6.7:= )"
 
-DEPEND="${RDEPEND}
+RDEPEND="${COMMON_DEPEND}"
+
+DEPEND="${COMMON_DEPEND}
 	sys-devel/gettext:*
 	>=dev-util/intltool-0.50.1:*
 	virtual/pkgconfig:*"
