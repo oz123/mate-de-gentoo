@@ -28,8 +28,7 @@ REQUIRED_USE="
 # https://github.com/mate-desktop/mate-text-editor/issues/33
 RESTRICT="test"
 
-RDEPEND="app-text/rarian:0
-	dev-libs/atk:0
+COMMON_DEPEND="dev-libs/atk:0
 	>=dev-libs/glib-2.36:2
 	>=dev-libs/libxml2-2.5:2
 	>=mate-base/mate-desktop-1.9[gtk3(-)=]
@@ -60,8 +59,11 @@ RDEPEND="app-text/rarian:0
 	)
 	!!app-editors/mate-text-editor"
 
-DEPEND="${RDEPEND}
+RDEPEND="${COMMON_DEPEND}"
+
+DEPEND="${COMMON_DEPEND}
 	~app-text/docbook-xml-dtd-4.1.2
+	app-text/rarian:0
 	>=app-text/scrollkeeper-dtd-1:1.0
 	app-text/yelp-tools:0
 	dev-util/gtk-doc
