@@ -18,7 +18,7 @@ SLOT="0"
 
 IUSE="appindicator debug gtk3"
 
-RDEPEND="app-text/rarian:0
+COMMON_DEPEND="
 	dev-libs/atk:0
 	>=dev-libs/dbus-glib-0.73:0
 	>=dev-libs/glib-2.36:2
@@ -61,7 +61,10 @@ RDEPEND="app-text/rarian:0
 		appindicator? ( dev-libs/libappindicator:3 )
 	)"
 
-DEPEND="${RDEPEND}
+RDEPEND="${COMMON_DEPEND}"
+
+DEPEND="${COMMON_DEPEND}
+	app-text/rarian:0
 	>=app-text/scrollkeeper-dtd-1:1.0
 	app-text/yelp-tools:0
 	dev-util/desktop-file-utils:0
