@@ -19,8 +19,7 @@ SLOT="0"
 IUSE="X gtk3 ipv6 policykit +upower"
 REQUIRED_USE="${PYTHON_REQUIRED_USE}"
 
-RDEPEND="${PYTHON_DEPS}
-	app-text/rarian:0
+COMMON_DEPEND="${PYTHON_DEPS}
 	dev-libs/atk:0
 	>=dev-libs/dbus-glib-0.74:0
 	>=dev-libs/glib-2.36:2
@@ -30,7 +29,6 @@ RDEPEND="${PYTHON_DEPS}
 	>=gnome-base/libgtop-2.11.92:2=
 	>=mate-base/mate-desktop-1.9[gtk3(-)=]
 	>=mate-base/mate-panel-1.7[gtk3(-)=]
-	>=mate-base/mate-settings-daemon-1.6[gtk3(-)=]
 	>=net-wireless/wireless-tools-28_pre9:0
 	>=sys-apps/dbus-1.1.2:0
 	sys-power/cpupower
@@ -57,11 +55,15 @@ RDEPEND="${PYTHON_DEPS}
 			>=sys-power/upower-0.9.23
 			>=sys-power/upower-pm-utils-0.9.23
 		)
-	)"
+	)
+	!!net-analyzer/mate-netspeed"
 
-DEPEND="${RDEPEND}
-	!!net-analyzer/mate-netspeed
+RDEPEND="${COMMON_DEPEND}
+	>=mate-base/mate-settings-daemon-1.6"
+
+DEPEND="${COMMON_DEPEND}
 	app-text/docbook-xml-dtd:4.3
+	app-text/rarian:0
 	>=app-text/scrollkeeper-dtd-1:1.0
 	app-text/yelp-tools:0
 	>=dev-util/intltool-0.50.1:*
