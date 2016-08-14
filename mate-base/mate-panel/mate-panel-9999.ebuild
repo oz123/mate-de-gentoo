@@ -18,7 +18,7 @@ SLOT="0"
 
 IUSE="X gtk3 +introspection"
 
-RDEPEND="
+COMMON_DEPEND="
 	dev-libs/atk:0
 	>=dev-libs/dbus-glib-0.80:0
 	>=dev-libs/glib-2.36:2
@@ -50,7 +50,9 @@ RDEPEND="
 	)
 	introspection? ( >=dev-libs/gobject-introspection-0.6.7:= )"
 
-DEPEND="${RDEPEND}
+RDEPEND="${COMMON_DEPEND}"
+
+DEPEND="${COMMON_DEPEND}
 	app-text/docbook-xml-dtd:4.1.2
 	app-text/yelp-tools:0
 	>=dev-lang/perl-5:0=
