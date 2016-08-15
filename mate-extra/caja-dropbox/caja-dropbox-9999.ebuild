@@ -27,14 +27,14 @@ COMMON_DEPEND="
 	>=mate-base/caja-1.6
 	media-libs/fontconfig:1.0
 	media-libs/freetype:2
-	net-misc/dropbox:0
 	x11-libs/cairo:0
 	x11-libs/gdk-pixbuf:2
 	x11-libs/gtk+:2
 	x11-libs/libXinerama:0
 	x11-libs/pango:0"
 
-RDEPEND="${COMMON_DEPEND}"
+RDEPEND="${COMMON_DEPEND}
+	net-misc/dropbox:0"
 
 DEPEND="${COMMON_DEPEND}
 	dev-python/docutils:0
