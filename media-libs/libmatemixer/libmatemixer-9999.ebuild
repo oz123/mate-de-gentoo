@@ -16,13 +16,16 @@ SLOT="0"
 
 IUSE="+alsa oss pulseaudio"
 
-RDEPEND="
-	app-text/docbook-xml-dtd:4.1.2
+COMMON_DEPEND="
 	>=dev-libs/glib-2.36:2
 	sys-devel/gettext:*
 	alsa? ( >=media-libs/alsa-lib-1.0.5 )
 	pulseaudio? ( >=media-sound/pulseaudio-2.0.0:0[alsa?,glib] )"
-DEPEND="${RDEPEND}
+
+RDEPEND="${COMMON_DEPEND}"
+
+DEPEND="${COMMON_DEPEND}
+	app-text/docbook-xml-dtd:4.1.2
 	dev-util/gtk-doc
 	dev-util/gtk-doc-am
 	>=dev-util/intltool-0.35.0:*
