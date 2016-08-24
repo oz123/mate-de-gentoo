@@ -18,8 +18,7 @@ SLOT="0"
 
 IUSE="gtk3"
 
-RDEPEND="
-	dev-libs/atk:0
+COMMON_DEPEND="dev-libs/atk:0
 	>=dev-libs/dbus-glib-0.78:0
 	>=dev-libs/glib-2.36:2
 	>=sys-apps/dbus-1:0
@@ -42,7 +41,9 @@ RDEPEND="
 	!x11-misc/qtnotifydaemon:*
 	!x11-misc/notification-daemon:*"
 
-DEPEND="${RDEPEND}
+RDEPEND="${COMMON_DEPEND}"
+
+DEPEND="${COMMON_DEPEND}
 	app-arch/xz-utils:0
 	>=dev-util/intltool-0.50.1:*
 	sys-devel/gettext:*
