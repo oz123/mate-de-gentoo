@@ -19,13 +19,15 @@ SLOT="0"
 
 IUSE=""
 
-RDEPEND="${PYTHON_DEPS}
+COMMON_DEPEND="${PYTHON_DEPS}
 	>=dev-python/pygobject-3:3[${PYTHON_USEDEP}]
 	>=mate-base/mate-menus-1.6[introspection]
 	x11-libs/gdk-pixbuf:2[introspection]
 	x11-libs/gtk+:3[introspection]
 	virtual/libintl:0
 	!!x11-misc/mate-menu-editor"
+
+RDEPEND="${COMMON_DEPEND}"
 
 DEPEND="${COMMON_DEPEND}
 	>=dev-util/intltool-0.40:*
