@@ -16,8 +16,7 @@ SLOT="0"
 
 IUSE="gtk3"
 
-RDEPEND="app-text/rarian:0
-	dev-libs/atk:0
+COMMON_DEPEND="dev-libs/atk:0
 	>=dev-libs/glib-2.36:2
 	>=mate-base/mate-desktop-1.6[gtk3(-)=]
 	x11-libs/gdk-pixbuf:2
@@ -34,7 +33,10 @@ RDEPEND="app-text/rarian:0
 		>=x11-libs/vte-0.38:2.91
 	)"
 
-DEPEND="${RDEPEND}
+RDEPEND="${COMMON_DEPEND}"
+
+DEPEND="${COMMON_DEPEND}
+	app-text/rarian:0
 	>=app-text/scrollkeeper-dtd-1:1.0
 	app-text/yelp-tools:0
 	>=dev-util/intltool-0.50.1:*
