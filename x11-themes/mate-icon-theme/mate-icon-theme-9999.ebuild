@@ -14,9 +14,11 @@ DESCRIPTION="MATE default icon themes"
 LICENSE="GPL-2"
 SLOT="0"
 
-RDEPEND=">=x11-themes/hicolor-icon-theme-0.10"
+COMMON_DEPEND=">=x11-themes/hicolor-icon-theme-0.10"
 
-DEPEND="${RDEPEND}
+RDEPEND="${COMMON_DEPEND}"
+
+DEPEND="${COMMON_DEPEND}
 	>=dev-util/intltool-0.40:*
 	>=x11-misc/icon-naming-utils-0.8.7:0
 	sys-devel/gettext:*
