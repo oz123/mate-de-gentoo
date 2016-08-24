@@ -18,11 +18,10 @@ SLOT="0"
 
 IUSE="gtk3 startup-notification test xinerama"
 
-RDEPEND="
+COMMON_DEPEND="
 	dev-libs/atk:0
 	>=dev-libs/glib-2.32.10:2
 	>=gnome-base/libgtop-2:2=
-	gnome-extra/zenity:0
 	x11-libs/cairo:0
 	>=x11-libs/pango-1.2:0[X]
 	x11-libs/gdk-pixbuf:2
@@ -49,7 +48,11 @@ RDEPEND="
 	xinerama? ( x11-libs/libXinerama:0 )
 	!!x11-wm/mate-window-manager"
 
-DEPEND="${RDEPEND}
+RDEPEND="${COMMON_DEPEND}
+	gnome-extra/zenity:0
+"
+
+DEPEND="${COMMON_DEPEND}
 	app-text/yelp-tools:0
 	>=dev-util/intltool-0.34.90:*
 	sys-devel/gettext:*
