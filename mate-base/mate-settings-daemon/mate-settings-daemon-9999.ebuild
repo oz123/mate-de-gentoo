@@ -20,7 +20,7 @@ IUSE="X debug gtk3 libnotify policykit pulseaudio smartcard +sound"
 
 REQUIRED_USE="pulseaudio? ( sound )"
 
-RDEPEND=">=dev-libs/dbus-glib-0.74:0
+COMMON_DEPEND=">=dev-libs/dbus-glib-0.74:0
 	>=dev-libs/glib-2.17.3:2
 	>=gnome-base/dconf-0.13.4:0
 	>=mate-base/libmatekbd-1.7[gtk3(-)=]
@@ -53,7 +53,9 @@ RDEPEND=">=dev-libs/dbus-glib-0.74:0
 		gtk3? ( media-libs/libcanberra:0[gtk3] )
 	)"
 
-DEPEND="${RDEPEND}
+RDEPEND="${COMMON_DEPEND}"
+
+DEPEND="${COMMON_DEPEND}
 	>=dev-util/intltool-0.50.1:0
 	sys-devel/gettext:0
 	virtual/pkgconfig:0
