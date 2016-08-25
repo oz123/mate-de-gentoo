@@ -19,30 +19,33 @@ SLOT="0"
 SENDTO="cdr gajim +mail pidgin upnp"
 IUSE="gksu gtk3 image-converter +open-terminal share +wallpaper ${SENDTO}"
 
-RDEPEND=">=dev-libs/glib-2.36:2
+COMMON_DEPEND=">=dev-libs/glib-2.36:2
 	>=mate-base/caja-1.7[gtk3(-)=]
 	virtual/libintl:0
 	x11-libs/gdk-pixbuf:2
-	cdr? ( >=app-cdr/brasero-2.32.1:0= )
 	gajim? (
-		net-im/gajim:0
 		>=dev-libs/dbus-glib-0.60:0
 		>=sys-apps/dbus-1:0
 	)
-	gksu? ( x11-libs/gksu )
 	!gtk3? ( >=x11-libs/gtk+-2.24:2 )
 	gtk3? ( >=x11-libs/gtk+-3.0:3 )
+	open-terminal? ( >=mate-base/mate-desktop-1.7[gtk3(-)=] )
+	pidgin? ( >=dev-libs/dbus-glib-0.60:0 )
+	upnp? ( >=net-libs/gupnp-0.13:0= )"
+
+RDEPEND="${COMMON_DEPEND}
+	cdr? ( >=app-cdr/brasero-2.32.1:0= )
+	gajim? ( net-im/gajim:0 )
+	gksu? ( x11-libs/gksu )
 	image-converter? (
 		|| (
 			media-gfx/imagemagick
 			media-gfx/graphicsmagick[imagemagick]
 		)
 	)
-	open-terminal? ( >=mate-base/mate-desktop-1.7[gtk3(-)=] )
-	pidgin? ( >=dev-libs/dbus-glib-0.60:0 )
-	upnp? ( >=net-libs/gupnp-0.13:0= )"
+	pidgin? ( net-im/pidgin )"
 
-DEPEND="${RDEPEND}
+DEPEND="${COMMON_DEPEND}
 	dev-util/gtk-doc
 	dev-util/gtk-doc-am
 	>=dev-util/intltool-0.18:*

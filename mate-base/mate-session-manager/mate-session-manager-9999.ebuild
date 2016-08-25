@@ -22,11 +22,10 @@ IUSE="debug elibc_FreeBSD gnome-keyring gtk3 ipv6 systemd upower"
 # create .config/user-dirs.dirs which is read by glib to get G_USER_DIRECTORY_*
 # xdg-user-dirs-update is run during login (see 10-user-dirs-update-gnome below).
 
-RDEPEND=">=dev-libs/dbus-glib-0.76
+COMMON_DEPEND=">=dev-libs/dbus-glib-0.76
 	>=dev-libs/glib-2.36:2
 	dev-libs/libxslt
 	sys-apps/dbus
-	x11-apps/xdpyinfo
 	x11-libs/gdk-pixbuf:2
 	x11-libs/libICE
 	x11-libs/libSM
@@ -37,17 +36,20 @@ RDEPEND=">=dev-libs/dbus-glib-0.76
 	x11-libs/libXtst
 	x11-libs/pango
 	x11-libs/xtrans
-	x11-misc/xdg-user-dirs
-	x11-misc/xdg-user-dirs-gtk
 	virtual/libintl
 	elibc_FreeBSD? ( dev-libs/libexecinfo )
-	gnome-keyring? ( gnome-base/gnome-keyring )
 	!gtk3? ( >=x11-libs/gtk+-2.14:2 )
 	gtk3? ( >=x11-libs/gtk+-3.0:3 )
 	systemd? ( sys-apps/systemd )
 	upower? ( || ( >=sys-power/upower-0.9.23 >=sys-power/upower-pm-utils-0.9.23 ) )"
 
-DEPEND="${RDEPEND}
+RDEPEND="${COMMON_DEPEND}
+	x11-apps/xdpyinfo
+	x11-misc/xdg-user-dirs
+	x11-misc/xdg-user-dirs-gtk
+	gnome-keyring? ( gnome-base/gnome-keyring )"
+
+DEPEND="${COMMON_DEPEND}
 	>=dev-util/intltool-0.40:*
 	>=dev-lang/perl-5
 	>=sys-devel/gettext-0.10.40:*

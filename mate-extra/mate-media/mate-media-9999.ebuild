@@ -16,7 +16,7 @@ SLOT="0"
 
 IUSE="gtk3"
 
-RDEPEND=">=dev-libs/glib-2.36.0:2
+COMMON_DEPEND=">=dev-libs/glib-2.36.0:2
 	dev-libs/libxml2:2
 	>=mate-base/mate-panel-1.8[gtk3(-)=]
 	>=mate-base/mate-desktop-1.9.3[gtk3(-)=]
@@ -35,7 +35,9 @@ RDEPEND=">=dev-libs/glib-2.36.0:2
 		>=x11-libs/gtk+-3.0:3
 	)"
 
-DEPEND="${RDEPEND}
+RDEPEND="${COMMON_DEPEND}"
+
+DEPEND="${COMMON_DEPEND}
 	>=dev-util/intltool-0.35.0:*
 	sys-devel/gettext:*
 	virtual/pkgconfig:*

@@ -16,11 +16,10 @@ SLOT="0"
 
 IUSE="accountsservice appindicator debug examples gtk3 +introspection"
 
-RDEPEND=">=dev-libs/glib-2.36:2
+COMMON_DEPEND=">=dev-libs/glib-2.36:2
 	>=sys-auth/polkit-0.102:0[introspection?]
 	x11-libs/gdk-pixbuf:2[introspection?]
 	virtual/libintl:0
-	accountsservice? ( sys-apps/accountsservice:0[introspection?] )
 	!gtk3? (
 		>=x11-libs/gtk+-2.24:2[introspection?]
 		appindicator? ( dev-libs/libappindicator:2 )
@@ -31,7 +30,10 @@ RDEPEND=">=dev-libs/glib-2.36:2
 	)
 	introspection? ( >=dev-libs/gobject-introspection-0.6.2:= )"
 
-DEPEND="${RDEPEND}
+RDEPEND="${COMMON_DEPEND}
+	accountsservice? ( sys-apps/accountsservice:0[introspection?] )"
+
+DEPEND="${COMMON_DEPEND}
 	dev-util/gtk-doc
 	dev-util/gtk-doc-am
 	>=dev-util/intltool-0.35:*

@@ -21,7 +21,7 @@ IUSE="debug +introspection python"
 
 REQUIRED_USE="python? ( ${PYTHON_REQUIRED_USE} )"
 
-RDEPEND=">=dev-libs/glib-2.36.0:2
+COMMON_DEPEND=">=dev-libs/glib-2.36.0:2
 	virtual/libintl:0
 	introspection? ( >=dev-libs/gobject-introspection-0.6.7:= )
 	python? (
@@ -29,7 +29,9 @@ RDEPEND=">=dev-libs/glib-2.36.0:2
 		${PYTHON_DEPS}
 	)"
 
-DEPEND="${RDEPEND}
+RDEPEND="${COMMON_DEPEND}"
+
+DEPEND="${COMMON_DEPEND}
 	>=dev-util/intltool-0.40:*
 	sys-devel/gettext:*
 	virtual/pkgconfig:*"

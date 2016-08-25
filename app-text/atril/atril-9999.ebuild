@@ -20,8 +20,7 @@ IUSE="caja dbus debug djvu dvi epub +introspection gnome-keyring gtk3 +postscrip
 
 REQUIRED_USE="t1lib? ( dvi )"
 
-RDEPEND=">=app-text/poppler-0.16:0=[cairo]
-	app-text/rarian:0
+COMMON_DEPEND=">=app-text/poppler-0.16:0=[cairo]
 	dev-libs/atk:0
 	>=dev-libs/glib-2.36:2
 	>=dev-libs/libxml2-2.5:2
@@ -55,8 +54,11 @@ RDEPEND=">=app-text/poppler-0.16:0=[cairo]
 	xps? ( >=app-text/libgxps-0.2.0:0 )
 	!!app-text/mate-document-viewer"
 
-DEPEND="${RDEPEND}
+RDEPEND="${COMMON_DEPEND}"
+
+DEPEND="${COMMON_DEPEND}
 	app-text/docbook-xml-dtd:4.1.2
+	app-text/rarian:0
 	app-text/yelp-tools:0
 	>=app-text/scrollkeeper-dtd-1:1.0
 	dev-util/gtk-doc

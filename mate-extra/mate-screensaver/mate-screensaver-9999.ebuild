@@ -21,14 +21,13 @@ DOC_CONTENTS="
 	/usr/share/doc/${PF}/xss-conversion.txt*
 "
 
-RDEPEND="
+COMMON_DEPEND="
 	>=dev-libs/dbus-glib-0.71:0
 	>=dev-libs/glib-2.36:2
 	gnome-base/dconf:0
 	>=mate-base/libmatekbd-1.7.1[gtk3(-)=]
 	>=mate-base/mate-desktop-1.9.4[gtk3(-)=]
 	>=mate-base/mate-menus-1.6
-	>=mate-base/mate-session-manager-1.6
 	>=sys-apps/dbus-0.30:0
 	>=x11-libs/gdk-pixbuf-2.14:2
 	>=x11-libs/libX11-1:0
@@ -51,7 +50,10 @@ RDEPEND="
 	systemd? ( sys-apps/systemd:0= )
 	!!<gnome-extra/gnome-screensaver-3:0"
 
-DEPEND="${RDEPEND}
+RDEPEND="${COMMON_DEPEND}
+	>=mate-base/mate-session-manager-1.6"
+
+DEPEND="${COMMON_DEPEND}
 	>=dev-util/intltool-0.50.1:*
 	sys-devel/gettext:*
 	x11-proto/randrproto:0

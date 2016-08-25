@@ -19,8 +19,7 @@ IUSE="+applet gnome-keyring gtk3 man pm-utils policykit test"
 # Interactive testsuite.
 RESTRICT="test"
 
-COMMON_DEPEND="app-text/rarian:0
-	>=dev-libs/dbus-glib-0.70:0
+COMMON_DEPEND=">=dev-libs/dbus-glib-0.70:0
 	>=dev-libs/glib-2.36:2
 	>=mate-base/mate-desktop-1.9[gtk3(-)=]
 	>=sys-apps/dbus-1:0
@@ -52,6 +51,7 @@ RDEPEND="${COMMON_DEPEND}
 
 DEPEND="${COMMON_DEPEND}
 	app-text/docbook-xml-dtd:4.3
+	app-text/rarian:0
 	>=app-text/scrollkeeper-dtd-1:1.0
 	app-text/yelp-tools:0
 	>=dev-util/intltool-0.50.1:*

@@ -18,7 +18,7 @@ SLOT="0"
 
 IUSE="X gtk3"
 
-RDEPEND="
+COMMON_DEPEND="
 	>=dev-libs/dbus-glib-0.70:0
 	>=dev-libs/glib-2.15.2:2
 	>=mate-base/caja-1.6[gtk3(-)=]
@@ -27,8 +27,6 @@ RDEPEND="
 	x11-libs/libX11:0
 	x11-libs/pango:0
 	>=x11-libs/libnotify-0.7:0
-	>=www-apache/mod_dnssd-0.6:0
-	>=www-servers/apache-2.2:2[apache2_modules_dav,apache2_modules_dav_fs,apache2_modules_authn_file,apache2_modules_auth_digest,apache2_modules_authz_groupfile]
 	virtual/libintl:0
 	!gtk3? (
 		>=dev-libs/libunique-1:1
@@ -41,7 +39,11 @@ RDEPEND="
 		>=x11-libs/gtk+-3.0:3
 	)"
 
-DEPEND="${RDEPEND}
+RDEPEND="${COMMON_DEPEND}
+	>=www-apache/mod_dnssd-0.6:0
+	>=www-servers/apache-2.2:2[apache2_modules_dav,apache2_modules_dav_fs,apache2_modules_authn_file,apache2_modules_auth_digest,apache2_modules_authz_groupfile]"
+
+DEPEND="${COMMON_DEPEND}
 	app-text/docbook-xml-dtd:4.1.2
 	app-text/yelp-tools:0
 	>=dev-util/intltool-0.35:*

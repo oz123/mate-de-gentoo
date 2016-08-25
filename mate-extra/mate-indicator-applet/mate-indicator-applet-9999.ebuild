@@ -16,7 +16,7 @@ SLOT="0"
 
 IUSE="gtk3"
 
-RDEPEND="
+COMMON_DEPEND="
 	>=mate-base/mate-panel-1.8[gtk3(-)=]
 	!gtk3? (
 		>=dev-libs/libindicator-0.3.90:0
@@ -27,7 +27,9 @@ RDEPEND="
 		>=x11-libs/gtk+-3.0:3
 	)"
 
-DEPEND="${RDEPEND}
+RDEPEND="${COMMON_DEPEND}"
+
+DEPEND="${COMMON_DEPEND}
 	>=dev-util/intltool-0.35.0
 	virtual/pkgconfig"
 

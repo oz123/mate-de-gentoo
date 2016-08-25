@@ -18,7 +18,7 @@ SLOT="0"
 
 IUSE="X applet debug gtk3 ipv6 test"
 
-RDEPEND="app-text/rarian:0
+COMMON_DEPEND="
 	dev-libs/atk:0
 	>=dev-libs/glib-2.36:2
 	>=gnome-base/libgtop-2.12:2=
@@ -40,7 +40,10 @@ RDEPEND="app-text/rarian:0
 		>=media-libs/libcanberra-0.4:0[gtk3]
 	)"
 
-DEPEND="${RDEPEND}
+RDEPEND="${COMMON_DEPEND}"
+
+DEPEND="${COMMON_DEPEND}
+	app-text/rarian:0
 	>=app-text/scrollkeeper-dtd-1:1.0
 	app-text/yelp-tools:0
 	dev-util/gtk-doc

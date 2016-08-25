@@ -16,7 +16,7 @@ SLOT="0"
 
 IUSE="gtk3"
 
-RDEPEND="
+COMMON_DEPEND="
 	>=dev-libs/glib-2.36:2
 	>=mate-base/mate-desktop-1.9[gtk3(-)=]
 	>=mate-base/mate-panel-1.8[gtk3(-)=]
@@ -36,7 +36,9 @@ RDEPEND="
 		x11-libs/libwnck:3
 	)"
 
-DEPEND="${RDEPEND}
+RDEPEND="${COMMON_DEPEND}"
+
+DEPEND="${COMMON_DEPEND}
 	x11-proto/xproto:0
 	>=dev-util/intltool-0.50.1:*
 	sys-devel/gettext:*
