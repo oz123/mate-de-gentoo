@@ -38,7 +38,8 @@ COMMON_DEPEND=">=dev-libs/dbus-glib-0.76
 	x11-libs/xtrans
 	virtual/libintl
 	elibc_FreeBSD? ( dev-libs/libexecinfo )
-	>=x11-libs/gtk+-3.14:3
+	!gtk3? ( >=x11-libs/gtk+-2.14:2 )
+	gtk3? ( >=x11-libs/gtk+-3.0:3 )
 	systemd? ( sys-apps/systemd )
 	upower? ( || ( >=sys-power/upower-0.9.23 >=sys-power/upower-pm-utils-0.9.23 ) )"
 
@@ -60,6 +61,7 @@ MATE_FORCE_AUTORECONF=true
 src_configure() {
 	mate_src_configure \
 		--docdir="${EPREFIX}/usr/share/doc/${PF}" \
+		--with-gtk=$(usex gtk3 3.0 2.0) \
 		$(use_with systemd) \
 		$(use_enable debug) \
 		$(use_enable ipv6) \
