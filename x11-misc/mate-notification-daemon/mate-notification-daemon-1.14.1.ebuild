@@ -16,7 +16,7 @@ DESCRIPTION="MATE Notification daemon"
 LICENSE="GPL-2"
 SLOT="0"
 
-IUSE=""
+IUSE="gtk3"
 
 COMMON_DEPEND="dev-libs/atk:0
 	>=dev-libs/dbus-glib-0.78:0
@@ -27,9 +27,16 @@ COMMON_DEPEND="dev-libs/atk:0
 	>=x11-libs/libnotify-0.7:0
 	x11-libs/libX11:0
 	virtual/libintl:0
-	>=x11-libs/gtk+-3.14:3
-	>=x11-libs/libwnck-3:3
-	>=media-libs/libcanberra-0.4:0[gtk3]
+	!gtk3? (
+		>=x11-libs/gtk+-2.24:2
+		>=x11-libs/libwnck-1:1
+		>=media-libs/libcanberra-0.4:0[gtk]
+	)
+	gtk3? (
+		>=x11-libs/gtk+-3.0:3
+		>=x11-libs/libwnck-3:3
+		>=media-libs/libcanberra-0.4:0[gtk3]
+	)
 	!x11-misc/notify-osd:*
 	!x11-misc/qtnotifydaemon:*
 	!x11-misc/notification-daemon:*"
@@ -44,7 +51,8 @@ DEPEND="${COMMON_DEPEND}
 	virtual/pkgconfig:*"
 
 src_configure() {
-	mate_src_configure
+	mate_src_configure \
+		--with-gtk=$(usex gtk3 3.0 2.0)
 }
 
 src_install() {
