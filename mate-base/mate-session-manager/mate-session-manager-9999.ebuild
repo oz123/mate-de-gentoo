@@ -16,7 +16,7 @@ HOMEPAGE="http://mate-desktop.org/"
 LICENSE="GPL-2 LGPL-2 FDL-1.1"
 SLOT="0"
 
-IUSE="debug elibc_FreeBSD gnome-keyring gtk3 ipv6 systemd upower"
+IUSE="debug elibc_FreeBSD gnome-keyring ipv6 systemd upower"
 
 # x11-misc/xdg-user-dirs{,-gtk} are needed to create the various XDG_*_DIRs, and
 # create .config/user-dirs.dirs which is read by glib to get G_USER_DIRECTORY_*
