@@ -21,7 +21,6 @@ RESTRICT="test"
 
 COMMON_DEPEND=">=dev-libs/dbus-glib-0.70:0
 	>=dev-libs/glib-2.36:2
-	>=mate-base/mate-desktop-1.9[gtk3(-)=]
 	>=sys-apps/dbus-1:0
 	>=x11-apps/xrandr-1.3:0
 	>=x11-libs/cairo-1:0
@@ -39,7 +38,6 @@ COMMON_DEPEND=">=dev-libs/dbus-glib-0.70:0
 		>=x11-libs/gtk+-2.24:2
 	)
 	gtk3? (
-		>=dev-libs/libunique-3:3
 		>=media-libs/libcanberra-0.10:0[gtk3]
 		>=x11-libs/gtk+-3.0:3
 	)
