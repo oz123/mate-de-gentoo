@@ -26,7 +26,7 @@ COMMON_DEPEND="
 	>=gnome-base/dconf-0.13.4:0
 	>=gnome-base/librsvg-2.0:2
 	>=mate-base/libmatekbd-1.6[gtk3(-)=]
-	>=mate-base/mate-desktop-1.15.1[gtk3(-)=]
+	>=mate-base/mate-desktop-1.11[gtk3(-)=]
 	>=mate-base/caja-1.8[gtk3(-)=]
 	>=mate-base/mate-menus-1.6
 	>=mate-base/mate-settings-daemon-1.13.1[gtk3(-)=]
