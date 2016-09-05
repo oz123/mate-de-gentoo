@@ -29,7 +29,7 @@ RDEPEND="
 	=mate-base/mate-desktop-${MATE_BRANCH}*:0[gtk3(-)?]
 	=mate-base/mate-menus-${MATE_BRANCH}*:0
 	=mate-base/mate-panel-${MATE_BRANCH}*:0[gtk3(-)?]
-	=mate-base/mate-session-manager-${MATE_BRANCH}*:0
+	=mate-base/mate-session-manager-${MATE_BRANCH}*:0[gtk3(-)?]
 	=mate-base/mate-settings-daemon-${MATE_BRANCH}*:0[gtk3(-)?]
 	=x11-wm/marco-${MATE_BRANCH}*:0[gtk3(-)?]
 	base? (
@@ -38,7 +38,7 @@ RDEPEND="
 		=mate-base/mate-control-center-${MATE_BRANCH}*:0[gtk3(-)?]
 		=mate-extra/mate-media-${MATE_BRANCH}*:0[gtk3(-)?]
 		=x11-misc/mozo-${MATE_BRANCH}*:0
-		=x11-terms/mate-terminal-${MATE_BRANCH}*:0
+		=x11-terms/mate-terminal-${MATE_BRANCH}*:0[gtk3(-)?]
 	)
 	bluetooth? ( net-wireless/blueman:0 )
 	themes? (
@@ -47,7 +47,7 @@ RDEPEND="
 		>=x11-themes/mate-themes-meta-${MATE_THEMES_V}:0
 	)
 	extras? (
-		=app-arch/engrampa-${MATE_BRANCH}*:0
+		=app-arch/engrampa-${MATE_BRANCH}*:0[gtk3(-)?]
 		=app-editors/pluma-${MATE_BRANCH}*:0[gtk3(-)?]
 		=app-text/atril-${MATE_BRANCH}*:0[gtk3(-)?]
 		gnome-extra/gnome-calculator:0
@@ -67,7 +67,7 @@ RDEPEND="
 "
 
 PDEPEND="
-	notification? ( =x11-misc/mate-notification-daemon-${MATE_BRANCH}*:0 )
+	notification? ( =x11-misc/mate-notification-daemon-${MATE_BRANCH}*:0[gtk3(-)?] )
 	virtual/notification-daemon:0"
 
 pkg_postinst() {
