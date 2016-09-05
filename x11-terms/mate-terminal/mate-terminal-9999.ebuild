@@ -36,7 +36,3 @@ DEPEND="${COMMON_DEPEND}
 	>=dev-util/intltool-0.50.1:*
 	sys-devel/gettext:*
 	virtual/pkgconfig:*"
-
-src_configure() {
-	mate_src_configure
-}
