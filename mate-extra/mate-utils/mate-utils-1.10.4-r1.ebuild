@@ -1,4 +1,4 @@
-# Copyright 1999-2015 Gentoo Foundation
+# Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Id$
 
@@ -66,6 +66,10 @@ src_prepare() {
 	# Fix up desktop files.
 	LC_ALL=C find . -iname '*.desktop.in*' -exec \
 		sed -e 's/Categories\(.*\)MATE/Categories\1X-MATE/' -i {} + || die
+
+	# Make apps visible in all DEs.
+	LC_ALL=C find . -iname '*.desktop.in*' -exec \
+		sed -e '/OnlyShowIn/d' -i {} + || die
 }
 
 src_configure() {
