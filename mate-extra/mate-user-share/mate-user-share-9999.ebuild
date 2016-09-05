@@ -34,7 +34,6 @@ COMMON_DEPEND="
 		>=x11-libs/gtk+-2.24:2
 	)
 	gtk3? (
-		>=dev-libs/libunique-3:3
 		media-libs/libcanberra:0[gtk3]
 		>=x11-libs/gtk+-3.0:3
 	)"
