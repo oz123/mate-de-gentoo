@@ -14,18 +14,24 @@ DESCRIPTION="The MATE Terminal"
 LICENSE="GPL-3"
 SLOT="0"
 
-IUSE=""
+IUSE="gtk3"
 
 COMMON_DEPEND="dev-libs/atk:0
 	>=dev-libs/glib-2.36:2
-	>=gnome-base/dconf-0.13.4:0
+	>=mate-base/mate-desktop-1.6[gtk3(-)=]
 	x11-libs/gdk-pixbuf:2
 	x11-libs/libICE:0
 	x11-libs/libSM:0
 	x11-libs/libX11:0
 	x11-libs/pango:0
-	>=x11-libs/gtk+-3.14:3
-	>=x11-libs/vte-0.38:2.91"
+	!gtk3? (
+		>=x11-libs/gtk+-2.24.0:2
+		>=x11-libs/vte-0.28:0
+	)
+	gtk3? (
+		>=x11-libs/gtk+-3.0:3
+		>=x11-libs/vte-0.38:2.91
+	)"
 
 RDEPEND="${COMMON_DEPEND}"
 
@@ -38,5 +44,6 @@ DEPEND="${COMMON_DEPEND}
 	virtual/pkgconfig:*"
 
 src_configure() {
-	mate_src_configure
+	mate_src_configure \
+		--with-gtk=$(usex gtk3 3.0 2.0)
 }
