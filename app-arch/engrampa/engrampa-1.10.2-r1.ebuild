@@ -38,6 +38,11 @@ DEPEND="${RDEPEND}
 	sys-devel/gettext:*
 	virtual/pkgconfig:*"
 
+PATCHES=(
+	"${FILESDIR}/${PN}-1.10.2-p7zip-15.09-compat.patch"
+	"${FILESDIR}/${PN}-1.10.2-p7zip-15.14-compat.patch"
+)
+
 src_prepare() {
 	gnome2_src_prepare
 
