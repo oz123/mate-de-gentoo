@@ -27,6 +27,7 @@ COMMON_DEPEND="${PYTHON_DEPS}
 	>=dev-libs/libxml2-2.5:2
 	dev-python/pygobject:3
 	>=gnome-base/libgtop-2.11.92:2=
+	>=mate-base/mate-desktop-1.9[gtk3(-)=]
 	>=mate-base/mate-panel-1.7[gtk3(-)=]
 	>=net-wireless/wireless-tools-28_pre9:0
 	>=sys-apps/dbus-1.1.2:0
