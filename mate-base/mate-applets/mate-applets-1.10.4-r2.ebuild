@@ -57,7 +57,10 @@ DEPEND="${RDEPEND}
 	dev-libs/libxslt:0
 	>=mate-base/mate-common-1.10:0
 	sys-devel/gettext:*
+	sys-kernel/linux-headers
 	virtual/pkgconfig:*"
+
+PATCHES=( "${FILESDIR}/${PN}-1.10.4-kernel-4.7.patch" )
 
 src_configure() {
 	gnome2_src_configure \

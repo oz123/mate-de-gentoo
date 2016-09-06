@@ -65,7 +65,10 @@ DEPEND="${RDEPEND}
 	>=dev-util/intltool-0.50.1:*
 	dev-libs/libxslt:0
 	sys-devel/gettext:*
+	sys-kernel/linux-headers
 	virtual/pkgconfig:*"
+
+PATCHES=( "${FILESDIR}/${PN}-1.10.4-kernel-4.7.patch" )
 
 src_configure() {
 	mate_src_configure \
