@@ -7,7 +7,7 @@ EAPI="5"
 GCONF_DEBUG="no"
 PYTHON_COMPAT=( python2_7 )
 
-inherit eutils gnome2 python-single-r1 versionator
+inherit eutils gnome2 python-single-r1 autotools versionator
 
 MATE_BRANCH="$(get_version_component_range 1-2)"
 
@@ -45,7 +45,6 @@ RDEPEND="${PYTHON_DEPS}
 	x11-libs/libX11:0
 	>=x11-libs/libwnck-2.30:1
 	x11-libs/pango:0
-	>=x11-themes/mate-icon-theme-1.10:0
 	virtual/libintl:0
 	policykit? ( >=sys-auth/polkit-0.92:0 )"
 
@@ -57,10 +56,18 @@ DEPEND="${RDEPEND}
 	dev-libs/libxslt:0
 	>=mate-base/mate-common-1.10:0
 	sys-devel/gettext:*
-	sys-kernel/linux-headers
 	virtual/pkgconfig:*"
 
-PATCHES=( "${FILESDIR}/${PN}-1.10.4-kernel-4.7.patch" )
+PATCHES=(
+	"${FILESDIR}/${PN}-1.10.4-cpupower-4.7.patch"
+	"${FILESDIR}/${PN}-1.10.4-drop-icon-theme-dep.patch"
+)
+
+src_prepare() {
+	epatch ${PATCHES[@]}
+	eautoreconf
+	gnome2_src_prepare
+}
 
 src_configure() {
 	gnome2_src_configure \
