@@ -1,5 +1,0 @@
-*libmatemixer-1.10.0 (13 Jul 2015)
-
-  13 Jul 2015; NP-Hardass <NP-Hardass@gentoo.org> +libmatemixer-1.10.0.ebuild,
-  +metadata.xml:
-  Add new package, media-libs/libmatemixer
