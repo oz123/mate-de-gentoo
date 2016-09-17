@@ -16,7 +16,7 @@ LICENSE="metapackage"
 
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
-IUSE="+base -bluetooth +themes +extras gnome gtk3"
+IUSE="+base -bluetooth +themes +extras gtk3"
 
 S="${WORKDIR}"
 
@@ -54,8 +54,8 @@ RDEPEND="
 		=mate-extra/mate-system-monitor-${MATE_MV}*:0[gtk3?]
 		=mate-extra/mate-utils-${MATE_MV}*:0
 		=media-gfx/eom-${MATE_MV}*:0[gtk3?]
+		sys-apps/gnome-disk-utility:0
 	)
-	gnome? ( sys-apps/gnome-disk-utility:0 )
 "
 
 PDEPEND="virtual/notification-daemon:0"
