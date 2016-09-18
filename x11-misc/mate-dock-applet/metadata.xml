@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+	<longdescription lang="en">
+     An application dock applet for the MATE panel
+	</longdescription>
+
+	<maintainer>
+		<email>oz.tiram@gmail.com</email>
+		<name>Oz Tiram</name>
+	</maintainer>
+	<use>
+		<flag name="gtk3">Build with GTK3+</flag>
+	</use>
+
+</pkgmetadata>
