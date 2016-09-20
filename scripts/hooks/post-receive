@@ -1,3 +1,3 @@
 #!/bin/sh
 
-nohup git push github &>/dev/null &
+git push --all --mirror github
