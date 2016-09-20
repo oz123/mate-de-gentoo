@@ -47,5 +47,6 @@ fi
 
 if ${REMOTES}; then
 	echo "Configuring Remotes"
-	git add remote github https://github.com/gentoo/gentoo-mate/ || die "Failed to configure remotes"
+	git remote remove github &>/dev/null
+	git remote add github git@github.com:gentoo/gentoo-mate.git || die "Failed to configure remotes"
 fi
