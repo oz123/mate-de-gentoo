@@ -1,3 +1,3 @@
 #!/bin/sh
 
-git push --all --mirror github
+git push --mirror github
