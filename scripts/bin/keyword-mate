@@ -1,0 +1,63 @@
+#!/usr/bin/perl
+# keyword-mate - utility to generate package lists,
+# used also to call keyword-helper automatically to handle stabilizations.
+# Given a list of packages in input and a MAJOR_VERSION,
+# it returns the minimum version of the package if there are more ebuilds with the same MAJOR_VERSION
+# Usage: from the root of the overlay
+# MAJOR_VERSION=1.12 keyword-mate mate-base/mate
+# <mudler@sabayon.org>
+
+my @PKGLIST        = @ARGV;
+my $MAJOR_V        = $ENV{MAJOR_VERSION};
+my $EXCLUSION_LIST = $ENV{EXCLUSION_LIST};
+my $AUTO           = $ENV{AUTO} // 0;
+my $LOCAL_MATCH    = $ENV{LOCAL_MATCH} // "min";
+
+sub natural_order {
+    my @a = @_;
+    return @a[
+        map { unpack "N", substr( $_, -4 ) }
+        sort
+        map {
+            my $key = $a[$_];
+            $key =~ s[(\d+)][ pack "N", $1 ]ge;
+            $key . pack "CNN", 0, 0, $_
+        } 0 .. $#a
+    ];
+}
+
+print
+    "You are running me from the wrong folder, don't you?\nI need to be executed from the root of the overlay!\n"
+    and exit 1
+    if ( -e "Manifest" );
+
+print
+    "I need a MAJOR_VERSION as environment variable, otherwise i can't find the local minimum among the ebuilds\n"
+    and exit 1
+    if ( !$MAJOR_V );
+
+if ( !@ARGV or $ARGV[0] eq "-h" or $ARGV[0] eq "--help" ) {
+    print "You must feed me with at least a package, without version!\n\n";
+    print "e.g. $0 package package1 package2\n\n";
+    print "ENV variables options:\n";
+    print " MAJOR_V \t Major version to check\n";
+    print " AUTO \t Automatically calls keyword-helper\n";
+    print " EXCLUSION_LIST \t Supply an list of packages to be excluded\n";
+    print " LOCAL_MATCH \t Can be 'min' or 'max', indicates local minimum or maximum\n";
+
+    exit 1;
+}
+
+for (@PKGLIST) {
+    next if $EXCLUSION_LIST =~ /$_/;
+    exit 1 unless -d $_;
+    my @EBUILDS = <$_/*.ebuild>;
+    my $wanted_version = ( natural_order( grep {/$MAJOR_V/} @EBUILDS ) )
+        [ $LOCAL_MATCH eq "max" ? -1 : 0 ];
+    my $package = ( $wanted_version =~ /(.*)\.ebuild/ )[0];
+    my @path = split( /\//, $package );
+    next unless @path > 0;
+    $package = $path[0] . "/" . $path[2];
+    print "$package\n";
+    system("./scripts/bin/keyword-helper $package") if ( $AUTO == 1 );
+}
