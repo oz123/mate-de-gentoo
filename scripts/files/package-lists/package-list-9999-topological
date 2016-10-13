@@ -13,8 +13,6 @@ mate-base/mate-session-manager
 mate-base/mate-menus
 mate-base/mate-panel
 x11-themes/mate-backgrounds
-x11-themes/mate-themes
-x11-themes/mate-themes-meta
 x11-misc/mate-notification-daemon
 mate-base/mate-control-center
 mate-extra/mate-screensaver
