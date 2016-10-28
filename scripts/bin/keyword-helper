@@ -11,9 +11,11 @@ my $TARGET_KEYWORD = $ENV{TARGET_KEYWORD} // "amd64 x86"
 my $BUGZ =
     $ENV{BUGZ};    # Bug reference. Mandatory if no COMMIT_MSG is specified
 my $COMMIT_MSG = $ENV{COMMIT_MSG};    # Git commit message
+my $REMOVE = $ENV{REMOVE} // 0;    # Remove ebuilds if 1
 
 my @KEYWORD_PACKAGES = @ARGV;         # Packages that we want to manipulate
 my $CWD              = getcwd;
+my @FAILED;
 
 sub strip_pvr { s/-[0-9]{1,}.*$//; }
 
@@ -39,7 +41,8 @@ if ( !@ARGV or $ARGV[0] eq "-h" or $ARGV[0] eq "--help" ) {
         "ENV variables options:", "",
         " COMMIT_MSG \t\t default commit message",
         " BUGZ \t\t Gentoo Bugzilla id, e.g. 596998",
-        " TARGET_KEYWORD \t the keyword(s) to set separated by a space. e.g. TARGET_KEYWORD='amd64 x86'";
+        " TARGET_KEYWORD \t the keyword(s) to set separated by a space. e.g. TARGET_KEYWORD='amd64 x86'",
+        " REMOVE \t remove ebuilds instead of keywording if setted to 1";
     exit 1;
 }
 
@@ -100,13 +103,17 @@ for (@KEYWORD_PACKAGES) {
                 }
                 $LOCAL_COMMIT_MSG = $prefix_msg . "wrt \#${BUGZ}";
             }
-
-            system("ekeyword $arch $local_package");
+            if ($REMOVE == 1) {
+              system("rm -rfv $local_package");
+            } else {
+              system("ekeyword $arch $local_package");
+            }
             system("git add $local_package");
             system("repoman commit -m '$_: $LOCAL_COMMIT_MSG'");
             if ( $? >> 8 != 0 ) {
                 fatal
                     "Meh. we got errors. before going on, i want you to fix those by hand.";
+                push(@FAILED,$local_package);
             }
             else {
                 ok "Done for $_ [$local_package]";
@@ -119,4 +126,9 @@ for (@KEYWORD_PACKAGES) {
             fatal "/!\\ $local_package not found in $_ keywording failed!";
     }
     chdir($CWD);
+}
+
+if(@FAILED > 0){
+  fatal "Operation failed for the following ebuilds:";
+  fatal "** ".$_ for @FAILED;
 }
