@@ -16,7 +16,7 @@ DESCRIPTION="Caja file manager for the MATE desktop"
 LICENSE="GPL-2 LGPL-2 FDL-1.1"
 SLOT="0"
 
-IUSE="gtk3 +introspection +mate packagekit xmp unique"
+IUSE="gtk3 +introspection +mate packagekit xmp"
 
 COMMON_DEPEND="dev-libs/atk:0
 	>=dev-libs/glib-2.36:2
@@ -27,7 +27,6 @@ COMMON_DEPEND="dev-libs/atk:0
 	>=media-libs/libexif-0.6.14:0
 	x11-libs/cairo:0
 	x11-libs/gdk-pixbuf:2
-	>=x11-libs/libnotify-0.7.0:0
 	x11-libs/libICE:0
 	x11-libs/libSM:0
 	x11-libs/libX11:0
@@ -41,7 +40,7 @@ COMMON_DEPEND="dev-libs/atk:0
 		>=x11-libs/gtk+-2.24:2[introspection?]
 	)
 	gtk3? (
-		unique? ( >=dev-libs/libunique-3:3 )
+		>=dev-libs/libunique-3:3
 		>=x11-libs/gtk+-3.0:3[introspection?]
 	)
 	introspection? ( >=dev-libs/gobject-introspection-0.6.4:= )
@@ -75,17 +74,12 @@ src_prepare() {
 }
 
 src_configure() {
-	local myconf
-	if use gtk3; then
-		myconf="$(usex unique '' '--disable-libunique')"
-	fi
 	mate_src_configure \
 		--disable-update-mimedb \
 		--with-gtk=$(usex gtk3 3.0 2.0) \
 		$(use_enable introspection) \
 		$(use_enable packagekit) \
-		$(use_enable xmp) \
-		${myconf}
+		$(use_enable xmp)
 }
 
 src_test() {
