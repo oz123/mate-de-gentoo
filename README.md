@@ -1,6 +1,8 @@
 MATE-DESKTOP OVERLAY For Gentoo
 ===============================
 
+*IMPORTANT NOTE*: While this repository is still here, I am now doing most of the work in https://github.com/oz123/gentoo-mate. You can find there first signs of mate 1.16 series.
+
 This is an overlay intended to be used in Gentoo. 
 
 I have done my best to adhere to Gentoo's best practices, however, there
