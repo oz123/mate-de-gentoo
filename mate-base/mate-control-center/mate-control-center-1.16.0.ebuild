@@ -40,7 +40,7 @@ COMMON_DEPEND="
 	x11-libs/libXScrnSaver:0
 	x11-libs/libXcursor:0
 	x11-libs/libXext:0
-	>=x11-libs/libXi-1.5:0
+	>=x11-libs/libXi-1.2:0
 	x11-libs/libXrandr:0
 	x11-libs/libXrender:0
 	x11-libs/libXxf86misc:0
@@ -55,6 +55,7 @@ COMMON_DEPEND="
 		appindicator? ( dev-libs/libappindicator:2 )
 	)
 	gtk3? (
+		>=dev-libs/libunique-3:3
 		media-libs/libcanberra:0[gtk3]
 		>=x11-libs/gtk+-3.0:3
 		appindicator? ( dev-libs/libappindicator:3 )
