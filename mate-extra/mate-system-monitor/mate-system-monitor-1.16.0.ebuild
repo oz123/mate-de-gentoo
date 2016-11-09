@@ -31,8 +31,7 @@ COMMON_DEPEND="
 	virtual/libintl:0
 	systemd? ( sys-apps/systemd )"
 
-RDEPEND="${COMMON_DEPEND}
-	>=sys-auth/polkit-0.97:0"
+RDEPEND="${COMMON_DEPEND}"
 
 DEPEND="${COMMON_DEPEND}
 	app-text/yelp-tools:0
