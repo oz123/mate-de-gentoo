@@ -49,7 +49,7 @@ COMMON_DEPEND="${PYTHON_DEPS}
 		x11-libs/gtksourceview:3.0
 		>=x11-libs/libwnck-3.0:3
 	)
-	policykit? ( >=sys-auth/polkit-0.92:0 )
+	policykit? ( >=sys-auth/polkit-0.97:0 )
 	upower? (
 		|| (
 			>=sys-power/upower-0.9.23
