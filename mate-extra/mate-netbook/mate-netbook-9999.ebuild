@@ -18,7 +18,6 @@ IUSE="gtk3"
 
 COMMON_DEPEND="
 	>=dev-libs/glib-2.36:2
-	>=mate-base/mate-desktop-1.9[gtk3(-)=]
 	>=mate-base/mate-panel-1.8[gtk3(-)=]
 	x11-libs/libfakekey:0
 	x11-libs/libXtst:0
@@ -26,12 +25,10 @@ COMMON_DEPEND="
 	x11-libs/cairo:0
 	virtual/libintl:0
 	!gtk3? (
-		dev-libs/libunique:1
 		x11-libs/gtk+:2
 		x11-libs/libwnck:1
 	)
 	gtk3? (
-		dev-libs/libunique:3
 		x11-libs/gtk+:3
 		x11-libs/libwnck:3
 	)"
