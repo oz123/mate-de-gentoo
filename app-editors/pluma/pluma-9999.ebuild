@@ -6,9 +6,7 @@ EAPI=6
 
 MATE_LA_PUNT="yes"
 
-PYTHON_COMPAT=( python2_7 )
-
-inherit mate multilib python-single-r1 virtualx
+inherit mate multilib virtualx
 
 if [[ ${PV} != 9999 ]]; then
 	KEYWORDS="~amd64 ~arm ~x86"
@@ -18,11 +16,7 @@ DESCRIPTION="Pluma text editor for the MATE desktop"
 LICENSE="GPL-2"
 SLOT="0"
 
-IUSE="gtk3 python spell"
-
-REQUIRED_USE="
-	gtk3? ( !python )
-	python? ( ${PYTHON_REQUIRED_USE} )"
+IUSE="spell"
 
 # Tests require gvfs sftp fs mounted and schema's installed. Disable tests.
 # https://github.com/mate-desktop/mate-text-editor/issues/33
@@ -38,23 +32,11 @@ COMMON_DEPEND="dev-libs/atk:0
 	>=x11-libs/libSM-1.0
 	x11-libs/pango:0
 	virtual/libintl:0
-	!gtk3? (
-		>=x11-libs/gtk+-2.24:2
-		>=x11-libs/gtksourceview-2.9.7:2.0
-	)
-	gtk3? (
-		>=x11-libs/gtk+-3.0:3
-		>=x11-libs/gtksourceview-2.9.7:3.0
-	)
+	>=x11-libs/gtk+-3.14.0:3
+	>=x11-libs/gtksourceview-3.0.0:3.0
 	spell? (
 		>=app-text/enchant-1.2:0
 		>=app-text/iso-codes-0.35:0
-	)
-	python? (
-		${PYTHON_DEPS}
-		>=dev-python/pygobject-2.15.4:2[${PYTHON_USEDEP}]
-		>=dev-python/pygtk-2.12:2[${PYTHON_USEDEP}]
-		>=dev-python/pygtksourceview-2.9.2:2
 	)
 	!!app-editors/mate-text-editor"
 
@@ -72,14 +54,8 @@ DEPEND="${COMMON_DEPEND}
 	>=sys-devel/gettext-0.17:*
 	virtual/pkgconfig:*"
 
-pkg_setup() {
-	use python && python-single-r1_pkg_setup
-}
-
 src_configure() {
 	mate_src_configure \
-		--with-gtk=$(usex gtk3 3.0 2.0) \
-		$(use_enable python) \
 		$(use_enable spell)
 }
 
