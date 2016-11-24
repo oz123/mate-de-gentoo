@@ -1,35 +1,31 @@
-# Copyright 1999-2015 Gentoo Foundation
+# Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Id$
 
-EAPI="5"
+EAPI=6
 
-GCONF_DEBUG="no"
-GNOME2_LA_PUNT="yes"
+MATE_LA_PUNT="yes"
 
-inherit gnome2 eutils versionator
+inherit mate
 
-MATE_BRANCH="$(get_version_component_range 1-2)"
+if [[ ${PV} != 9999 ]]; then
+	KEYWORDS="amd64 ~arm x86"
+fi
 
-SRC_URI="http://pub.mate-desktop.org/releases/${MATE_BRANCH}/${P}.tar.xz"
 DESCRIPTION="MATE panel applet to display readings from hardware sensors"
-HOMEPAGE="http://mate-desktop.org"
-
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64 ~x86"
 
 IUSE="+dbus gtk3 hddtemp libnotify lm_sensors video_cards_fglrx video_cards_nvidia"
 
 RDEPEND="app-text/rarian:0
-	>=dev-libs/glib-2.26:2
-	>=mate-base/mate-panel-1.12:0[gtk3?]
+	>=dev-libs/glib-2.36:2
+	>=mate-base/mate-panel-1.6[gtk3(-)=]
 	>=x11-libs/cairo-1.0.4:0
-	!gtk3? ( x11-libs/gdk-pixbuf:2
-			>=x11-libs/gtk+-2.14:2
-			)
-	gtk3? ( x11-libs/gtk+:3 )
+	x11-libs/gdk-pixbuf:2
 	virtual/libintl:0
+	!gtk3? ( >=x11-libs/gtk+-2.24:2 )
+	gtk3? ( >=x11-libs/gtk+-3.0:3 )
 	hddtemp? (
 		dbus? (
 			>=dev-libs/dbus-glib-0.80:0
@@ -39,38 +35,34 @@ RDEPEND="app-text/rarian:0
 	lm_sensors? ( sys-apps/lm_sensors:0 )
 	video_cards_fglrx? ( x11-drivers/ati-drivers:* )
 	video_cards_nvidia? ( || (
-		>=x11-drivers/nvidia-drivers-100.14.09:0
+		>=x11-drivers/nvidia-drivers-100.14.09:0[static-libs,tools]
 		media-video/nvidia-settings:0
 	) )"
 
 DEPEND="${RDEPEND}
 	>=app-text/scrollkeeper-dtd-1:1.0
 	app-text/yelp-tools:0
-	dev-util/intltool:*
+	>=dev-util/intltool-0.50.1:*
 	sys-devel/gettext:*
 	virtual/pkgconfig:*"
 
-# Requires libxslt only for use by gnome-doc-utils.
 PDEPEND="hddtemp? ( dbus? ( sys-fs/udisks:0 ) )"
 
 src_configure() {
-	local use_gtk3
-	use gtk3 && use_gtk3="${use_gtk3} --with-gtk=3.0"
-	use !gtk3 && use_gtk3="${use_gtk3} --with-gtk=2.0"
+	local udisks
 
 	if use hddtemp && use dbus; then
-		use_gtk3="${use_gtk3} $(use_enable dbus udisks)"
+		udisks="--enable-udisks"
 	else
-		use_gtk3="${use_gtk3} --disable-udisks"
+		udisks="--disable-udisks"
 	fi
 
-	gnome2_src_configure \
+	mate_src_configure \
 		--disable-static \
+		--with-gtk=$(usex gtk3 3.0 2.0) \
 		$(use_enable libnotify) \
 		$(use_with lm_sensors libsensors) \
 		$(use_with video_cards_fglrx aticonfig) \
 		$(use_with video_cards_nvidia nvidia) \
-		${use_gtk3}
+		${udisks}
 }
-
-DOCS="AUTHORS ChangeLog NEWS README TODO"

@@ -1,20 +1,27 @@
-# Copyright 1999-2015 Gentoo Foundation
+# Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Id$
 
-EAPI="5"
+EAPI=6
 
-inherit versionator
+inherit mate-desktop.org
 
-MATE_BRANCH="$(get_version_component_range 1-2)"
+if [[ ${PV} == 9999 ]]; then
+	inherit autotools
+else
+	KEYWORDS="amd64 ~arm x86"
+fi
 
-SRC_URI="http://pub.mate-desktop.org/releases/${MATE_BRANCH}/${P}.tar.xz"
 DESCRIPTION="Common files for development of MATE packages"
-HOMEPAGE="http://mate-desktop.org"
-
 LICENSE="GPL-3"
 SLOT="0"
-KEYWORDS="~amd64 ~x86"
+
+src_prepare() {
+	default
+	if [[ ${PV} == 9999 ]]; then
+		eautoreconf
+	fi
+}
 
 src_install() {
 	mv doc-build/README README.doc-build \

@@ -1,18 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
 <pkgmetadata>
-	<maintainer>
-        <email>oz.tiram@gmail.com</email>
-		<name>Oz N Tiram</name>
+    <maintainer type="project">
+        <email>mate@gentoo.org</email>
+        <name>Gentoo MATE Desktop</name>
     </maintainer>
 	<use>
-		<flag name="aac">Add aac gstreamer support</flag>
-		<flag name="flac">Add flac gstreamer support</flag>
-		<flag name="gtk3">Build with gtk3 support</flag>
-		<flag name="mp3">Add mp3 gstreamer support</flag>
-		<flag name="speex">Add speex gstreamer support</flag>
-		<flag name="twolame">Add twolame gstreamer support</flag>
-		<flag name="vorbis">Add vorbis gstreamer support</flag>
+		<flag name="gtk3">Build with GTK+3 instead of GTK+2</flag>
 	</use>
     <upstream>
         <remote-id type="github">mate-desktop/mate-media</remote-id>

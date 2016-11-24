@@ -1,0 +1,134 @@
+#!/usr/bin/perl
+# keyword-helper - utility to ekeyword packages
+# Usage: from the root of the overlay
+# keyword-helper app-foo/bar-1.2 app-foo/baz-1.2
+# <mudler@sabayon.org>
+
+use Cwd;
+
+my $TARGET_KEYWORD = $ENV{TARGET_KEYWORD} // "amd64 x86"
+    ;    # KEYWORD changes, arguments are given directly to ekeyword
+my $BUGZ =
+    $ENV{BUGZ};    # Bug reference. Mandatory if no COMMIT_MSG is specified
+my $COMMIT_MSG = $ENV{COMMIT_MSG};    # Git commit message
+my $REMOVE = $ENV{REMOVE} // 0;    # Remove ebuilds if 1
+
+my @KEYWORD_PACKAGES = @ARGV;         # Packages that we want to manipulate
+my $CWD              = getcwd;
+my @FAILED;
+
+sub strip_pvr { s/-[0-9]{1,}.*$//; }
+
+sub package_has_pvr { /-[0-9]{1,}.*$/; }
+
+# print helpers
+
+sub say { print join( "\n", @_ ) . "\n"; }
+
+sub err { say "\e[31m ", @_, " \e[0m"; }
+
+sub fatal { err @_; exit 1; }
+
+sub ok { say "\e[1;34m ", @_, " \e[0m"; }
+
+sub info { say "\e[1;37m ", @_, " \e[0m"; }
+
+# deadly checks
+
+if ( !@ARGV or $ARGV[0] eq "-h" or $ARGV[0] eq "--help" ) {
+    say "You must feed me with at least a package version", "",
+        "e.g. $0 package",        "",
+        "ENV variables options:", "",
+        " COMMIT_MSG \t\t default commit message",
+        " BUGZ \t\t Gentoo Bugzilla id, e.g. 596998",
+        " TARGET_KEYWORD \t the keyword(s) to set separated by a space. e.g. TARGET_KEYWORD='amd64 x86'",
+        " REMOVE \t remove ebuilds instead of keywording if setted to 1";
+    exit 1;
+}
+
+if ( -e "${CWD}/Manifest" ) {
+    fatal "You are running me from the wrong folder, don't you?",
+        "I need to be executed from the root of the overlay!";
+}
+
+fatal "You should supply a bug id with the BUGZ environment variable or",
+    "a custom commit message with COMMIT_MSG at least"
+    if ( !$BUGZ and !$COMMIT_MSG );
+
+# Split TARGET_KEYWORD by space and put into an array
+my @ARCHES = split( /\s/, $TARGET_KEYWORD );
+
+# Cycle packages that need to be manipulated
+# Here it's being used $_, that contains strings in the following format:  category/package, contains package version and revision too
+for (@KEYWORD_PACKAGES) {
+    fatal
+        "You must feed me with package versions, not atoms or whatever!",
+        "bailing out since you are using me in the WRONG way, fix yourself first"
+        unless package_has_pvr;
+    my $local_package =
+        (/\/(.*)$/)[0]
+        . ".ebuild"
+        ;  # Extract the package name and version, included of revision if any
+    info "Keywording $TARGET_KEYWORD on $_ [$local_package]";
+    strip_pvr();    # stripping PVR
+
+    if ( -d $_ ) {
+        chdir($_);    # entering in the directory
+    }
+    else {
+        fatal "$_ directory doesn't exists";
+    }
+
+    # Checking if ebuild we want to keyword is there
+    if ( -e $local_package ) {
+
+        # Do magic with the ebuild, since it exists
+        foreach my $arch (@ARCHES) {
+            my $LOCAL_COMMIT_MSG = $COMMIT_MSG;
+
+            # if no COMMIT_MSG is supplied, we generate it
+            if ( !$COMMIT_MSG ) {
+                my ( $keyword_symbol, $clean_arch ) =
+                    ( $arch =~ /^(\^|\~|)(.*)$/ )
+                    ; # Getting the first character of a arch, it can be ~, ^ or "" to use it with ekeyword
+                my $prefix_msg;
+                if ( $keyword_symbol eq '^' ) {
+                    $prefix_msg = "Drop $clean_arch keyword ";
+                }
+                elsif ( $keyword_symbol eq '~' ) {
+                    $prefix_msg = "Added $arch keyword ";
+                }
+                elsif ( $keyword_symbol eq "" ) {
+                    $prefix_msg = "Stable on $clean_arch keyword ";
+                }
+                $LOCAL_COMMIT_MSG = $prefix_msg . "wrt \#${BUGZ}";
+            }
+            if ($REMOVE == 1) {
+              system("rm -rfv $local_package");
+            } else {
+              system("ekeyword $arch $local_package");
+            }
+            system("git add $local_package");
+            system("repoman commit -m '$_: $LOCAL_COMMIT_MSG'");
+            if ( $? >> 8 != 0 ) {
+                fatal
+                    "Meh. we got errors. before going on, i want you to fix those by hand.";
+                push(@FAILED,$local_package);
+            }
+            else {
+                ok "Done for $_ [$local_package]";
+            }
+        }
+
+    }
+    else {
+        # errors, the ebuild cannot be found
+            fatal "/!\\ $local_package not found in $_ keywording failed!";
+    }
+    chdir($CWD);
+}
+
+if(@FAILED > 0){
+  fatal "Operation failed for the following ebuilds:";
+  fatal "** ".$_ for @FAILED;
+}

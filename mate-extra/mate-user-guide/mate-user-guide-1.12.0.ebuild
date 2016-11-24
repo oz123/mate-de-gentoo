@@ -1,32 +1,28 @@
-# Copyright 1999-2015 Gentoo Foundation
+# Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Id$
 
-EAPI="5"
+EAPI=6
 
-GCONF_DEBUG="no"
-GNOME2_LA_PUNT="yes"
+MATE_LA_PUNT="yes"
 
-inherit gnome2 versionator
+inherit mate
 
-MATE_BRANCH="$(get_version_component_range 1-2)"
+if [[ ${PV} != 9999 ]]; then
+	KEYWORDS="amd64 ~arm x86"
+fi
 
-SRC_URI="http://pub.mate-desktop.org/releases/${MATE_BRANCH}/${P}.tar.xz"
-DESCRIPTION="MATE user-guide"
-HOMEPAGE="http://mate-desktop.org"
-
+DESCRIPTION="User documentation for MATE Desktop"
 LICENSE="GPL-2 LGPL-2"
 SLOT="0"
-KEYWORDS="~amd64 ~x86"
 
-RDEPEND="virtual/libintl:0"
+RDEPEND="
+	gnome-extra/yelp
+	virtual/libintl:0"
 
 DEPEND="${RDEPEND}
-	gnome-extra/yelp
 	>=dev-util/intltool-0.40:*
 	app-text/yelp-tools
-	>=mate-base/mate-common-1.10:0
 	sys-devel/gettext:*
-	virtual/pkgconfig:*"
-
-DOCS="AUTHORS ChangeLog NEWS README"
+	virtual/pkgconfig:*
+	!!mate-base/mate-desktop[user-guide]"
