@@ -38,7 +38,6 @@ DEPEND="${COMMON_DEPEND}
 	sys-devel/gettext:*
 	virtual/pkgconfig:*"
 
-#PATCHES=( "${FILESDIR}/${PN}-1.10.2-p7zip-15.14-compat.patch" )
 
 src_configure() {
 	mate_src_configure \
