@@ -5,7 +5,7 @@
      An application dock applet for the MATE panel
 	</longdescription>
 
-	<maintainer>
+	<maintainer type="person">
 		<email>oz.tiram@gmail.com</email>
 		<name>Oz Tiram</name>
 	</maintainer>
