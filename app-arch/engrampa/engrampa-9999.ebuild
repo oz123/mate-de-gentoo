@@ -24,7 +24,7 @@ COMMON_DEPEND="
 	x11-libs/pango:0
 	virtual/libintl:0
 	caja? ( >=mate-base/caja-1.1.0 )
-	>=x11-libs/gtk+-3.14:3
+	>=x11-libs/gtk+-3.14:3[X]
 	magic? ( sys-apps/file )
 	packagekit? ( app-admin/packagekit-base )
 	!!app-arch/mate-file-archiver"
