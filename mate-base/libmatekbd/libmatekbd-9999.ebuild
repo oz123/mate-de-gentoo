@@ -1,4 +1,4 @@
-# Copyright 1999-2016 Gentoo Foundation
+# Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=6
@@ -15,7 +15,7 @@ DESCRIPTION="MATE keyboard configuration library"
 LICENSE="LGPL-2"
 SLOT="0"
 
-IUSE="X gtk3 +introspection test"
+IUSE="X +introspection test"
 
 COMMON_DEPEND=">=dev-libs/glib-2.36:2
 	x11-libs/cairo:0
@@ -24,8 +24,7 @@ COMMON_DEPEND=">=dev-libs/glib-2.36:2
 	>=x11-libs/libxklavier-5.2:0[introspection?]
 	x11-libs/pango:0
 	virtual/libintl:0
-	!gtk3? ( >=x11-libs/gtk+-2.24:2[introspection?] )
-	gtk3? ( >=x11-libs/gtk+-3.0:3[introspection?] )
+	>=x11-libs/gtk+-3.0:3[introspection?]
 	introspection? ( >=dev-libs/gobject-introspection-0.6.7:= )"
 
 RDEPEND="${COMMON_DEPEND}"
@@ -37,7 +36,6 @@ DEPEND="${COMMON_DEPEND}
 
 src_configure() {
 	mate_src_configure \
-		--with-gtk=$(usex gtk3 3.0 2.0) \
 		$(use_with X x) \
 		$(use_enable introspection) \
 		$(use_enable test tests)
