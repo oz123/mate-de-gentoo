@@ -1,4 +1,4 @@
-# Copyright 1999-2016 Gentoo Foundation
+# Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=6
@@ -15,29 +15,23 @@ DESCRIPTION="Utilities for the MATE desktop"
 LICENSE="GPL-2"
 SLOT="0"
 
-IUSE="X applet debug gtk3 ipv6 test"
+IUSE="X applet debug ipv6 test"
 
 COMMON_DEPEND="
 	dev-libs/atk:0
 	>=dev-libs/glib-2.36:2
 	>=gnome-base/libgtop-2.12:2=
+	>=media-libs/libcanberra-0.4:0[gtk3]
 	sys-libs/zlib:0
 	x11-libs/cairo:0
 	x11-libs/gdk-pixbuf:2
+	>=x11-libs/gtk+-3.14:3
 	x11-libs/libICE:0
 	x11-libs/libSM:0
 	x11-libs/libX11:0
 	x11-libs/libXext:0
 	x11-libs/pango:0
-	applet? ( >=mate-base/mate-panel-1.6[gtk3(-)=] )
-	!gtk3? (
-		>=x11-libs/gtk+-2.24:2
-		>=media-libs/libcanberra-0.4:0[gtk]
-	)
-	gtk3? (
-		>=x11-libs/gtk+-3.0:3
-		>=media-libs/libcanberra-0.4:0[gtk3]
-	)"
+	applet? ( >=mate-base/mate-panel-1.17.0 )"
 
 RDEPEND="${COMMON_DEPEND}"
 
@@ -65,7 +59,6 @@ src_configure() {
 		--disable-maintainer-flags \
 		--enable-zlib \
 		--enable-debug=$(usex debug yes minimum) \
-		--with-gtk=$(usex gtk3 3.0 2.0) \
 		$(use_with X x) \
 		$(use_enable applet gdict-applet) \
 		$(use_enable ipv6)
