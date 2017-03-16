@@ -23,7 +23,7 @@ COMMON_DEPEND="
 	x11-libs/gdk-pixbuf:2
 	x11-libs/pango:0
 	virtual/libintl:0
-	caja? ( >=mate-base/caja-1.1.0 )
+	caja? ( >=mate-base/caja-1.17.1 )
 	>=x11-libs/gtk+-3.14:3[X]
 	magic? ( sys-apps/file )
 	packagekit? ( app-admin/packagekit-base )
@@ -40,7 +40,6 @@ DEPEND="${COMMON_DEPEND}
 src_configure() {
 	mate_src_configure \
 		--disable-run-in-place \
-		--disable-deprecations \
 		$(use_enable caja caja-actions) \
 		$(use_enable magic) \
 		$(use_enable packagekit)
