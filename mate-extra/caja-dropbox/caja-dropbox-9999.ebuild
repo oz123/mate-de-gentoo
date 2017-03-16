@@ -1,4 +1,4 @@
-# Copyright 1999-2016 Gentoo Foundation
+# Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=6
@@ -20,10 +20,10 @@ IUSE="debug"
 
 COMMON_DEPEND="
 	dev-libs/atk:0
-	>=dev-libs/glib-2.14:2
+	>=dev-libs/glib-2.36:2
 	dev-python/pygtk:2[${PYTHON_USEDEP}]
 	dev-python/pygobject:2[${PYTHON_USEDEP}]
-	>=mate-base/caja-1.6
+	>=mate-base/caja-1.17.1
 	media-libs/fontconfig:1.0
 	media-libs/freetype:2
 	x11-libs/cairo:0
