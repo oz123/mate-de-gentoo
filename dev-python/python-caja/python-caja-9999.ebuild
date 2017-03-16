@@ -1,4 +1,4 @@
-# Copyright 1999-2016 Gentoo Foundation
+# Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=6
@@ -16,14 +16,13 @@ DESCRIPTION="Python bindings for the Caja file manager"
 LICENSE="GPL-2"
 SLOT="0"
 
-IUSE="doc gtk3"
+IUSE="doc"
 
 COMMON_DEPEND="${PYTHON_DEPS}
 	dev-libs/glib:2
 	dev-python/pygobject:3[${PYTHON_USEDEP}]
-	>=mate-base/caja-1.8[gtk3(-)=,introspection]
-	!gtk3? ( x11-libs/gtk+:2 )
-	gtk3? ( x11-libs/gtk+:3 )"
+	>=mate-base/caja-1.17.1[introspection]
+	x11-libs/gtk+:3"
 
 RDEPEND="${COMMON_DEPEND}"
 
