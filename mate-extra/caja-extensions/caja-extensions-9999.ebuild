@@ -1,4 +1,4 @@
-# Copyright 1999-2016 Gentoo Foundation
+# Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=6
@@ -16,21 +16,21 @@ LICENSE="GPL-2"
 SLOT="0"
 
 SENDTO="cdr gajim +mail pidgin upnp"
-IUSE="gksu gtk3 image-converter +open-terminal share +wallpaper ${SENDTO}"
+IUSE="gksu image-converter +open-terminal share +wallpaper xattr ${SENDTO}"
 
 COMMON_DEPEND=">=dev-libs/glib-2.36:2
-	>=mate-base/caja-1.7[gtk3(-)=]
+	>=mate-base/caja-1.17.1
 	virtual/libintl:0
 	x11-libs/gdk-pixbuf:2
+	>=x11-libs/gtk+-3.14:3
 	gajim? (
 		>=dev-libs/dbus-glib-0.60:0
 		>=sys-apps/dbus-1:0
 	)
-	!gtk3? ( >=x11-libs/gtk+-2.24:2 )
-	gtk3? ( >=x11-libs/gtk+-3.0:3 )
-	open-terminal? ( >=mate-base/mate-desktop-1.7[gtk3(-)=] )
+	open-terminal? ( >=mate-base/mate-desktop-1.17.0 )
 	pidgin? ( >=dev-libs/dbus-glib-0.60:0 )
-	upnp? ( >=net-libs/gupnp-0.13:0= )"
+	upnp? ( >=net-libs/gupnp-0.13:0= )
+	xattr? ( sys-apps/attr )"
 
 RDEPEND="${COMMON_DEPEND}
 	cdr? ( >=app-cdr/brasero-2.32.1:0= )
@@ -66,10 +66,10 @@ src_configure() {
 	mate_src_configure \
 		--enable-sendto \
 		--with-sendto-plugins=${sendto_plugins}\
-		--with-gtk=$(usex gtk3 3.0 2.0) \
 		$(use_enable gksu) \
 		$(use_enable image-converter) \
 		$(use_enable open-terminal) \
 		$(use_enable share) \
-		$(use_enable wallpaper)
+		$(use_enable wallpaper) \
+		$(use_enable xattr xattr-tags)
 }
