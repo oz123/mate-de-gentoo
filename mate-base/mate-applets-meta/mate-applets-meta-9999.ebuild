@@ -1,4 +1,4 @@
-# Copyright 1999-2016 Gentoo Foundation
+# Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=6
@@ -17,10 +17,10 @@ SRC_URI=""
 
 LICENSE="metapackage"
 SLOT="0"
-IUSE="appindicator gtk3 sensors"
+IUSE="appindicator sensors"
 
 DEPEND=""
-RDEPEND="=mate-base/mate-applets-${MATE_BRANCH}*[gtk3(-)=]
-	appindicator? ( =mate-extra/mate-indicator-applet-${MATE_BRANCH}*[gtk3(-)=] )
-	sensors? ( =mate-extra/mate-sensors-applet-${MATE_BRANCH}*[gtk3(-)=] )
+RDEPEND="=mate-base/mate-applets-${MATE_BRANCH}*
+	appindicator? ( =mate-extra/mate-indicator-applet-${MATE_BRANCH}* )
+	sensors? ( =mate-extra/mate-sensors-applet-${MATE_BRANCH}* )
 "
