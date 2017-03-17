@@ -48,7 +48,8 @@ COMMON_DEPEND="
 	>=x11-libs/libxklavier-4:0
 	x11-libs/pango:0
 	>=x11-wm/marco-1.17.0
-	virtual/libintl:0"
+	virtual/libintl:0
+	appindicator? ( dev-libs/libappindicator:3 )"
 
 RDEPEND="${COMMON_DEPEND}"
 
