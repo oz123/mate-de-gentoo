@@ -49,7 +49,6 @@ RDEPEND="
 		=app-arch/engrampa-${MATE_BRANCH}*:0
 		=app-editors/pluma-${MATE_BRANCH}*:0
 		=app-text/atril-${MATE_BRANCH}*:0
-		gnome-extra/gnome-calculator:0
 		=mate-extra/caja-extensions-${MATE_BRANCH}*:0
 		=mate-extra/mate-calc-${MATE_BRANCH}*:0
 		=mate-extra/mate-netbook-${MATE_BRANCH}*:0
