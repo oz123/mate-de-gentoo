@@ -1,8 +1,11 @@
 #!/bin/bash
 
+set -x
+
 VERSION=$1
 
-USE="gtk3 xinerama" emerge -aUN ">=mate-base/mate-common-${VERSION}" \
+USE="gtk3 xinerama" emerge -UN \
+">=mate-base/mate-common-${VERSION}" \
 ">=mate-base/mate-desktop-${VERSION}" \
 ">=mate-base/libmatekbd-${VERSION}" \
 ">=dev-libs/libmateweather-${VERSION}" \
