@@ -9,8 +9,4 @@
 		<email>oz.tiram@gmail.com</email>
 		<name>Oz Tiram</name>
 	</maintainer>
-	<use>
-		<flag name="gtk3">Build with GTK3+</flag>
-	</use>
-
 </pkgmetadata>

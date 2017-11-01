@@ -2,8 +2,8 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Id$
 
-EAPI=5
-inherit eutils autotools gnome2
+EAPI=6
+inherit eutils autotools mate
 DESCRIPTION="Application dock for the MATE panel"
 HOMEPAGE="https://github.com/robint99/dock-applet"
 SRC_URI="https://github.com/robint99/mate-dock-applet/archive/V${PV}.tar.gz"
@@ -11,32 +11,25 @@ SRC_URI="https://github.com/robint99/mate-dock-applet/archive/V${PV}.tar.gz"
 LICENSE="GPL-3"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
-IUSE="gtk3"
 
+PYTHON_COMPAT=( python{3_4,3_5,3_6} )
 DEPEND=">=sys-devel/automake-1.15:1.15"
 
 RDEPEND="
-	dev-lang/python:3.4
-	dev-python/pyxdg[python_targets_python3_4]
-	gtk3? (
-		x11-libs/libwnck:3[introspection]
-		mate-base/mate-panel[introspection,gtk3]
-		dev-python/pygobject:3[python_targets_python3_4]
-	)
-
-	!gtk3? (
-		x11-libs/libwnck:1[introspection]
-		mate-base/mate-panel[introspection]
-		dev-python/pygobject:2
-	)
+	dev-python/python-xlib[python_targets_python3_4,python_targets_python3_5,python_targets_python3_6]
+	dev-python/pygobject:3[python_targets_python3_4,python_targets_python3_5,python_targets_python3_6]
+	dev-python/pillow
+	>=mate-base/mate-panel-1.17.0[introspection]
+	x11-libs/libwnck:3[introspection]
 	"
 
 src_prepare() {
+	eapply_user
 	eaclocal
 	eautomake
 	eautoreconf
 }
 
 src_configure(){
-	gnome2_src_configure $(use_with gtk3) --prefix=/usr
+	mate_src_configure --with-gtk3 --prefix=/usr
 }
