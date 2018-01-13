@@ -1,4 +1,4 @@
-# Copyright 1999-2016 Gentoo Foundation
+# Copyright 1999-2018 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=6
@@ -21,20 +21,8 @@ IUSE="gtk2-only"
 DEPEND=""
 RDEPEND="|| (
 		gtk2-only? (
-			!!11-libs/gtk+:3
+			!!x11-libs/gtk+:3
 			x11-themes/mate-themes:0
-		)
-		(
-			=x11-libs/gtk+-3.16*:3
-			=x11-themes/mate-themes-3.16${MATE_THEMES_V}:0/3.16
-		)
-		(
-			=x11-libs/gtk+-3.18*:3
-			=x11-themes/mate-themes-3.18${MATE_THEMES_V}:0/3.18
-		)
-		(
-			=x11-libs/gtk+-3.20*:3
-			=x11-themes/mate-themes-3.20${MATE_THEMES_V}:0/3.20
 		)
 		(
 			=x11-libs/gtk+-3.22*:3
