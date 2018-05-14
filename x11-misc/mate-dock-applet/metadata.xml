@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
 <pkgmetadata>
-	<longdescription lang="en">
+    <longdescription lang="en">
      An application dock applet for the MATE panel
-	</longdescription>
+    </longdescription>
 
-	<maintainer type="person">
-		<email>oz.tiram@gmail.com</email>
-		<name>Oz Tiram</name>
-	</maintainer>
+    <maintainer type="person">
+        <email>oz.tiram@gmail.com</email>
+        <name>Oz Tiram</name>
+    </maintainer>
 </pkgmetadata>
