@@ -5,7 +5,9 @@ EAPI=6
 
 inherit mate-desktop.org
 
-KEYWORDS="~amd64"
+if [[ ${PV} != 9999 ]]; then
+	KEYWORDS="~amd64 ~arm ~arm64 ~x86"
+fi
 
 DESCRIPTION="Common files for development of MATE packages"
 LICENSE="GPL-3"
