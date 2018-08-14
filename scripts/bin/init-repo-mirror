@@ -1,0 +1,52 @@
+#!/bin/sh
+
+die(){
+	echo "$@"
+	exit 1
+}
+
+help_info(){
+	echo "Initialize repository to allow mirroring."
+	echo "--hooks: installs git hooks for syncronization"
+	echo "--remotes: configures github remotes"
+	echo "--help/-h: display this message"
+	exit 0
+}
+
+[[ -d .git/ ]] || die "Must be run from repository root!"
+
+if [[ $# -eq 0 ]]; then
+	eval set -- "--hooks --remotes"
+fi
+
+OPTS=`getopt -o h --long hooks,remotes,help -n 'parse-options' -- "$@"`
+
+if [[ $? -ne 0 ]]; then
+	die "Invalid arguments"
+fi
+
+eval set -- "${OPTS}"
+
+HOOKS=false
+REMOTES=false
+
+while true; do
+	case "$1" in
+		--hooks ) HOOKS=true; shift ;;
+		--remotes ) REMOTES=true; shift ;;
+		--help | -h ) help-info ;;
+		-- ) shift; break;;
+		* ) break ;;
+	esac
+done
+
+if ${HOOKS}; then
+	echo "Installing Repository Hooks"
+	cp scripts/hooks/post-receive .git/hooks/post-receive || die "Failed to install hooks"
+fi
+
+if ${REMOTES}; then
+	echo "Configuring Remotes"
+	git remote remove github &>/dev/null
+	git remote add --mirror=push github git@github.com:gentoo/gentoo-mate.git || die "Failed to configure remotes"
+fi

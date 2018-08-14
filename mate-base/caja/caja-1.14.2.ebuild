@@ -2,32 +2,29 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Id$
 
-EAPI="5"
+EAPI=6
 
-GCONF_DEBUG="yes"
-GNOME2_LA_PUNT="yes"
+MATE_LA_PUNT="yes"
 
-inherit eutils gnome2 versionator virtualx
+inherit mate virtualx
 
-MATE_BRANCH="$(get_version_component_range 1-2)"
+if [[ ${PV} != 9999 ]]; then
+	KEYWORDS="~amd64 ~arm ~x86"
+fi
 
-SRC_URI="http://pub.mate-desktop.org/releases/${MATE_BRANCH}/${P}.tar.xz"
 DESCRIPTION="Caja file manager for the MATE desktop"
-HOMEPAGE="http://mate-desktop.org"
-
 LICENSE="GPL-2 LGPL-2 FDL-1.1"
 SLOT="0"
-KEYWORDS="~amd64 ~x86"
 
-IUSE="X +mate +introspection xmp gtk3"
+IUSE="gtk3 +introspection +mate packagekit xmp"
 
-RDEPEND="dev-libs/atk:0
-	>=dev-libs/glib-2.28:2
+COMMON_DEPEND="dev-libs/atk:0
+	>=dev-libs/glib-2.36:2
 	>=dev-libs/libxml2-2.4.7:2
 	gnome-base/dconf:0
 	>=gnome-base/gvfs-1.10.1:0[udisks]
-	=mate-base/mate-desktop-${MATE_BRANCH}*:0[gtk3?]
-	>=media-libs/libexif-0.5.12:0
+	>=mate-base/mate-desktop-1.9:0[gtk3(-)=]
+	>=media-libs/libexif-0.6.14:0
 	x11-libs/cairo:0
 	x11-libs/gdk-pixbuf:2
 	x11-libs/libICE:0
@@ -38,26 +35,31 @@ RDEPEND="dev-libs/atk:0
 	x11-libs/libXrender:0
 	>=x11-libs/pango-1.1.2:0
 	virtual/libintl:0
-	introspection? ( >=dev-libs/gobject-introspection-0.6.4:0 )
-	xmp? ( >=media-libs/exempi-1.99.5:2 )
 	!gtk3? (
-			>=x11-libs/gtk+-2.24:2[introspection?]
-			>=dev-libs/libunique-1:1
-			)
-	gtk3? ( x11-libs/gtk+:3
-			dev-libs/libunique:3
-			)"
+		>=dev-libs/libunique-1:1
+		>=x11-libs/gtk+-2.24:2[introspection?]
+	)
+	gtk3? (
+		>=dev-libs/libunique-3:3
+		>=x11-libs/gtk+-3.0:3[introspection?]
+	)
+	introspection? ( >=dev-libs/gobject-introspection-0.6.4:= )
+	packagekit? ( app-admin/packagekit-base )
+	xmp? ( >=media-libs/exempi-1.99.5:2 )
+	!!mate-base/mate-file-manager"
 
-DEPEND="${RDEPEND}
-	!!mate-base/mate-file-manager
+RDEPEND="${COMMON_DEPEND}"
+
+DEPEND="${COMMON_DEPEND}
 	>=dev-lang/perl-5:0=
 	dev-util/gdbus-codegen:0
-	>=dev-util/intltool-0.50.2-r1:*
-	=mate-base/mate-common-${MATE_BRANCH}*:0
+	dev-util/gtk-doc
+	dev-util/gtk-doc-am
+	>=dev-util/intltool-0.40.1:*
 	sys-devel/gettext:*
 	virtual/pkgconfig:*"
 
-PDEPEND="mate? ( =x11-themes/mate-icon-theme-${MATE_BRANCH}*:0 )"
+PDEPEND="mate? ( >=x11-themes/mate-icon-theme-${MATE_BRANCH} )"
 
 # TODO: Test fails because Caja is not merged yet:
 # GLib-GIO-ERROR **: Settings schema 'org.mate.caja.preferences' is not installed
@@ -66,25 +68,19 @@ RESTRICT="test"
 src_prepare() {
 	# Remove unnecessary CFLAGS.
 	sed -i -e 's:-DG.*DISABLE_DEPRECATED::g' \
-		configure{,.ac} eel/Makefile.{am,in} || die
+		configure.ac eel/Makefile.am || die
 
-	gnome2_src_prepare
+	mate_src_prepare
 }
 
 src_configure() {
-	local use_gtk3
-	use gtk3 && use_gtk3="${use_gtk3} --with-gtk=3.0"
-	use !gtk3 && use_gtk3="${use_gtk3} --with-gtk=2.0"
-	gnome2_src_configure \
-		--disable-packagekit \
+	mate_src_configure \
 		--disable-update-mimedb \
+		--with-gtk=$(usex gtk3 3.0 2.0) \
 		$(use_enable introspection) \
-		$(use_enable xmp) \
-		${use_gtk3}
-
+		$(use_enable packagekit) \
+		$(use_enable xmp)
 }
-
-DOCS="AUTHORS ChangeLog* HACKING MAINTAINERS NEWS README THANKS TODO"
 
 src_test() {
 	unset SESSION_MANAGER
@@ -94,7 +90,7 @@ src_test() {
 }
 
 pkg_postinst() {
-	gnome2_pkg_postinst
+	mate_pkg_postinst
 
 	elog "Caja can use gstreamer to preview audio files. Just make sure"
 	elog "to have the necessary plugins available to play the media type you"

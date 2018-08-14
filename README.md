@@ -1,6 +1,9 @@
 MATE-DESKTOP OVERLAY For Gentoo
 ===============================
 
+*IMPORTANT NOTE*: While this repository is still here, I am doing also my best 
+contribute changes to the official gentoo overlay.
+
 This is an overlay intended to be used in Gentoo. 
 
 I have done my best to adhere to Gentoo's best practices, however, there
@@ -23,7 +26,7 @@ If you find this work useful, you can do one or more of the following:
 ## Goodies
 
  * I added some other packages here which are not officially mate. These are packages which I see fit, 
-   and that belong IMHO to the mate eco-systemonly (for example the mate-dock-applet).
+   and that belong IMHO to the mate eco-system (for example the mate-dock-applet).
 
 ## Contributing ebuilds
 

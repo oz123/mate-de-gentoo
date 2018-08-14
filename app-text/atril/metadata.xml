@@ -1,24 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
 <pkgmetadata>
-	<maintainer> 
-	  <email>oz.tiram@gmail.com</email>
-	  <name>Oz N Tiram</name>
-	</maintainer>
+	<maintainer type="project">
+        <email>mate@gentoo.org</email>
+        <name>Gentoo MATE Desktop</name>
+    </maintainer>
 	<use>
 		<flag name="caja">Enable property page extension in 
 			<pkg>mate-base/caja</pkg></flag>
 		<flag name="dvi">Enable build-in DVI viewer</flag>
 		<flag name="epub">Enable build-in DVI viewer using
 			<pkg>net-libs/webkit-gtk</pkg></flag>
-		<flag name="ps">Enable build-in postscript viewer</flag>
+		<flag name="gtk3">Build with GTK+3 instead of GTK+2</flag>
 		<flag name="t1lib">Enable the Type-1 fonts for the build-in DVI viewer
 			(<pkg>media-libs/t1lib</pkg>)</flag>
 		<flag name="xps">Enable XPS viewer using 
-			<pkg>app-text/libxps</pkg></flag>
-		<flag name="tiff">Enable TIFF viewer using 
-			<pkg>media-libs/tiff</pkg></flag>
-		<flag name="gtk3">Build with GTK3 support</flag>
+			<pkg>app-text/libgxps</pkg></flag>
 	</use>
     <upstream>
         <remote-id type="github">mate-desktop/atril</remote-id>
