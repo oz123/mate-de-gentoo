@@ -8,14 +8,14 @@ MATE_LA_PUNT="yes"
 inherit mate
 
 if [[ ${PV} != 9999 ]]; then
-	KEYWORDS="~amd64 ~arm ~x86"
+	KEYWORDS="~amd64 ~arm ~arm64 ~x86"
 fi
 
 DESCRIPTION="Libraries for the MATE desktop that are not part of the UI"
 LICENSE="GPL-2 FDL-1.1 LGPL-2"
 SLOT="0"
 
-IUSE="X debug gtk3 +introspection startup-notification"
+IUSE="X debug +introspection startup-notification"
 
 COMMON_DEPEND="
 	>=dev-libs/glib-2.36:2
@@ -24,8 +24,7 @@ COMMON_DEPEND="
 	x11-libs/libX11:0
 	>=x11-libs/libXrandr-1.3:0
 	virtual/libintl:0
-	!gtk3? ( >=x11-libs/gtk+-2.24:2[introspection?] )
-	gtk3? ( >=x11-libs/gtk+-3.0:3[introspection?] )
+	>=x11-libs/gtk+-3.0:3[introspection?]
 	introspection? ( >=dev-libs/gobject-introspection-0.9.7:= )
 	startup-notification? ( >=x11-libs/startup-notification-0.5:0 )"
 
@@ -42,9 +41,7 @@ DEPEND="${COMMON_DEPEND}
 
 src_configure() {
 	mate_src_configure \
-		--disable-mpaste \
 		--enable-mate-about \
-		--with-gtk=$(usex gtk3 3.0 2.0) \
 		$(use_with X x) \
 		$(use_enable debug) \
 		$(use_enable introspection) \
