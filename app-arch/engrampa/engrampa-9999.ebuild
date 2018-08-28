@@ -1,6 +1,5 @@
-# Copyright 1999-2016 Gentoo Foundation
+# Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id$
 
 EAPI=6
 
@@ -24,8 +23,8 @@ COMMON_DEPEND="
 	x11-libs/gdk-pixbuf:2
 	x11-libs/pango:0
 	virtual/libintl:0
-	caja? ( >=mate-base/caja-1.12[gtk3(+)] )
-	>=x11-libs/gtk+-3.14:3
+	caja? ( >=mate-base/caja-1.17.1 )
+	>=x11-libs/gtk+-3.14:3[X]
 	magic? ( sys-apps/file )
 	packagekit? ( app-admin/packagekit-base )
 	!!app-arch/mate-file-archiver"
@@ -41,7 +40,6 @@ DEPEND="${COMMON_DEPEND}
 src_configure() {
 	mate_src_configure \
 		--disable-run-in-place \
-		--disable-deprecations \
 		$(use_enable caja caja-actions) \
 		$(use_enable magic) \
 		$(use_enable packagekit)
