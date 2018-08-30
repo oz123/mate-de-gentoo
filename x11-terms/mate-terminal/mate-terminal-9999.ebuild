@@ -1,4 +1,4 @@
-# Copyright 1999-2016 Gentoo Foundation
+# Copyright 1999-2018 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Id$
 
@@ -25,7 +25,8 @@ COMMON_DEPEND="dev-libs/atk:0
 	x11-libs/libX11:0
 	x11-libs/pango:0
 	>=x11-libs/gtk+-3.14:3
-	>=x11-libs/vte-0.38:2.91"
+	>=x11-libs/vte-0.48:2.91"
+
 
 RDEPEND="${COMMON_DEPEND}"
 
