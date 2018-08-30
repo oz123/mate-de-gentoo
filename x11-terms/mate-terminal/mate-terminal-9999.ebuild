@@ -25,7 +25,7 @@ COMMON_DEPEND="dev-libs/atk:0
 	x11-libs/libX11:0
 	x11-libs/pango:0
 	>=x11-libs/gtk+-3.14:3
-	>=x11-libs/vte-0.48:2.91"
+	>=x11-libs/vte-0.48.4:2.91"
 
 
 RDEPEND="${COMMON_DEPEND}"
