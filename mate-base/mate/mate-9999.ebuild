@@ -1,6 +1,5 @@
-# Copyright 1999-2016 Gentoo Foundation
+# Copyright 1999-2018 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id$
 
 EAPI=6
 
@@ -21,22 +20,22 @@ HOMEPAGE="http://mate-desktop.org"
 LICENSE="metapackage"
 
 SLOT="0"
-IUSE="+base -bluetooth gtk3 help +notification +themes +extras"
+IUSE="+base -bluetooth help +notification +themes +extras"
 
 S="${WORKDIR}"
 
 RDEPEND="
-	=mate-base/mate-desktop-${MATE_BRANCH}*:0[gtk3(-)?]
+	=mate-base/mate-desktop-${MATE_BRANCH}*:0
 	=mate-base/mate-menus-${MATE_BRANCH}*:0
-	=mate-base/mate-panel-${MATE_BRANCH}*:0[gtk3(-)?]
+	=mate-base/mate-panel-${MATE_BRANCH}*:0
 	=mate-base/mate-session-manager-${MATE_BRANCH}*:0
-	=mate-base/mate-settings-daemon-${MATE_BRANCH}*:0[gtk3(-)?]
-	=x11-wm/marco-${MATE_BRANCH}*:0[gtk3(-)?]
+	=mate-base/mate-settings-daemon-${MATE_BRANCH}*:0
+	=x11-wm/marco-${MATE_BRANCH}*:0
 	base? (
-		=mate-base/caja-${MATE_BRANCH}*:0[gtk3(-)?]
-		=mate-base/mate-applets-meta-${MATE_BRANCH}*:0[gtk3(-)?]
-		=mate-base/mate-control-center-${MATE_BRANCH}*:0[gtk3(-)?]
-		=mate-extra/mate-media-${MATE_BRANCH}*:0[gtk3(-)?]
+		=mate-base/caja-${MATE_BRANCH}*:0
+		=mate-base/mate-applets-meta-${MATE_BRANCH}*:0
+		=mate-base/mate-control-center-${MATE_BRANCH}*:0
+		=mate-extra/mate-media-${MATE_BRANCH}*:0
 		=x11-misc/mozo-${MATE_BRANCH}*:0
 		=x11-terms/mate-terminal-${MATE_BRANCH}*:0
 	)
@@ -48,16 +47,16 @@ RDEPEND="
 	)
 	extras? (
 		=app-arch/engrampa-${MATE_BRANCH}*:0
-		=app-editors/pluma-${MATE_BRANCH}*:0[gtk3(-)?]
-		=app-text/atril-${MATE_BRANCH}*:0[gtk3(-)?]
-		gnome-extra/gnome-calculator:0
-		=mate-extra/caja-extensions-${MATE_BRANCH}*:0[gtk3(-)?]
-		=mate-extra/mate-netbook-${MATE_BRANCH}*:0[gtk3(-)?]
-		=mate-extra/mate-power-manager-${MATE_BRANCH}*:0[gtk3(-)?]
-		=mate-extra/mate-screensaver-${MATE_BRANCH}*:0[gtk3(-)?]
+		=app-editors/pluma-${MATE_BRANCH}*:0
+		=app-text/atril-${MATE_BRANCH}*:0
+		=mate-extra/caja-extensions-${MATE_BRANCH}*:0
+		=mate-extra/mate-calc-${MATE_BRANCH}*:0
+		=mate-extra/mate-netbook-${MATE_BRANCH}*:0
+		=mate-extra/mate-power-manager-${MATE_BRANCH}*:0
+		=mate-extra/mate-screensaver-${MATE_BRANCH}*:0
 		=mate-extra/mate-system-monitor-${MATE_BRANCH}*:0
-		=mate-extra/mate-utils-${MATE_BRANCH}*:0[gtk3(-)?]
-		=media-gfx/eom-${MATE_BRANCH}*:0[gtk3(-)?]
+		=mate-extra/mate-utils-${MATE_BRANCH}*:0
+		=media-gfx/eom-${MATE_BRANCH}*:0
 		sys-apps/gnome-disk-utility:0
 	)
 	help? (

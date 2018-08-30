@@ -1,6 +1,5 @@
-# Copyright 1999-2016 Gentoo Foundation
+# Copyright 1999-2018 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id$
 
 EAPI=6
 
@@ -16,26 +15,25 @@ DESCRIPTION="MATE Settings Daemon"
 LICENSE="GPL-2 LGPL-2.1"
 SLOT="0"
 
-IUSE="X debug gtk3 libnotify policykit pulseaudio smartcard +sound"
+IUSE="X debug libnotify policykit pulseaudio smartcard +sound"
 
 REQUIRED_USE="pulseaudio? ( sound )"
 
 COMMON_DEPEND=">=dev-libs/dbus-glib-0.74:0
 	>=dev-libs/glib-2.17.3:2
 	>=gnome-base/dconf-0.13.4:0
-	>=mate-base/libmatekbd-1.7[gtk3(-)=]
-	>=mate-base/mate-desktop-1.9[gtk3(-)=]
+	>=mate-base/libmatekbd-1.17.0
+	>=mate-base/mate-desktop-1.17.0
 	media-libs/fontconfig:1.0
 	x11-libs/cairo:0
 	x11-libs/gdk-pixbuf:2
+	>=x11-libs/gtk+-3.14:3
 	x11-libs/libX11:0
 	x11-libs/libXi:0
 	x11-libs/libXext:0
 	x11-libs/libXxf86misc:0
-	>=x11-libs/libxklavier-5:0
+	>=x11-libs/libxklavier-5.2:0
 	virtual/libintl:0
-	!gtk3? ( >=x11-libs/gtk+-2.24:2 )
-	gtk3? ( >=x11-libs/gtk+-3.0:3 )
 	libnotify? ( >=x11-libs/libnotify-0.7:0 )
 	policykit? (
 		>=dev-libs/dbus-glib-0.71:0
@@ -48,9 +46,8 @@ COMMON_DEPEND=">=dev-libs/dbus-glib-0.74:0
 	)
 	smartcard? ( >=dev-libs/nss-3.11.2:0 )
 	sound? (
-		>=media-libs/libmatemixer-1.9
-		!gtk3? ( media-libs/libcanberra:0[gtk] )
-		gtk3? ( media-libs/libcanberra:0[gtk3] )
+		>=media-libs/libmatemixer-1.10:0
+		media-libs/libcanberra:0[gtk3]
 	)"
 
 RDEPEND="${COMMON_DEPEND}"
@@ -64,7 +61,6 @@ DEPEND="${COMMON_DEPEND}
 
 src_configure() {
 	mate_src_configure \
-		--with-gtk=$(usex gtk3 3.0 2.0) \
 		$(use_with X x) \
 		$(use_with libnotify) \
 		$(use_with sound libcanberra) \
