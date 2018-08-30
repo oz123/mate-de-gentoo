@@ -66,7 +66,7 @@ DEPEND="${COMMON_DEPEND}
 	x11-proto/scrnsaverproto:0
 	x11-proto/xextproto:0
 	x11-proto/xf86miscproto:0
-	x11-proto/xproto:0
+	x11-base/xorg-proto:0
 	virtual/pkgconfig:*"
 
 src_configure() {
