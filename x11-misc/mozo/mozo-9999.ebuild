@@ -1,6 +1,5 @@
-# Copyright 1999-2016 Gentoo Foundation
+# Copyright 1999-2018 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id$
 
 EAPI=6
 
@@ -21,7 +20,7 @@ IUSE=""
 
 COMMON_DEPEND="${PYTHON_DEPS}
 	>=dev-python/pygobject-3:3[${PYTHON_USEDEP}]
-	>=mate-base/mate-menus-1.6[introspection]
+	>=mate-base/mate-menus-1.6[introspection,python]
 	x11-libs/gdk-pixbuf:2[introspection]
 	x11-libs/gtk+:3[introspection]
 	virtual/libintl:0
