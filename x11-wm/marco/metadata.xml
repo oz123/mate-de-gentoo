@@ -5,9 +5,9 @@
         <email>mate@gentoo.org</email>
         <name>Gentoo MATE Desktop</name>
     </maintainer>
-	<use>
-		<flag name="gtk3">Build with GTK+3 instead of GTK+2</flag>
-	</use>
+    <use>
+        <flag name="xpresent">Enable x11-libs/libXpresent support</flag>
+    </use>
     <upstream>
         <remote-id type="github">mate-desktop/marco</remote-id>
     </upstream>
