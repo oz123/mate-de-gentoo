@@ -48,21 +48,7 @@ DEPEND="${COMMON_DEPEND}
 	>=dev-util/intltool-0.50.1:*
 	x11-base/xorg-proto:0
 	sys-devel/gettext:*
-	virtual/pkgconfig:*
-	man? ( app-text/docbook-sgml-utils:0
-		>=app-text/docbook-sgml-dtd-4.3 )"
-
-src_prepare() {
-	mate_src_prepare
-
-	# This needs to be after eautoreconf to prevent problems like bug #356277
-	# Remove the docbook2man rules here since it's not handled by a proper
-	# parameter in configure.in.
-	if ! use man; then
-		sed -e 's:@HAVE_DOCBOOK2MAN_TRUE@.*::' -i man/Makefile.in \
-			|| die "docbook sed failed"
-	fi
-}
+	virtual/pkgconfig:*"
 
 src_configure() {
 	mate_src_configure \
