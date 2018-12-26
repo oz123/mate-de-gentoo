@@ -5,11 +5,10 @@
         <email>mate@gentoo.org</email>
         <name>Gentoo MATE Desktop</name>
     </maintainer>
-	<use>
-		<flag name="consolekit">Enable support for 
-			<pkg>sys-auth/consolekit</pkg></flag>
-		<flag name="gtk3">Build with GTK+3 instead of GTK+2</flag>
-	</use>
+    <use>
+        <flag name="consolekit">Enable support for 
+        <pkg>sys-auth/consolekit</pkg></flag>
+    </use>
     <upstream>
         <remote-id type="github">mate-desktop/mate-screensaver</remote-id>
     </upstream>

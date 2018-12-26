@@ -1,4 +1,4 @@
-# Copyright 1999-2016 Gentoo Foundation
+# Copyright 1999-2018 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=6
@@ -13,7 +13,7 @@ DESCRIPTION="Replaces xscreensaver, integrating with the MATE desktop"
 LICENSE="GPL-2"
 SLOT="0"
 
-IUSE="X debug consolekit gtk3 kernel_linux libnotify opengl pam systemd"
+IUSE="X debug consolekit kernel_linux libnotify opengl pam systemd"
 
 DOC_CONTENTS="
 	Information for converting screensavers is located in
@@ -24,13 +24,14 @@ COMMON_DEPEND="
 	>=dev-libs/dbus-glib-0.71:0
 	>=dev-libs/glib-2.36:2
 	gnome-base/dconf:0
-	>=mate-base/libmatekbd-1.7.1[gtk3(-)=]
-	>=mate-base/mate-desktop-1.9.4[gtk3(-)=]
-	>=mate-base/mate-menus-1.6
+	>=mate-base/libmatekbd-1.17.0
+	>=mate-base/mate-desktop-1.17.0
+	>=mate-base/mate-menus-1.10.0
 	>=sys-apps/dbus-0.30:0
 	>=x11-libs/gdk-pixbuf-2.14:2
 	>=x11-libs/libX11-1:0
 	x11-libs/cairo:0
+	>=x11-libs/gtk+-3.14:3
 	x11-libs/libXext:0
 	x11-libs/libXrandr:0
 	x11-libs/libXScrnSaver:0
@@ -40,8 +41,6 @@ COMMON_DEPEND="
 	x11-libs/pango:0
 	virtual/libintl:0
 	consolekit? ( sys-auth/consolekit:0 )
-	!gtk3? ( >=x11-libs/gtk+-2.24:2 )
-	gtk3? ( >=x11-libs/gtk+-3.0:3 )
 	libnotify? ( >=x11-libs/libnotify-0.7:0 )
 	opengl? ( virtual/opengl:0 )
 	pam? ( gnome-base/gnome-keyring:0 virtual/pam:0 )
@@ -55,10 +54,7 @@ RDEPEND="${COMMON_DEPEND}
 DEPEND="${COMMON_DEPEND}
 	>=dev-util/intltool-0.50.1:*
 	sys-devel/gettext:*
-	x11-proto/randrproto:0
-	x11-proto/scrnsaverproto:0
-	x11-proto/xextproto:0
-	x11-proto/xf86miscproto:0
+	x11-base/xorg-proto:0
 	virtual/pkgconfig:*"
 
 src_configure() {
@@ -68,7 +64,6 @@ src_configure() {
 		--with-xf86gamma-ext \
 		--with-xscreensaverdir=/usr/share/xscreensaver/config \
 		--with-xscreensaverhackdir=/usr/$(get_libdir)/misc/xscreensaver \
-		--with-gtk=$(usex gtk3 3.0 2.0) \
 		$(use_with X x) \
 		$(use_with consolekit console-kit) \
 		$(use_with libnotify) \
