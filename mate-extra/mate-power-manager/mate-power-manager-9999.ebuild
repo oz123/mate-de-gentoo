@@ -1,4 +1,4 @@
-# Copyright 1999-2016 Gentoo Foundation
+# Copyright 1999-2018 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 # $Id$
 
@@ -14,7 +14,7 @@ DESCRIPTION="A session daemon for MATE that makes it easy to manage your laptop 
 LICENSE="GPL-2"
 SLOT="0"
 
-IUSE="+applet gnome-keyring gtk3 man pm-utils policykit test"
+IUSE="+applet gnome-keyring man pm-utils policykit test unique"
 
 # Interactive testsuite.
 RESTRICT="test"
@@ -30,17 +30,10 @@ COMMON_DEPEND=">=dev-libs/dbus-glib-0.70:0
 	x11-libs/libXrandr:0
 	>=x11-libs/libnotify-0.7:0
 	x11-libs/pango:0
-	applet? ( >=mate-base/mate-panel-1.6[gtk3(-)=] )
+	applet? ( >=mate-base/mate-panel-1.6 )
 	gnome-keyring? ( >=gnome-base/libgnome-keyring-3:0 )
-	!gtk3? (
-		>=dev-libs/libunique-1:1
-		>=media-libs/libcanberra-0.10:0[gtk]
-		>=x11-libs/gtk+-2.24:2
-	)
-	gtk3? (
-		>=media-libs/libcanberra-0.10:0[gtk3]
-		>=x11-libs/gtk+-3.0:3
-	)
+	>=media-libs/libcanberra-0.10:0
+	>=x11-libs/gtk+-3.0:3
 	pm-utils? ( >=sys-power/upower-pm-utils-0.9.23 )
 	!pm-utils? ( >=sys-power/upower-0.9.23:= )"
 
@@ -75,7 +68,6 @@ src_prepare() {
 src_configure() {
 	mate_src_configure \
 		--enable-compile-warnings=minimum \
-		--with-gtk=$(usex gtk3 3.0 2.0) \
 		$(use_with gnome-keyring keyring) \
 		$(use_enable applet applets) \
 		$(use_enable test tests)
