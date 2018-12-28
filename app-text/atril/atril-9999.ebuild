@@ -1,6 +1,5 @@
-# Copyright 1999-2016 Gentoo Foundation
+# Copyright 1999-2018 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id$
 
 EAPI=6
 
@@ -9,44 +8,40 @@ MATE_LA_PUNT="yes"
 inherit mate
 
 if [[ ${PV} != 9999 ]]; then
-	KEYWORDS="~amd64 ~arm ~x86"
+	KEYWORDS="~amd64 ~arm ~arm64 ~x86"
 fi
 
 DESCRIPTION="Atril document viewer for MATE"
 LICENSE="GPL-2"
 SLOT="0"
 
-IUSE="caja dbus debug djvu dvi epub +introspection gnome-keyring gtk3 +postscript t1lib tiff xps"
+IUSE="caja dbus debug djvu dvi epub +introspection gnome-keyring +postscript t1lib tiff xps"
 
 REQUIRED_USE="t1lib? ( dvi )"
 
-COMMON_DEPEND=">=app-text/poppler-0.18:0=[cairo]
+COMMON_DEPEND=">=app-text/poppler-0.22:0=[cairo]
 	dev-libs/atk:0
 	>=dev-libs/glib-2.36:2
 	>=dev-libs/libxml2-2.5:2
 	sys-libs/zlib:0
 	x11-libs/gdk-pixbuf:2
+	>=x11-libs/gtk+-3.14:3[introspection?]
 	x11-libs/libICE:0
 	>=x11-libs/libSM-1:0
 	x11-libs/libX11:0
 	>=x11-libs/cairo-1.9.10:0
 	x11-libs/pango:0
-	caja? ( >=mate-base/caja-1.8[gtk3(-)=,introspection?] )
+	caja? ( >=mate-base/caja-1.17.1[introspection?] )
 	djvu? ( >=app-text/djvu-3.5.17:0 )
 	dvi? (
 		virtual/tex-base:0
 		t1lib? ( >=media-libs/t1lib-5:5 )
 	)
-	epub? ( dev-libs/mathjax )
+	epub? (
+		dev-libs/mathjax
+		>=net-libs/webkit-gtk-2.4.3:4
+	)
 	gnome-keyring? ( >=app-crypt/libsecret-0.5:0 )
-	!gtk3? (
-		>=x11-libs/gtk+-2.24.0:2[introspection?]
-		epub? ( >=net-libs/webkit-gtk-2.4.3:2 )
-	)
-	gtk3? (
-		>=x11-libs/gtk+-3.0:3[introspection?]
-		epub? ( >=net-libs/webkit-gtk-2.4.3:4 )
-	)
 	introspection? ( >=dev-libs/gobject-introspection-0.6:= )
 	postscript? ( >=app-text/libspectre-0.2:0 )
 	tiff? ( >=media-libs/tiff-3.6:0 )
@@ -79,7 +74,6 @@ src_configure() {
 		--enable-pixbuf \
 		--enable-previewer \
 		--enable-thumbnailer \
-		--with-gtk=$(usex gtk3 3.0 2.0) \
 		$(use_with gnome-keyring keyring) \
 		$(use_enable caja) \
 		$(use_enable dbus) \
