@@ -16,7 +16,7 @@ LICENSE="GPL-2"
 SLOT="0"
 
 SENDTO="cdr gajim +mail pidgin upnp"
-IUSE="image-converter +open-terminal share +wallpaper ${SENDTO} xattr"
+IUSE="image-converter +open-terminal share +wallpaper xattr ${SENDTO}"
 
 COMMON_DEPEND=">=dev-libs/glib-2.36:2
 	>=mate-base/caja-1.17.1
@@ -68,5 +68,6 @@ src_configure() {
 		$(use_enable image-converter) \
 		$(use_enable open-terminal) \
 		$(use_enable share) \
-		$(use_enable wallpaper)
+		$(use_enable wallpaper) \
+		$(use_enable xattr xattr-tags)
 }
