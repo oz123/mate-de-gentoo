@@ -1,4 +1,4 @@
-# Copyright 1999-2016 Gentoo Foundation
+# Copyright 1999-2018 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 # $Id$
 
@@ -14,18 +14,11 @@ DESCRIPTION="MATE indicator applet"
 LICENSE="GPL-2 FDL-1.1 LGPL-2"
 SLOT="0"
 
-IUSE="gtk3"
-
 COMMON_DEPEND="
-	>=mate-base/mate-panel-1.8[gtk3(-)=]
-	!gtk3? (
-		>=dev-libs/libindicator-0.3.90:0
-		>=x11-libs/gtk+-2.24:2
-	)
-	gtk3? (
-		>=dev-libs/libindicator-0.3.90:3
-		>=x11-libs/gtk+-3.0:3
-	)"
+	>=mate-base/mate-panel-1.8
+	>=dev-libs/libindicator-0.3.90:3
+	>=x11-libs/gtk+-3.0:3
+	"
 
 RDEPEND="${COMMON_DEPEND}"
 
@@ -34,6 +27,5 @@ DEPEND="${COMMON_DEPEND}
 	virtual/pkgconfig"
 
 src_configure() {
-	mate_src_configure \
-		--with-gtk=$(usex gtk3 3.0 2.0)
+	mate_src_configure
 }
