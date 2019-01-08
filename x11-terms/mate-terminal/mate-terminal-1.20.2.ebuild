@@ -6,7 +6,7 @@ EAPI=6
 inherit mate
 
 if [[ ${PV} != 9999 ]]; then
-	KEYWORDS="~amd64 ~arm ~x86"
+	KEYWORDS="~amd64 ~arm ~arm64 ~x86"
 fi
 
 DESCRIPTION="The MATE Terminal"
@@ -23,11 +23,11 @@ COMMON_DEPEND="dev-libs/atk:0
 	x11-libs/libSM:0
 	x11-libs/libX11:0
 	x11-libs/pango:0
-	>=x11-libs/gtk+-3.14:3
-	>=x11-libs/vte-0.48.4:2.91"
+	>=x11-libs/gtk+-3.14:3[X]
+	>=x11-libs/vte-0.38:2.91"
 
-
-RDEPEND="${COMMON_DEPEND}"
+RDEPEND="${COMMON_DEPEND}
+	>=mate-base/mate-desktop-1.6"
 
 DEPEND="${COMMON_DEPEND}
 	app-text/rarian:0
