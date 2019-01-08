@@ -1,6 +1,5 @@
-# Copyright 1999-2016 Gentoo Foundation
+# Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id$
 
 EAPI=6
 
@@ -16,27 +15,21 @@ DESCRIPTION="Personal file sharing for the MATE desktop"
 LICENSE="GPL-2"
 SLOT="0"
 
-IUSE="X gtk3"
+IUSE="X"
 
 COMMON_DEPEND="
 	>=dev-libs/dbus-glib-0.70:0
 	>=dev-libs/glib-2.15.2:2
-	>=mate-base/caja-1.6[gtk3(-)=]
+	>=mate-base/caja-1.6
 	>=sys-apps/dbus-1.1.1:0
 	>=x11-libs/gdk-pixbuf-2:2
 	x11-libs/libX11:0
 	x11-libs/pango:0
 	>=x11-libs/libnotify-0.7:0
 	virtual/libintl:0
-	!gtk3? (
-		>=dev-libs/libunique-1:1
-		media-libs/libcanberra:0[gtk]
-		>=x11-libs/gtk+-2.24:2
-	)
-	gtk3? (
-		media-libs/libcanberra:0[gtk3]
-		>=x11-libs/gtk+-3.0:3
-	)"
+	media-libs/libcanberra:0
+	>=x11-libs/gtk+-3.0:3
+	"
 
 RDEPEND="${COMMON_DEPEND}
 	>=www-apache/mod_dnssd-0.6:0
@@ -54,6 +47,5 @@ src_configure() {
 		--with-httpd=apache2 \
 		--with-modules-path=/usr/$(get_libdir)/apache2/modules/ \
 		--disable-bluetooth \
-		--with-gtk=$(usex gtk3 3.0 2.0) \
 		$(use_with X x)
 }
