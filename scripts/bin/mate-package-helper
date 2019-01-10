@@ -1,0 +1,33 @@
+#!/usr/bin/env python3
+
+"""
+A tiny helper script to help figure which package needs to be built next
+
+run this from the top of the overlay
+"""
+import os
+import re
+
+VERSION = "1.20"
+
+
+def list_ebuilds(package):
+    for root, dirs, files in os.walk(package):
+        for f in files:
+            if f.endswith('ebuild'):
+                yield os.path.join(root, f)
+
+with open("scripts/files/package-lists/package-list-9999-topological") as plist:  # noqa
+    packages = list(map(lambda x: x.strip(), plist.readlines()))
+
+
+for package in packages:
+    rgx = "%s/%s-%s.*.ebuild" % (package, package.split("/")[-1], VERSION)
+    ebuild_updated = False
+    for ebuild in list_ebuilds(package):
+        if re.search(rgx, ebuild):
+            ebuild_updated = True
+            break
+    if not ebuild_updated:
+        print("Next package to work on ... {}".format(package))
+        break
