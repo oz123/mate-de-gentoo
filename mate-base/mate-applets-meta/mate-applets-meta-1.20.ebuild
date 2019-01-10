@@ -1,13 +1,12 @@
 # Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=6
+EAPI=7
 
 if [[ ${PV} == 9999 ]]; then
 	MATE_BRANCH=9999
 else
-	inherit versionator
-	MATE_BRANCH="$(get_version_component_range 1-2)"
+	MATE_BRANCH="$(ver_cut 1-2)"
 	KEYWORDS="~amd64 ~arm ~arm64 ~x86"
 fi
 
