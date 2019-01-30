@@ -1,4 +1,4 @@
-# Copyright 1999-2018 Gentoo Foundation
+# Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=6
@@ -7,11 +7,10 @@ MATE_LA_PUNT="yes"
 
 inherit mate virtualx
 
-if [[ ${PV} != 9999 ]]; then
-	KEYWORDS="~amd64 ~arm ~x86"
-fi
+KEYWORDS="~amd64 ~arm ~arm64 ~x86"
 
 DESCRIPTION="Caja file manager for the MATE desktop"
+HOMEPAGE="https://www.mate-desktop.org"
 LICENSE="GPL-2 LGPL-2 FDL-1.1"
 SLOT="0"
 
@@ -52,7 +51,7 @@ DEPEND="${COMMON_DEPEND}
 	sys-devel/gettext:*
 	virtual/pkgconfig:*"
 
-PDEPEND="mate? ( >=x11-themes/mate-icon-theme-${MATE_BRANCH} )"
+PDEPEND="mate? ( x11-themes/mate-icon-theme )"
 
 # TODO: Test fails because Caja is not merged yet:
 # GLib-GIO-ERROR **: Settings schema 'org.mate.caja.preferences' is not installed
