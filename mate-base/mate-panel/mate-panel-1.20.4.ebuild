@@ -39,7 +39,8 @@ COMMON_DEPEND="
 	x11-libs/libXau:0
 	>=x11-libs/libXrandr-1.3:0
 	virtual/libintl:0
-	introspection? ( >=dev-libs/gobject-introspection-0.6.7:= )"
+	introspection? ( >=dev-libs/gobject-introspection-0.6.7:= )
+	"
 
 RDEPEND="${COMMON_DEPEND}"
 

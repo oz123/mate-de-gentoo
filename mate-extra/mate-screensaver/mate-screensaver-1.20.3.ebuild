@@ -17,8 +17,7 @@ IUSE="X debug consolekit kernel_linux libnotify opengl pam systemd"
 
 DOC_CONTENTS="
 	Information for converting screensavers is located in
-	/usr/share/doc/${PF}/xss-conversion.txt*
-"
+	/usr/share/doc/${PF}/xss-conversion.txt*"
 
 COMMON_DEPEND="
 	>=dev-libs/dbus-glib-0.71:0
