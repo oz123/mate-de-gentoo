@@ -1,4 +1,4 @@
-# Copyright 1999-2018 Gentoo Foundation
+# Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=6
@@ -7,9 +7,9 @@ inherit mate-desktop.org
 
 if [[ ${PV} == 9999 ]]; then
 	inherit autotools
-else
-	KEYWORDS="~amd64 ~arm ~x86"
 fi
+
+KEYWORDS="~amd64 ~arm ~x86"
 
 DESCRIPTION="Common files for development of MATE packages"
 LICENSE="GPL-3"
