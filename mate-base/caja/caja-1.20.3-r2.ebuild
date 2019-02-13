@@ -5,11 +5,11 @@ EAPI=6
 
 MATE_LA_PUNT="yes"
 
-inherit mate virtualx versionator
+inherit mate virtualx
 
 if [[ ${PV} != 9999 ]]; then
 	KEYWORDS="~amd64 ~arm ~arm64 ~x86"
-	MATE_BRANCH="$(get_version_component_range 1-2)"
+	MATE_BRANCH="$(ver_cut 1-2)"
 else
 	MATE_BRANCH=9999
 fi
