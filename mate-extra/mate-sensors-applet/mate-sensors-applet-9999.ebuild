@@ -15,7 +15,7 @@ DESCRIPTION="MATE panel applet to display readings from hardware sensors"
 LICENSE="GPL-2"
 SLOT="0"
 
-IUSE="+dbus hddtemp libnotify lm_sensors video_cards_nvidia"
+IUSE="+dbus hddtemp libnotify video_cards_nvidia"
 
 COMMON_DEPEND=">=dev-libs/glib-2.36:2
 	>=mate-base/mate-panel-1.17.0
@@ -29,7 +29,6 @@ COMMON_DEPEND=">=dev-libs/glib-2.36:2
 			>=dev-libs/libatasmart-0.16:0 )
 		!dbus? ( >=app-admin/hddtemp-0.3_beta13:0 ) )
 	libnotify? ( >=x11-libs/libnotify-0.7:0 )
-	lm_sensors? ( sys-apps/lm_sensors:0 )
 	video_cards_nvidia? ( || (
 		>=x11-drivers/nvidia-drivers-100.14.09:0[static-libs,tools]
 		media-video/nvidia-settings:0
@@ -59,7 +58,6 @@ src_configure() {
 	mate_src_configure \
 		--disable-static \
 		$(use_enable libnotify) \
-		$(use_with lm_sensors libsensors) \
 		$(use_with video_cards_nvidia nvidia) \
 		${udisks}
 }

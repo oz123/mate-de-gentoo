@@ -7,7 +7,7 @@ MATE_LA_PUNT="yes"
 
 inherit mate virtualx
 
-KEYWORDS="~amd64 ~arm ~arm64 ~x86"
+KEYWORDS="~amd64 ~x86"
 
 DESCRIPTION="Caja file manager for the MATE desktop"
 HOMEPAGE="https://www.mate-desktop.org"

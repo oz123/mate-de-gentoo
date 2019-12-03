@@ -1,75 +1,82 @@
-# Copyright 1999-2018 Gentoo Authors
+# Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=6
 
-inherit mate multilib readme.gentoo-r1
+inherit mate readme.gentoo-r1
 
 if [[ ${PV} != 9999 ]]; then
-	KEYWORDS="~amd64 ~arm ~arm64 ~x86"
+	KEYWORDS="amd64 ~arm ~arm64 x86"
 fi
 
 DESCRIPTION="Replaces xscreensaver, integrating with the MATE desktop"
+
 LICENSE="GPL-2"
 SLOT="0"
-
-IUSE="X debug consolekit kernel_linux libnotify opengl pam systemd"
+IUSE="X debug consolekit elogind kernel_linux libnotify opengl pam systemd"
+REQUIRED_USE="?? ( elogind systemd )"
 
 DOC_CONTENTS="
 	Information for converting screensavers is located in
-	/usr/share/doc/${PF}/xss-conversion.txt*"
+	/usr/share/doc/${PF}/xss-conversion.txt*
+"
 
 COMMON_DEPEND="
 	>=dev-libs/dbus-glib-0.71:0
-	>=dev-libs/glib-2.36:2
-	gnome-base/dconf:0
+	>=dev-libs/glib-2.50:2
+	gnome-base/dconf
 	>=mate-base/libmatekbd-1.17.0
 	>=mate-base/mate-desktop-1.17.0
-	>=mate-base/mate-menus-1.10.0
-	>=sys-apps/dbus-0.30:0
+	>=mate-base/mate-menus-1.21.0
+	>=sys-apps/dbus-0.30
 	>=x11-libs/gdk-pixbuf-2.14:2
-	>=x11-libs/libX11-1:0
-	x11-libs/cairo:0
-	>=x11-libs/gtk+-3.14:3
-	x11-libs/libXext:0
-	x11-libs/libXrandr:0
-	x11-libs/libXScrnSaver:0
-	x11-libs/libXxf86misc:0
-	x11-libs/libXxf86vm:0
-	x11-libs/libxklavier:0
-	x11-libs/pango:0
-	virtual/libintl:0
-	consolekit? ( sys-auth/consolekit:0 )
+	>=x11-libs/libX11-1
+	x11-libs/cairo
+	>=x11-libs/gtk+-3.22:3
+	x11-libs/libXext
+	x11-libs/libXrandr
+	x11-libs/libXScrnSaver
+	x11-libs/libXxf86misc
+	x11-libs/libXxf86vm
+	x11-libs/libxklavier
+	x11-libs/pango
+	virtual/libintl
+	consolekit? ( sys-auth/consolekit )
 	libnotify? ( >=x11-libs/libnotify-0.7:0 )
-	opengl? ( virtual/opengl:0 )
-	pam? ( gnome-base/gnome-keyring:0 virtual/pam:0 )
-	!pam? ( kernel_linux? ( sys-apps/shadow:0 ) )
-	systemd? ( sys-apps/systemd:0= )
-	!!<gnome-extra/gnome-screensaver-3:0"
+	opengl? ( virtual/opengl )
+	pam? ( gnome-base/gnome-keyring sys-libs/pam )
+	!pam? ( kernel_linux? ( sys-apps/shadow ) )
+	elogind? ( sys-auth/elogind )
+	systemd? ( sys-apps/systemd:= )
+	!!<gnome-extra/gnome-screensaver-3"
 
 RDEPEND="${COMMON_DEPEND}
 	>=mate-base/mate-session-manager-1.6"
 
 DEPEND="${COMMON_DEPEND}
-	>=dev-util/intltool-0.50.1:*
+	>=dev-util/intltool-0.50.1
 	sys-devel/gettext:*
-	x11-base/xorg-proto:0
+	x11-base/xorg-proto
 	virtual/pkgconfig:*"
 
 src_configure() {
-	mate_src_configure \
-		--enable-locking \
-		--with-kbd-layout-indicator \
-		--with-xf86gamma-ext \
-		--with-xscreensaverdir=/usr/share/xscreensaver/config \
-		--with-xscreensaverhackdir=/usr/$(get_libdir)/misc/xscreensaver \
-		$(use_with X x) \
-		$(use_with consolekit console-kit) \
-		$(use_with libnotify) \
-		$(use_with opengl libgl) \
-		$(use_with systemd) \
-		$(use_enable debug) \
+	local myconf=(
+		--enable-locking
+		--with-kbd-layout-indicator
+		--with-xf86gamma-ext
+		--with-xscreensaverdir=/usr/share/xscreensaver/config
+		--with-xscreensaverhackdir=/usr/$(get_libdir)/misc/xscreensaver
+		$(use_with X x)
+		$(use_with consolekit console-kit)
+		$(use_with elogind)
+		$(use_with libnotify)
+		$(use_with opengl libgl)
+		$(use_with systemd)
+		$(use_enable debug)
 		$(use_enable pam)
+	)
+
+	mate_src_configure "${myconf[@]}"
 }
 
 src_install() {
