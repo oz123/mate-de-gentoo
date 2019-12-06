@@ -3,7 +3,7 @@
 
 EAPI=6
 
-inherit mate
+inherit mate meson
 
 if [[ ${PV} != 9999 ]]; then
 	KEYWORDS="amd64 ~arm ~arm64 x86"
