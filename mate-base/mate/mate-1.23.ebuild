@@ -54,7 +54,7 @@ RDEPEND="
 		=mate-extra/mate-netbook-1.22*
 		=mate-extra/mate-power-manager-${MATE_BRANCH}*
 		=mate-extra/mate-screensaver-${MATE_BRANCH}*
-		=mate-extra/mate-system-monitor-${MATE_BRANCH}*
+		=mate-extra/mate-system-monitor-1.22*
 		=mate-extra/mate-utils-${MATE_BRANCH}*
 		=media-gfx/eom-${MATE_BRANCH}*
 		sys-apps/gnome-disk-utility
