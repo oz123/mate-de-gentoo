@@ -4,7 +4,7 @@ MATE-DESKTOP OVERLAY For Gentoo
 *IMPORTANT NOTE*: While this repository is here, I am doing also my best 
 contribute changes to the official gentoo repository.
 
-	This is an [overlay][1] intended to be used in Gentoo. 
+This is an [overlay][1] intended to be used in Gentoo. 
 
 I have done my best to adhere to Gentoo's best practices. However, there
 are a few things you should consider before you use this overlay:
