@@ -1,4 +1,4 @@
-# Copyright 1999-2018 Gentoo Authors
+# Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=6
@@ -35,7 +35,6 @@ COMMON_DEPEND="
 	x11-libs/libXext:0
 	x11-libs/libXrandr:0
 	x11-libs/libXScrnSaver:0
-	x11-libs/libXxf86misc:0
 	x11-libs/libXxf86vm:0
 	x11-libs/libxklavier:0
 	x11-libs/pango:0
