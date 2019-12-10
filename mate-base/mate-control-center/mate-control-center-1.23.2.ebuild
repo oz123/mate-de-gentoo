@@ -44,7 +44,6 @@ RDEPEND="
 	>=x11-libs/libXi-1.5
 	x11-libs/libXrandr
 	x11-libs/libXrender
-	x11-libs/libXxf86misc
 	>=x11-libs/libxklavier-4
 	x11-libs/pango
 	>=x11-wm/marco-1.17.0
