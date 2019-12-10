@@ -31,7 +31,6 @@ COMMON_DEPEND=">=dev-libs/dbus-glib-0.74
 	x11-libs/libX11
 	x11-libs/libXi
 	x11-libs/libXext
-	x11-libs/libXxf86misc
 	>=x11-libs/libxklavier-5.2
 	virtual/libintl
 	libnotify? ( >=x11-libs/libnotify-0.7:0 )
