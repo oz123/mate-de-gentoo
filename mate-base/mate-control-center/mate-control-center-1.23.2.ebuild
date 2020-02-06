@@ -28,7 +28,7 @@ RDEPEND="
 	>=mate-base/mate-desktop-1.21.2
 	>=mate-base/caja-1.20.0
 	>=mate-base/mate-menus-1.21.0
-	>=mate-base/mate-settings-daemon-1.21.2
+	>=mate-base/mate-settings-daemon-1.23.1
 	>=media-libs/fontconfig-1:1.0
 	media-libs/freetype:2
 	media-libs/libcanberra:0[gtk3]
