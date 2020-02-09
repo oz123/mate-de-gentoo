@@ -1,6 +1,7 @@
 :100644 100644 529ef2a 543808f M	configure.ac
 :100644 100644 b713a67 be082ae M	libdocument/ev-document.c
 :100644 100644 a195ba2 e98582d M	libview/ev-view.c
+:100644 100644 e4cbce9 a2da929 M	shell/ev-window.c
 
 diff --git a/configure.ac b/configure.ac
 index 529ef2a..543808f 100644
@@ -195,3 +196,36 @@ index a195ba2..e98582d 100644
  
  /*** Selections ***/
  static gboolean
+diff --git a/shell/ev-window.c b/shell/ev-window.c
+index e4cbce9..a2da929 100644
+--- a/shell/ev-window.c
++++ b/shell/ev-window.c
+@@ -7751,6 +7751,8 @@ ev_window_emit_doc_loaded (EvWindow *window)
+         ev_atril_window_emit_document_loaded (window->priv->skeleton, window->priv->uri);
+ }
+ 
++
++#ifdef ENABLE_SYNCTEX
+ static gboolean
+ handle_sync_view_cb (EvAtrilWindow        *object,
+                      GDBusMethodInvocation *invocation,
+@@ -7771,6 +7773,7 @@ handle_sync_view_cb (EvAtrilWindow        *object,
+ 
+ 	return TRUE;
+ }
++#endif
+ #endif /* ENABLE_DBUS */
+ 
+ static gboolean
+@@ -7831,9 +7834,11 @@ ev_window_init (EvWindow *ev_window)
+                                                       ev_window->priv->dbus_object_path,
+                                                       &error)) {
+                         ev_window->priv->skeleton = skeleton;
++#ifdef ENABLE_SYNCTEX
+                         g_signal_connect (skeleton, "handle-sync-view",
+                                           G_CALLBACK (handle_sync_view_cb),
+                                           ev_window);
++#endif
+                 } else {
+                         g_printerr ("Failed to register bus object %s: %s\n",
+ 			            ev_window->priv->dbus_object_path, error->message);

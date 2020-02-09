@@ -18,7 +18,7 @@ SLOT="0"
 IUSE="caja dbus debug djvu dvi epub +introspection gnome-keyring +postscript +synctex t1lib tiff xps"
 
 PATCHES=(
-	"files/${PN}-1.23.2-Make-synctex-optional.patch"
+	"${FILESDIR}/${PN}-1.23.2-Make-synctex-optional.patch"
 	)
 
 REQUIRED_USE="t1lib? ( dvi )"
@@ -49,6 +49,7 @@ RDEPEND="
 	gnome-keyring? ( >=app-crypt/libsecret-0.5 )
 	introspection? ( >=dev-libs/gobject-introspection-0.6:= )
 	postscript? ( >=app-text/libspectre-0.2 )
+	synctex? ( app-text/texlive-core )
 	tiff? ( >=media-libs/tiff-3.6:0 )
 	xps? ( >=app-text/libgxps-0.2.1 )
 	!!app-text/mate-document-viewer"
@@ -90,5 +91,6 @@ src_configure() {
 		$(use_enable postscript ps) \
 		$(use_enable t1lib) \
 		$(use_enable tiff) \
+		$(use_enable synctex) \
 		$(use_enable xps)
 }
