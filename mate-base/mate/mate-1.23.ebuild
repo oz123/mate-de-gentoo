@@ -1,4 +1,4 @@
-# Copyright 1999-2019 Gentoo Authors
+# Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=6
@@ -51,10 +51,10 @@ RDEPEND="
 		=app-text/atril-${MATE_BRANCH}*
 		=mate-extra/caja-extensions-${MATE_BRANCH}*
 		=mate-extra/mate-calc-${MATE_BRANCH}*
-		=mate-extra/mate-netbook-1.22*
+		=mate-extra/mate-netbook-${MATE_BRANCH}*
 		=mate-extra/mate-power-manager-${MATE_BRANCH}*
 		=mate-extra/mate-screensaver-${MATE_BRANCH}*
-		=mate-extra/mate-system-monitor-1.22*
+		=mate-extra/mate-system-monitor-${MATE_BRANCH}*
 		=mate-extra/mate-utils-${MATE_BRANCH}*
 		=media-gfx/eom-${MATE_BRANCH}*
 		sys-apps/gnome-disk-utility
