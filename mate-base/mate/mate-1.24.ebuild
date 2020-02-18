@@ -80,5 +80,4 @@ pkg_postinst() {
 	fi
 	elog "Some packages that are not included in this meta-package but may be of interest:"
 	elog "		mate-extra/caja-dropbox"
-	elog "		mate-extra/mate-user-share"
 }
