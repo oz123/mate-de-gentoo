@@ -7,9 +7,9 @@ inherit mate-desktop.org
 
 if [[ ${PV} == 9999 ]]; then
 	inherit autotools
+else
+	KEYWORDS="~amd64 ~arm ~arm64 ~x86"
 fi
-
-KEYWORDS="~amd64 ~arm ~x86"
 
 DESCRIPTION="Common files for development of MATE packages"
 LICENSE="GPL-3"
