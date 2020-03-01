@@ -118,10 +118,6 @@ src_prepare() {
 	sed -i -e '/subdir.*fuzzing/d' meson.build || die
 
 	# gdbus-codegen is a separate package
-	sed -i -e 's/install.*true/install : false/g' gio/gdbus-2.0/codegen/meson.build || die
-	# Older than meson-0.50 doesn't know about install kwarg for configure_file; for that we need to remove the install_dir kwarg.
-	# Upstream will remove the install kwarg in a future version to require only meson-0.49.2 or newer, at which point the
-	# install_dir removal only should be kept.
 	sed -i -e '/install_dir/d' gio/gdbus-2.0/codegen/meson.build || die
 
 	# Same kind of meson-0.50 issue with some installed-tests files; will likely be fixed upstream soon
@@ -169,6 +165,7 @@ multilib_src_configure() {
 		$(meson_use fam)
 		-Dinstalled_tests=false
 		-Dnls=enabled
+		-Doss_fuzz=disabled
 	)
 	meson_src_configure
 }

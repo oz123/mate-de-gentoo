@@ -27,6 +27,7 @@ COMMON_DEPEND="
 	>=dev-libs/glib-2.50:2
 	dev-libs/libxslt
 	sys-apps/dbus
+	sys-devel/autoconf-archive
 	x11-libs/gdk-pixbuf:2
 	>=x11-libs/gtk+-3.22:3
 	x11-libs/libICE
