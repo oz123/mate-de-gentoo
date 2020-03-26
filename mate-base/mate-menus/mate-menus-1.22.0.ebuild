@@ -1,64 +1,43 @@
-# Copyright 1999-2018 Gentoo Foundation
+# Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=6
 
 GNOME2_LA_PUNT="yes"
-PYTHON_COMPAT=( python2_7 )
 
-inherit python-r1 mate
+inherit mate
 
 if [[ ${PV} != 9999 ]]; then
-	KEYWORDS="~amd64 ~arm ~arm64 ~x86"
+	KEYWORDS="amd64 ~arm ~arm64 x86"
 fi
 
 DESCRIPTION="MATE menu system, implementing the F.D.O cross-desktop spec"
-LICENSE="GPL-2 LGPL-2"
+LICENSE="GPL-2+ LGPL-2+ LGPL-2.1+"
 SLOT="0"
 
-IUSE="debug +introspection python"
+IUSE="debug +introspection"
 
-REQUIRED_USE="python? ( ${PYTHON_REQUIRED_USE} )"
-
-COMMON_DEPEND=">=dev-libs/glib-2.36.0:2
-	virtual/libintl:0
-	introspection? ( >=dev-libs/gobject-introspection-0.6.7:= )
-	python? (
-		dev-python/pygtk:2[${PYTHON_USEDEP}]
-		${PYTHON_DEPS}
-	)"
+COMMON_DEPEND=">=dev-libs/glib-2.50:2
+	virtual/libintl
+	introspection? ( >=dev-libs/gobject-introspection-0.6.7:= )"
 
 RDEPEND="${COMMON_DEPEND}"
 
 DEPEND="${COMMON_DEPEND}
-	>=dev-util/intltool-0.40:*
+	>=dev-util/intltool-0.40
 	sys-devel/gettext:*
 	virtual/pkgconfig:*"
-
-src_prepare() {
-	mate_src_prepare
-	use python && python_copy_sources
-}
 
 src_configure() {
 	# Do NOT compile with --disable-debug/--enable-debug=no as it disables API
 	# usage checks.
-	mate_py_cond_func_wrap mate_src_configure \
+	mate_src_configure \
 		--enable-debug=$(usex debug yes minimum) \
-		$(use_enable python) \
 		$(use_enable introspection)
 }
 
-src_compile() {
-	mate_py_cond_func_wrap default
-}
-
-src_test() {
-	mate_py_cond_func_wrap emake check
-}
-
 src_install() {
-	mate_py_cond_func_wrap mate_src_install
+	mate_src_install
 
 	exeinto /etc/X11/xinit/xinitrc.d/
 	doexe "${FILESDIR}/10-xdg-menu-mate"

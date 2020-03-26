@@ -18,12 +18,14 @@ SLOT="0"
 IUSE="debug +introspection"
 
 COMMON_DEPEND=">=dev-libs/glib-2.50:2
+	virtual/libintl
 	introspection? ( >=dev-libs/gobject-introspection-0.6.7:= )"
 
 RDEPEND="${COMMON_DEPEND}"
 
 DEPEND="${COMMON_DEPEND}
-	>=sys-devel/gettext-0.19.8:*
+	>=dev-util/intltool-0.40
+	sys-devel/gettext:*
 	virtual/pkgconfig:*"
 
 src_configure() {
