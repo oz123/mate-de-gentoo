@@ -8,7 +8,7 @@ MATE2_LA_PUNT="yes"
 inherit mate
 
 if [[ ${PV} != 9999 ]]; then
-	KEYWORDS="~amd64 ~arm ~arm64 ~x86"
+	KEYWORDS="amd64 ~arm ~arm64 x86"
 fi
 
 DESCRIPTION="MATE default window manager"
@@ -20,7 +20,7 @@ RESTRICT="!test? ( test )"
 
 COMMON_DEPEND="
 	dev-libs/atk
-	>=dev-libs/glib-2.58:2
+	>=dev-libs/glib-2.50:2
 	>=gnome-base/libgtop-2:2=
 	media-libs/libcanberra[gtk3]
 	x11-libs/cairo
@@ -39,19 +39,18 @@ COMMON_DEPEND="
 	x11-libs/libXrandr
 	x11-libs/libXrender
 	>=x11-libs/startup-notification-0.7
+	virtual/libintl
 	xinerama? ( x11-libs/libXinerama )
 	!!x11-wm/mate-window-manager"
 
 RDEPEND="${COMMON_DEPEND}
 	gnome-extra/zenity
-	>=mate-base/mate-desktop-1.20.0
-	virtual/libintl
-"
+	>=mate-base/mate-desktop-1.20.0"
 
 DEPEND="${COMMON_DEPEND}
 	app-text/yelp-tools
-	>=sys-devel/gettext-0.19.8:*
-	>=sys-devel/libtool-2.0.0
+	>=dev-util/intltool-0.34.90
+	sys-devel/gettext:*
 	virtual/pkgconfig:*
 	x11-base/xorg-proto
 	test? ( app-text/docbook-xml-dtd:4.5 )
@@ -70,5 +69,5 @@ src_configure() {
 
 src_install() {
 	mate_src_install
-	dodoc doc/*.txt
+	dodoc {,doc/}*.txt
 }
