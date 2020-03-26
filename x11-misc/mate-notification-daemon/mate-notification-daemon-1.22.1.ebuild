@@ -28,20 +28,17 @@ COMMON_DEPEND="dev-libs/atk
 	>=x11-libs/gtk+-3.22:3
 	>=x11-libs/libwnck-3:3
 	>=media-libs/libcanberra-0.4:0[gtk3]
-"
-
-RDEPEND="${COMMON_DEPEND}
-	virtual/libintl
 	!x11-misc/notify-osd
 	!x11-misc/qtnotifydaemon
-	!x11-misc/notification-daemon
-"
+	!x11-misc/notification-daemon"
+
+RDEPEND="${COMMON_DEPEND}"
 
 DEPEND="${COMMON_DEPEND}
 	app-arch/xz-utils
-	dev-libs/libxml2
 	dev-util/gdbus-codegen
-	>=sys-devel/gettext-0.19.8:*
+	>=dev-util/intltool-0.50.1
+	sys-devel/gettext:*
 	>=sys-devel/libtool-2.2.6:2
 	virtual/pkgconfig:*"
 
