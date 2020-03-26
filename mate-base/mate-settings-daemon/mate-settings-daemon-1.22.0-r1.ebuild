@@ -23,7 +23,7 @@ COMMON_DEPEND=">=dev-libs/dbus-glib-0.74
 	>=dev-libs/glib-2.50:2
 	>=gnome-base/dconf-0.13.4
 	>=mate-base/libmatekbd-1.17.0
-	>=mate-base/mate-desktop-1.23.2
+	>=mate-base/mate-desktop-1.21.1
 	media-libs/fontconfig:1.0
 	x11-libs/cairo
 	x11-libs/gdk-pixbuf:2
@@ -31,11 +31,13 @@ COMMON_DEPEND=">=dev-libs/dbus-glib-0.74
 	x11-libs/libX11
 	x11-libs/libXi
 	x11-libs/libXext
+	x11-libs/libXxf86misc
 	>=x11-libs/libxklavier-5.2
+	virtual/libintl
 	libnotify? ( >=x11-libs/libnotify-0.7:0 )
 	policykit? (
 		>=dev-libs/dbus-glib-0.71
-		>=sys-apps/dbus-1.10.0
+		>=sys-apps/dbus-1.1.2
 		>=sys-auth/polkit-0.97
 	)
 	pulseaudio? (
@@ -48,15 +50,13 @@ COMMON_DEPEND=">=dev-libs/dbus-glib-0.74
 		media-libs/libcanberra[gtk3]
 	)"
 
-RDEPEND="${COMMON_DEPEND}
-	virtual/libintl
-"
+RDEPEND="${COMMON_DEPEND}"
 
 DEPEND="${COMMON_DEPEND}
-	>=sys-devel/gettext-0.19.8:*
+	>=dev-util/intltool-0.50.1
+	sys-devel/gettext
 	virtual/pkgconfig
-	x11-base/xorg-proto
-"
+	x11-base/xorg-proto"
 
 src_configure() {
 	mate_src_configure \
