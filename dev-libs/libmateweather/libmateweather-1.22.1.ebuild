@@ -19,19 +19,19 @@ IUSE="debug"
 
 COMMON_DEPEND=">=dev-libs/glib-2.50:2
 	>=dev-libs/libxml2-2.6:2
-	>=net-libs/libsoup-2.54:2.4
+	>=net-libs/libsoup-2.34:2.4
 	>=sys-libs/timezone-data-2010k:0
 	x11-libs/gdk-pixbuf:2
+	virtual/libintl:0
 	>=x11-libs/gtk+-3.22:3"
 
-RDEPEND="${COMMON_DEPEND}
-	virtual/libintl
-"
+RDEPEND="${COMMON_DEPEND}"
 
 DEPEND="${COMMON_DEPEND}
 	dev-util/gtk-doc
 	dev-util/gtk-doc-am
-	>=sys-devel/gettext-0.19.8:*
+	>=dev-util/intltool-0.50.1:*
+	sys-devel/gettext:*
 	>=sys-devel/libtool-2.2.6:2
 	virtual/pkgconfig:*"
 
