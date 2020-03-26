@@ -1,4 +1,4 @@
-# Copyright 1999-2016 Gentoo Foundation
+# Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=6
@@ -8,55 +8,52 @@ MATE_LA_PUNT="yes"
 inherit mate virtualx
 
 if [[ ${PV} != 9999 ]]; then
-	KEYWORDS="~amd64 ~arm ~x86"
+	KEYWORDS="~amd64 ~arm ~arm64 ~x86"
 fi
 
 DESCRIPTION="Caja file manager for the MATE desktop"
-LICENSE="GPL-2 LGPL-2 FDL-1.1"
+LICENSE="GPL-2+ LGPL-2+"
 SLOT="0"
 
-IUSE="gtk3 +introspection +mate packagekit xmp"
+IUSE="+introspection +mate packagekit xmp"
 
-COMMON_DEPEND="dev-libs/atk:0
-	>=dev-libs/glib-2.36:2
+COMMON_DEPEND="
+	dev-libs/atk
+	>=dev-libs/glib-2.58.1:2
 	>=dev-libs/libxml2-2.4.7:2
-	gnome-base/dconf:0
+	gnome-base/dconf
 	>=gnome-base/gvfs-1.10.1:0[udisks]
-	>=mate-base/mate-desktop-1.15.1:0[gtk3(-)=]
+	>=mate-base/mate-desktop-1.17.3:0
 	>=media-libs/libexif-0.6.14:0
-	x11-libs/cairo:0
-	x11-libs/gdk-pixbuf:2
-	x11-libs/libICE:0
-	x11-libs/libSM:0
-	x11-libs/libX11:0
-	x11-libs/libXext:0
-	x11-libs/libXft:0
-	x11-libs/libXrender:0
-	>=x11-libs/pango-1.1.2:0
-	virtual/libintl:0
-	!gtk3? (
-		>=dev-libs/libunique-1:1
-		>=x11-libs/gtk+-2.24:2[introspection?]
-	)
-	gtk3? (
-		>=dev-libs/libunique-3:3
-		>=x11-libs/gtk+-3.0:3[introspection?]
-	)
+	x11-libs/cairo
+	>=x11-libs/gdk-pixbuf-2.36.5:2
+	>=x11-libs/gtk+-3.22:3[introspection?]
+	>=x11-libs/libnotify-0.7.0:0
+	x11-libs/libICE
+	x11-libs/libSM
+	x11-libs/libX11
+	x11-libs/libXext
+	x11-libs/libXft
+	x11-libs/libXrender
+	>=x11-libs/pango-1.1.2
 	introspection? ( >=dev-libs/gobject-introspection-0.6.4:= )
 	packagekit? ( app-admin/packagekit-base )
 	xmp? ( >=media-libs/exempi-1.99.5:2 )
-	!!mate-base/mate-file-manager"
+"
 
-RDEPEND="${COMMON_DEPEND}"
+RDEPEND="${COMMON_DEPEND}
+	virtual/libintl
+	!!mate-base/mate-file-manager
+"
 
 DEPEND="${COMMON_DEPEND}
-	>=dev-lang/perl-5:0=
-	dev-util/gdbus-codegen:0
+	>=dev-lang/perl-5:=
+	dev-util/gdbus-codegen
+	dev-util/glib-utils
 	dev-util/gtk-doc
 	dev-util/gtk-doc-am
-	>=dev-util/intltool-0.40.1:*
-	sys-devel/gettext:*
-	virtual/pkgconfig:*"
+	>=sys-devel/gettext-0.19.8:*
+	virtual/pkgconfig"
 
 PDEPEND="mate? ( >=x11-themes/mate-icon-theme-${MATE_BRANCH} )"
 
@@ -75,7 +72,6 @@ src_prepare() {
 src_configure() {
 	mate_src_configure \
 		--disable-update-mimedb \
-		--with-gtk=$(usex gtk3 3.0 2.0) \
 		$(use_enable introspection) \
 		$(use_enable packagekit) \
 		$(use_enable xmp)
