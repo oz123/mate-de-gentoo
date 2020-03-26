@@ -17,7 +17,7 @@ SLOT="0"
 
 IUSE="X +introspection wayland"
 
-COMMON_DEPEND="
+RDEPEND="
 	dev-libs/atk
 	>=dev-libs/dbus-glib-0.80:0
 	>=dev-libs/glib-2.50:2
@@ -38,14 +38,11 @@ COMMON_DEPEND="
 	>=x11-libs/pango-1.15.4:0[introspection?]
 	x11-libs/libXau
 	>=x11-libs/libXrandr-1.3
-	introspection? ( >=dev-libs/gobject-introspection-0.6.7:= )
-	wayland? ( gui-libs/gtk-layer-shell )"
-
-RDEPEND="${COMMON_DEPEND}
 	virtual/libintl
-"
+	introspection? ( >=dev-libs/gobject-introspection-0.6.7:= )
+	wayland? ( dev-libs/wayland )"
 
-DEPEND="${COMMON_DEPEND}
+DEPEND="${RDEPEND}
 	app-text/docbook-xml-dtd:4.1.2
 	app-text/yelp-tools
 	>=dev-lang/perl-5:=
@@ -53,7 +50,8 @@ DEPEND="${COMMON_DEPEND}
 	dev-util/gdbus-codegen
 	dev-util/gtk-doc
 	dev-util/gtk-doc-am
-	>=sys-devel/gettext-0.19.8:*
+	>=dev-util/intltool-0.50.1
+	sys-devel/gettext
 	virtual/pkgconfig"
 
 src_configure() {
