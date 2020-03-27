@@ -24,13 +24,12 @@ COMMON_DEPEND=">=dev-libs/glib-2.50:2
 	x11-libs/cairo
 	>=x11-libs/gtk+-3.22:3
 	x11-libs/pango
-"
+	virtual/libintl"
 
-RDEPEND="${COMMON_DEPEND}
-	virtual/libintl
-"
+RDEPEND="${COMMON_DEPEND}"
 
 DEPEND="${COMMON_DEPEND}
-	>=sys-devel/gettext-0.19.8:*
+	>=dev-util/intltool-0.35.0
+	sys-devel/gettext:*
 	virtual/pkgconfig:*
 	!!<mate-base/mate-applets-1.8:*"
