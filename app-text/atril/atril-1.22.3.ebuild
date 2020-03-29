@@ -1,4 +1,4 @@
-# Copyright 1999-2018 Gentoo Foundation
+# Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=6
@@ -8,66 +8,62 @@ MATE_LA_PUNT="yes"
 inherit mate
 
 if [[ ${PV} != 9999 ]]; then
-	KEYWORDS="amd64 ~arm x86"
+	KEYWORDS="~amd64 ~arm ~arm64 ~x86"
 fi
 
 DESCRIPTION="Atril document viewer for MATE"
-LICENSE="GPL-2"
+LICENSE="FDL-1.1+ GPL-2+ GPL-3+ LGPL-2+ LGPL-2.1+"
 SLOT="0"
 
-IUSE="caja dbus debug djvu dvi epub +introspection gnome-keyring gtk3 +postscript t1lib tiff xps"
+IUSE="caja dbus debug djvu dvi epub +introspection gnome-keyring +postscript t1lib tiff xps"
 
-REQUIRED_USE="t1lib? ( dvi )
-	!gtk3? ( !epub )" #608604
+REQUIRED_USE="t1lib? ( dvi )"
 
-RDEPEND=">=app-text/poppler-0.16:0=[cairo]
-	app-text/rarian:0
-	dev-libs/atk:0
-	>=dev-libs/glib-2.36:2
+RDEPEND="
+	>=app-text/poppler-0.22[cairo]
+	dev-libs/atk
+	>=dev-libs/glib-2.50:2
 	>=dev-libs/libxml2-2.5:2
-	>=mate-base/mate-desktop-1.9[gtk3(-)=]
-	sys-libs/zlib:0
+	sys-libs/zlib
 	x11-libs/gdk-pixbuf:2
-	x11-libs/libICE:0
+	>=x11-libs/gtk+-3.22:3[introspection?]
+	x11-libs/libICE
 	>=x11-libs/libSM-1:0
-	x11-libs/libX11:0
-	>=x11-libs/cairo-1.9.10:0
-	x11-libs/pango:0
-	caja? ( >=mate-base/caja-1.8[gtk3(-)=,introspection?] )
+	x11-libs/libX11
+	>=x11-libs/cairo-1.9.10
+	x11-libs/pango
+	caja? ( >=mate-base/caja-1.17.1[introspection?] )
 	djvu? ( >=app-text/djvu-3.5.17:0 )
 	dvi? (
-		virtual/tex-base:0
+		virtual/tex-base
 		t1lib? ( >=media-libs/t1lib-5:5 )
 	)
-	epub? ( dev-libs/mathjax )
-	gnome-keyring? ( >=app-crypt/libsecret-0.5:0 )
-	!gtk3? (
-		>=x11-libs/gtk+-2.24.0:2[introspection?]
+	epub? (
+		dev-libs/mathjax
+		>=net-libs/webkit-gtk-2.4.3:4
 	)
-	gtk3? (
-		>=x11-libs/gtk+-3.0:3[introspection?]
-		epub? ( >=net-libs/webkit-gtk-2.4.3:4 )
-	)
+	gnome-keyring? ( >=app-crypt/libsecret-0.5 )
 	introspection? ( >=dev-libs/gobject-introspection-0.6:= )
-	postscript? ( >=app-text/libspectre-0.2:0 )
+	postscript? ( >=app-text/libspectre-0.2 )
 	tiff? ( >=media-libs/tiff-3.6:0 )
-	xps? ( >=app-text/libgxps-0.2.0:0 )
+	xps? ( >=app-text/libgxps-0.2.1 )
 	!!app-text/mate-document-viewer"
 
 DEPEND="${RDEPEND}
 	app-text/docbook-xml-dtd:4.1.2
-	app-text/yelp-tools:0
+	app-text/rarian
+	app-text/yelp-tools
 	>=app-text/scrollkeeper-dtd-1:1.0
+	dev-util/gdbus-codegen
+	dev-util/glib-utils
 	dev-util/gtk-doc
 	dev-util/gtk-doc-am
-	>=dev-util/intltool-0.50.1:*
-	virtual/pkgconfig:*
-	sys-devel/gettext:*"
+	>=dev-util/intltool-0.50.1
+	sys-devel/gettext
+	virtual/pkgconfig"
 
 # Tests use dogtail which is not available on Gentoo.
 RESTRICT="test"
-
-FILES=( "${FILESDIR}/${PN}-cve-2017-1000083.patch" )
 
 src_configure() {
 	# Passing --disable-help would drop offline help, that would be inconsistent
@@ -79,8 +75,6 @@ src_configure() {
 		--enable-pixbuf \
 		--enable-previewer \
 		--enable-thumbnailer \
-		--with-matedesktop \
-		--with-gtk=$(usex gtk3 3.0 2.0) \
 		$(use_with gnome-keyring keyring) \
 		$(use_enable caja) \
 		$(use_enable dbus) \
