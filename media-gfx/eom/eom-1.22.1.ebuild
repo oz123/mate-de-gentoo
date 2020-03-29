@@ -1,4 +1,4 @@
-# Copyright 1999-2018 Gentoo Foundation
+# Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=6
@@ -10,28 +10,27 @@ if [[ ${PV} != 9999 ]]; then
 fi
 
 DESCRIPTION="The MATE image viewer"
-LICENSE="GPL-2"
+LICENSE="FDL-1.1+ GPL-2+ IJG LGPL-2+"
 SLOT="0"
 
-IUSE="X debug dbus exif +introspection jpeg lcms svg tiff xmp"
+IUSE="X debug exif +introspection jpeg lcms svg tiff xmp"
 
-COMMON_DEPEND="
-	dev-libs/atk:0
-	>=dev-libs/glib-2.36:2
-	>=dev-libs/libpeas-1.2.0[gtk]
+RDEPEND="
+	dev-libs/atk
+	>=dev-libs/glib-2.50:2
+	>=dev-libs/libpeas-1.8.0[gtk]
 	>=dev-libs/libxml2-2:2
-	gnome-base/dconf:0
+	gnome-base/dconf
 	>=mate-base/mate-desktop-1.17.0
-	sys-libs/zlib:0
-	x11-libs/cairo:0
-	>=x11-libs/gdk-pixbuf-2.4:2[introspection?,jpeg?,tiff?]
-	>=x11-libs/gtk+-3.14:3[introspection?]
-	x11-libs/libX11:0
-	>=x11-misc/shared-mime-info-0.20:0
-	virtual/libintl:0
-	dbus? ( >=dev-libs/dbus-glib-0.71:0 )
+	sys-libs/zlib
+	x11-libs/cairo
+	>=x11-libs/gdk-pixbuf-2.30:2[introspection?,jpeg?,tiff?]
+	>=x11-libs/gtk+-3.22:3[introspection?]
+	x11-libs/libX11
+	>=x11-misc/shared-mime-info-0.20
+	virtual/libintl
 	exif? (
-		>=media-libs/libexif-0.6.14:0
+		>=media-libs/libexif-0.6.14
 		virtual/jpeg:0
 	)
 	introspection? ( >=dev-libs/gobject-introspection-0.9.3:= )
@@ -41,22 +40,20 @@ COMMON_DEPEND="
 	xmp? ( >=media-libs/exempi-1.99.5:2 )
 	!!media-gfx/mate-image-viewer"
 
-RDEPEND="${COMMON_DEPEND}"
-
-DEPEND="${COMMON_DEPEND}
-	app-text/yelp-tools:0
+DEPEND="${RDEPEND}
+	app-text/yelp-tools
+	dev-util/glib-utils
 	dev-util/gtk-doc
 	dev-util/gtk-doc-am
-	>=dev-util/intltool-0.50.1:*
-	sys-devel/gettext:*
-	virtual/pkgconfig:*"
+	>=dev-util/intltool-0.50.1
+	sys-devel/gettext
+	virtual/pkgconfig"
 
 src_configure() {
 	mate_src_configure \
 		$(use_enable debug) \
 		$(use_enable introspection) \
 		$(use_with X x) \
-		$(use_with dbus) \
 		$(use_with exif libexif) \
 		$(use_with jpeg libjpeg) \
 		$(use_with lcms cms) \
