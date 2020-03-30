@@ -1,4 +1,4 @@
-# Copyright 1999-2018 Gentoo Foundation
+# Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=6
@@ -8,43 +8,43 @@ MATE_LA_PUNT="yes"
 inherit mate
 
 if [[ ${PV} != 9999 ]]; then
-	KEYWORDS="~amd64 ~arm ~arm64 ~x86"
+	KEYWORDS="amd64 ~arm ~arm64 x86"
 fi
 
 DESCRIPTION="Utilities for the MATE desktop"
-LICENSE="GPL-2"
+LICENSE="FDL-1.1+ GPL-2+ GPL-3+ LGPL-2+"
 SLOT="0"
 
 IUSE="X applet debug ipv6 test"
+RESTRICT="!test? ( test )"
 
-COMMON_DEPEND="
-	dev-libs/atk:0
-	>=dev-libs/glib-2.36:2
+RDEPEND="
+	dev-libs/atk
+	>=dev-libs/glib-2.50:2
 	>=gnome-base/libgtop-2.12:2=
-	>=media-libs/libcanberra-0.4:0[gtk3]
-	sys-libs/zlib:0
-	x11-libs/cairo:0
+	>=media-libs/libcanberra-0.4[gtk3]
+	sys-libs/zlib
+	x11-libs/cairo
 	x11-libs/gdk-pixbuf:2
-	>=x11-libs/gtk+-3.14:3
-	x11-libs/libICE:0
-	x11-libs/libSM:0
-	x11-libs/libX11:0
-	x11-libs/libXext:0
-	x11-libs/pango:0
+	>=x11-libs/gtk+-3.22:3
+	x11-libs/libICE
+	x11-libs/libSM
+	x11-libs/libX11
+	x11-libs/libXext
+	x11-libs/pango
 	applet? ( >=mate-base/mate-panel-1.17.0 )"
 
-RDEPEND="${COMMON_DEPEND}"
-
-DEPEND="${COMMON_DEPEND}
-	app-text/rarian:0
+DEPEND="${RDEPEND}
+	app-text/rarian
 	>=app-text/scrollkeeper-dtd-1:1.0
-	app-text/yelp-tools:0
+	app-text/yelp-tools
+	dev-util/glib-utils
 	dev-util/gtk-doc
 	dev-util/gtk-doc-am
-	>=dev-util/intltool-0.50.1:*
-	x11-proto/xextproto:0
-	sys-devel/gettext:*
-	virtual/pkgconfig:*"
+	>=dev-util/intltool-0.50.1
+	sys-devel/gettext
+	virtual/pkgconfig
+	x11-base/xorg-proto"
 
 src_prepare() {
 	# Make apps visible in all DEs.
