@@ -1,4 +1,4 @@
-# Copyright 1999-2016 Gentoo Foundation
+# Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=6
@@ -15,17 +15,18 @@ fi
 DESCRIPTION="Python bindings for the Caja file manager"
 LICENSE="GPL-2"
 SLOT="0"
+IUSE="doc"
+REQUIRED_USE=${PYTHON_REQUIRED_USE}
 
-IUSE="doc gtk3"
+COMMON_DEPEND="${PYTHON_DEPS}
+	>=dev-libs/glib-2.50:2
+	$( python_gen_cond_dep 'dev-python/pygobject:3[${PYTHON_MULTI_USEDEP}]' )
+	>=mate-base/caja-1.17.1[introspection]
+	>=x11-libs/gtk+-3.22:3"
 
-RDEPEND="dev-libs/glib:2
-	dev-python/pygobject:3[${PYTHON_USEDEP}]
-	>=mate-base/caja-1.8[gtk3(-)=,introspection]
-	!gtk3? ( x11-libs/gtk+:2 )
-	gtk3? ( x11-libs/gtk+:3 )
-	${PYTHON_DEPS}"
+RDEPEND="${COMMON_DEPEND}"
 
-DEPEND="${RDEPEND}
+DEPEND="${COMMON_DEPEND}
 	dev-util/gtk-doc
 	dev-util/gtk-doc-am
 	virtual/pkgconfig:*
@@ -35,7 +36,7 @@ src_install() {
 	mate_src_install
 
 	# Keep the directory for systemwide extensions.
-	keepdir /usr/share/python-caja/extensions/
+	keepdir /usr/share/caja-python/extensions/
 
 	# The HTML documentation generation is broken and commented out by upstream.
 	#
