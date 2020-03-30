@@ -24,15 +24,12 @@ COMMON_DEPEND="
 	x11-libs/libXtst
 	x11-libs/libX11
 	x11-libs/cairo
-"
+	virtual/libintl"
 
-RDEPEND="${COMMON_DEPEND}
-	virtual/libintl
-"
+RDEPEND="${COMMON_DEPEND}"
 
 DEPEND="${COMMON_DEPEND}
 	x11-base/xorg-proto
 	>=dev-util/intltool-0.50.1
-	>=sys-devel/gettext-0.19.8:*
-	virtual/pkgconfig:*
-"
+	sys-devel/gettext:*
+	virtual/pkgconfig:*"
