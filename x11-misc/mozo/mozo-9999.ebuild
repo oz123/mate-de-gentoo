@@ -1,37 +1,39 @@
-# Copyright 1999-2017 Gentoo Foundation
+# Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=6
 
-PYTHON_COMPAT=( python2_7 )
+PYTHON_COMPAT=( python{3_6,3_7} )
 PYTHON_REQ_USE="xml"
 
 inherit python-r1 mate
 
 if [[ ${PV} != 9999 ]]; then
-	KEYWORDS="~amd64 ~arm ~x86"
+	KEYWORDS="~amd64 ~arm ~arm64 ~x86"
 fi
 
 DESCRIPTION="Mozo menu editor for MATE"
-LICENSE="GPL-2"
+LICENSE="GPL-2+ GPL-3+ LGPL-2+ LGPL-2.1+"
 SLOT="0"
-
 IUSE=""
+REQUIRED_USE=${PYTHON_REQUIRED_USE}
 
 COMMON_DEPEND="${PYTHON_DEPS}
 	>=dev-python/pygobject-3:3[${PYTHON_USEDEP}]
-	>=mate-base/mate-menus-1.6[introspection,python]
+	>=mate-base/mate-menus-1.21.0[introspection]
 	x11-libs/gdk-pixbuf:2[introspection]
-	x11-libs/gtk+:3[introspection]
-	virtual/libintl:0
-	!!x11-misc/mate-menu-editor"
+	>=x11-libs/gtk+-3.22:3[introspection]
+	!!x11-misc/mate-menu-editor
+"
 
-RDEPEND="${COMMON_DEPEND}"
+RDEPEND="${COMMON_DEPEND}
+	virtual/libintl
+"
 
 DEPEND="${COMMON_DEPEND}
-	>=dev-util/intltool-0.40:*
-	sys-devel/gettext:*
-	virtual/pkgconfig:*"
+	>=sys-devel/gettext-0.19.8:*
+	virtual/pkgconfig:*
+"
 
 src_prepare() {
 	mate_src_prepare
@@ -60,6 +62,7 @@ src_install() {
 			-i mozo || die
 
 		python_doscript mozo
+		python_optimize
 	}
 
 	python_foreach_impl run_in_build_dir installing

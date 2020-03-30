@@ -1,9 +1,9 @@
-# Copyright 1999-2018 Gentoo Foundation
+# Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=6
 
-PYTHON_COMPAT=( python2_7 )
+PYTHON_COMPAT=( python3_6 )
 PYTHON_REQ_USE="xml"
 
 inherit python-r1 mate
@@ -13,23 +13,23 @@ if [[ ${PV} != 9999 ]]; then
 fi
 
 DESCRIPTION="Mozo menu editor for MATE"
-LICENSE="GPL-2"
+LICENSE="GPL-2+ GPL-3+ LGPL-2+ LGPL-2.1+"
 SLOT="0"
-
 IUSE=""
+REQUIRED_USE=${PYTHON_REQUIRED_USE}
 
 COMMON_DEPEND="${PYTHON_DEPS}
 	>=dev-python/pygobject-3:3[${PYTHON_USEDEP}]
-	>=mate-base/mate-menus-1.6[introspection,python]
+	>=mate-base/mate-menus-1.21.0[introspection]
 	x11-libs/gdk-pixbuf:2[introspection]
-	x11-libs/gtk+:3[introspection]
-	virtual/libintl:0
+	>=x11-libs/gtk+-3.22:3[introspection]
+	virtual/libintl
 	!!x11-misc/mate-menu-editor"
 
 RDEPEND="${COMMON_DEPEND}"
 
 DEPEND="${COMMON_DEPEND}
-	>=dev-util/intltool-0.40:*
+	>=dev-util/intltool-0.40
 	sys-devel/gettext:*
 	virtual/pkgconfig:*"
 
