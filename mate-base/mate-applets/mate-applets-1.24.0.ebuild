@@ -56,13 +56,18 @@ DEPEND="${COMMON_DEPEND}
 	virtual/pkgconfig:*"
 
 src_configure() {
+
+	# configure.ac logic is a little hinky
+	# and ignores --enable flags for cpufreq
+	use cpupower || myconf="--disable-cpufreq"
+
 	mate_src_configure \
 		--libexecdir=/usr/libexec/mate-applets \
 		$(use_with X x) \
 		$(use_with upower) \
-		$(use_enable cpupower cpufreq) \
 		$(use_enable ipv6) \
-		$(use_enable policykit polkit)
+		$(use_enable policykit polkit) \
+		"${myconf[@]}"
 }
 
 src_test() {

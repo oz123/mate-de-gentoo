@@ -26,7 +26,7 @@ COMMON_DEPEND="dev-libs/atk
 	>=gnome-extra/gucharmap-3.0:2.90
 	>=mate-base/mate-panel-1.17.0
 	>=net-wireless/wireless-tools-28_pre9:0
-	>=sys-apps/dbus-1.10.0
+	>=sys-apps/dbus-1.1.2
 	x11-libs/gdk-pixbuf:2
 	>=x11-libs/gtk+-3.22:3
 	x11-libs/gtksourceview:3.0
@@ -34,6 +34,7 @@ COMMON_DEPEND="dev-libs/atk
 	x11-libs/libX11
 	>=x11-libs/libwnck-3.0:3
 	x11-libs/pango
+	virtual/libintl
 	cpupower? (
 		sys-power/cpupower
 		policykit? ( >=sys-auth/polkit-0.97:0 )
@@ -42,27 +43,31 @@ COMMON_DEPEND="dev-libs/atk
 	!!net-analyzer/mate-netspeed"
 
 RDEPEND="${COMMON_DEPEND}
-	>=mate-base/mate-settings-daemon-1.6
-	virtual/libintl
-"
+	>=mate-base/mate-settings-daemon-1.6"
 
 DEPEND="${COMMON_DEPEND}
 	app-text/docbook-xml-dtd:4.3
 	app-text/rarian
 	>=app-text/scrollkeeper-dtd-1:1.0
 	app-text/yelp-tools
+	>=dev-util/intltool-0.50.1
 	dev-libs/libxslt
-	>=sys-devel/gettext-0.19.8:*
+	sys-devel/gettext:*
 	virtual/pkgconfig:*"
 
 src_configure() {
+
+	# configure.ac logic is a little hinky
+	# and ignores --enable flags for cpufreq
+	use cpupower || myconf="--disable-cpufreq"
+
 	mate_src_configure \
 		--libexecdir=/usr/libexec/mate-applets \
 		$(use_with X x) \
 		$(use_with upower) \
-		$(use_enable cpupower cpufreq) \
 		$(use_enable ipv6) \
-		$(use_enable policykit polkit)
+		$(use_enable policykit polkit) \
+		"${myconf[@]}"
 }
 
 src_test() {
