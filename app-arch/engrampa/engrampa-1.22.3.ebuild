@@ -17,7 +17,7 @@ SLOT="0"
 
 IUSE="caja magic packagekit"
 
-COMMON_DEPEND="
+RDEPEND="
 	>=dev-libs/glib-2.50:2
 	>=dev-libs/json-glib-0.14
 	virtual/libintl
@@ -27,19 +27,14 @@ COMMON_DEPEND="
 	caja? ( >=mate-base/caja-1.17.1 )
 	magic? ( sys-apps/file )
 	packagekit? ( app-admin/packagekit-base )
-"
+	!!app-arch/mate-file-archiver"
 
-RDEPEND="${COMMON_DEPEND}
-	virtual/libintl
-	!!app-arch/mate-file-archiver
-"
-
-DEPEND="${COMMON_DEPEND}
+DEPEND="${RDEPEND}
 	app-text/yelp-tools
 	dev-util/glib-utils
-	>=sys-devel/gettext-0.19.8:*
-	virtual/pkgconfig
-"
+	>=dev-util/intltool-0.50.1
+	sys-devel/gettext
+	virtual/pkgconfig"
 
 DISABLE_AUTOFORMATTING="yes"
 DOC_CONTENTS="
