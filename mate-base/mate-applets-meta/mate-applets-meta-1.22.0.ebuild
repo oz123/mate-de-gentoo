@@ -8,7 +8,7 @@ if [[ ${PV} == 9999 ]]; then
 else
 	inherit eapi7-ver
 	MATE_BRANCH="$(ver_cut 1-2)"
-	KEYWORDS="~amd64 ~arm ~arm64 ~x86"
+	KEYWORDS="amd64 ~arm ~arm64 x86"
 fi
 
 DESCRIPTION="Meta package for MATE panel applets"
@@ -20,8 +20,7 @@ SLOT="0"
 IUSE="appindicator sensors"
 
 DEPEND=""
-RDEPEND="
-	=mate-base/mate-applets-${MATE_BRANCH}*
+RDEPEND="=mate-base/mate-applets-${MATE_BRANCH}*
 	appindicator? ( =mate-extra/mate-indicator-applet-${MATE_BRANCH}* )
 	sensors? ( =mate-extra/mate-sensors-applet-${MATE_BRANCH}* )
 "
