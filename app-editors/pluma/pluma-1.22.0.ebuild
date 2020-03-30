@@ -1,4 +1,4 @@
-# Copyright 1999-2018 Gentoo Foundation
+# Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=6
@@ -7,14 +7,14 @@ MATE_LA_PUNT="yes"
 
 PYTHON_COMPAT=( python2_7 )
 
-inherit mate multilib python-single-r1 virtualx
+inherit mate python-single-r1 virtualx
 
 if [[ ${PV} != 9999 ]]; then
-	KEYWORDS="~amd64 ~arm ~arm64 ~x86"
+	KEYWORDS="amd64 ~arm ~arm64 x86"
 fi
 
 DESCRIPTION="Pluma text editor for the MATE desktop"
-LICENSE="GPL-2"
+LICENSE="FDL-1.1+ GPL-2+ LGPL-2+"
 SLOT="0"
 
 IUSE="+introspection spell"
@@ -25,23 +25,23 @@ REQUIRED_USE="${PYTHON_REQUIRED_USE}"
 # https://github.com/mate-desktop/mate-text-editor/issues/33
 RESTRICT="test"
 
-COMMON_DEPEND="dev-libs/atk:0
-	>=dev-libs/glib-2.36:2
+COMMON_DEPEND="dev-libs/atk
+	>=dev-libs/glib-2.50:2
 	>=dev-libs/libpeas-1.2.0[gtk]
 	>=dev-libs/libxml2-2.5:2
-	x11-libs/cairo:0
+	x11-libs/cairo
 	x11-libs/gdk-pixbuf:2
-	>=x11-libs/gtk+-3.14.0:3[introspection?]
+	>=x11-libs/gtk+-3.22:3[introspection?]
 	>=x11-libs/gtksourceview-3.0.0:3.0
-	x11-libs/libICE:0
-	x11-libs/libX11:0
+	x11-libs/libICE
+	x11-libs/libX11
 	>=x11-libs/libSM-1.0
-	x11-libs/pango:0
-	virtual/libintl:0
+	x11-libs/pango
+	virtual/libintl
 	introspection? ( >=dev-libs/gobject-introspection-0.9.3:= )
 	spell? (
-		>=app-text/enchant-1.2:0
-		>=app-text/iso-codes-0.35:0
+		>=app-text/enchant-1.2:=
+		>=app-text/iso-codes-0.35
 	)
 	!!app-editors/mate-text-editor"
 
@@ -51,15 +51,16 @@ RDEPEND="${PYTHON_DEPS}
 
 DEPEND="${COMMON_DEPEND}
 	~app-text/docbook-xml-dtd-4.1.2
-	app-text/rarian:0
+	app-text/rarian
 	>=app-text/scrollkeeper-dtd-1:1.0
-	app-text/yelp-tools:0
+	app-text/yelp-tools
+	dev-util/glib-utils
 	dev-util/gtk-doc
 	dev-util/gtk-doc-am
-	>=dev-util/intltool-0.50.1:*
+	>=dev-util/intltool-0.50.1
 	>=sys-devel/libtool-2.2.6:2
-	>=sys-devel/gettext-0.17:*
-	virtual/pkgconfig:*"
+	>=sys-devel/gettext-0.17
+	virtual/pkgconfig"
 
 src_configure() {
 	mate_src_configure \
