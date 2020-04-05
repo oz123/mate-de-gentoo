@@ -51,7 +51,8 @@ DOCS=(AUTHORS COPYING COPYING.LGPL COPYING.LGPL-2.1 ChangeLog NEWS README TODO)
 src_prepare(){
 	sed -i 's/-Werror//' configure.ac
 	sed -i 's/tests//' Makefile.am
-	eapply "${FILESDIR}/${P}.patch"
+	eapply "${FILESDIR}/${PN}-0.5.0-disable-gtester2xunit-check.patch"
+	eapply "${FILESDIR}/${PN}-0.5.0-remove-desktop-fullname.patch"
 	eautoreconf
 	vala_src_prepare
 	default
