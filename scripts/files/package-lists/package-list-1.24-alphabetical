@@ -15,8 +15,11 @@ mate-base/mate-menus
 mate-base/mate-panel
 mate-base/mate-session-manager
 mate-base/mate-settings-daemon
+mate-extra/caja-admin
 mate-extra/caja-dropbox
 mate-extra/caja-extensions
+mate-extra/caja-hide
+mate-extra/mate-calc
 mate-extra/mate-indicator-applet
 mate-extra/mate-media
 mate-extra/mate-netbook
@@ -35,5 +38,6 @@ x11-misc/mozo
 x11-terms/mate-terminal
 x11-themes/mate-backgrounds
 x11-themes/mate-icon-theme
-x11-themes/mate-icon-theme-faenza
+x11-themes/mate-themes
+x11-themes/mate-themes-meta
 x11-wm/marco
