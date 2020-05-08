@@ -17,6 +17,7 @@ mate-base/mate-session-manager
 mate-base/mate-settings-daemon
 mate-extra/caja-dropbox
 mate-extra/caja-extensions
+mate-extra/mate-calc
 mate-extra/mate-indicator-applet
 mate-extra/mate-media
 mate-extra/mate-netbook
@@ -30,6 +31,7 @@ mate-extra/mate-user-share
 mate-extra/mate-utils
 media-gfx/eom
 media-libs/libmatemixer
+net-analyzer/mate-netspeed
 x11-misc/mate-notification-daemon
 x11-misc/mozo
 x11-terms/mate-terminal

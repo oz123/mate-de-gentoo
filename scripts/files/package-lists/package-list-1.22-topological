@@ -37,4 +37,5 @@ mate-extra/mate-utils
 x11-misc/mozo
 app-editors/pluma
 dev-python/python-caja
+mate-extra/mate-calc
 mate-base/mate
