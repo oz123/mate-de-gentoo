@@ -1,4 +1,4 @@
-# Copyright 1999-2019 Gentoo Authors
+# Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=6
@@ -7,7 +7,9 @@ MATE_LA_PUNT="yes"
 
 inherit mate virtualx
 
-KEYWORDS="~amd64 ~x86"
+if [[ ${PV} != 9999 ]]; then
+	KEYWORDS="~amd64 ~x86"
+fi
 
 DESCRIPTION="Caja file manager for the MATE desktop"
 HOMEPAGE="https://www.mate-desktop.org"
