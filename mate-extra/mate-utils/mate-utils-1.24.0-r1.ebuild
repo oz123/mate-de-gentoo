@@ -43,6 +43,7 @@ DEPEND="${RDEPEND}
 	>=dev-util/intltool-0.50.1
 	gnome-base/librsvg
 	sys-devel/gettext
+	sys-fs/udisks:2
 	virtual/pkgconfig
 	x11-base/xorg-proto"
 

@@ -36,7 +36,6 @@ COMMON_DEPEND="
 	x11-libs/libXext
 	x11-libs/libXrandr
 	x11-libs/libXScrnSaver
-	x11-libs/libXxf86misc
 	x11-libs/libXxf86vm
 	x11-libs/libxklavier
 	x11-libs/pango
