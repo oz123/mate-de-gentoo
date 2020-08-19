@@ -28,7 +28,6 @@ mate-base/mate-applets
 x11-themes/mate-icon-theme-faenza
 mate-extra/mate-indicator-applet
 mate-extra/mate-netbook
-net-analyzer/mate-netspeed
 mate-extra/mate-sensors-applet
 mate-base/mate-applets-meta
 x11-terms/mate-terminal
