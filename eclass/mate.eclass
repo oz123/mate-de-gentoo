@@ -1,4 +1,4 @@
-# Copyright 1999-2017 Gentoo Foundation
+# Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
 # @ECLASS: mate.eclass
@@ -7,6 +7,7 @@
 # @AUTHOR:
 # Authors: NP-Hardass <NP-Hardass@gentoo.org> based upon the gnome2
 # and autotools-utils eclasses
+# @SUPPORTED_EAPIS: 6
 # @BLURB: Provides phases for MATE based packages.
 # @DESCRIPTION:
 # Exports portage base functions used by ebuilds written for packages using the
@@ -28,7 +29,8 @@ esac
 # - "yes": will run prune_libtool_files --modules
 # - If it is not set, it will run prune_libtool_files
 # MATE_LA_PUNT is a stub to GNOME2_LA_PUNT
-GNOME2_LA_PUNT=${MATE_LA_PUNT:-""}
+MATE_LA_PUNT=${MATE_LA_PUNT:-""}
+GNOME2_LA_PUNT="${MATE_LA_PUNT}"
 
 inherit gnome2 autotools mate-desktop.org
 
@@ -114,7 +116,17 @@ mate_src_prepare() {
 # MATE specific configure handling
 # Stub to gnome2_src_configure()
 mate_src_configure() {
-	gnome2_src_configure "$@"
+
+	local mateconf=()
+
+	# Pass --disable-static whenever possible
+	if ! use_if_iuse static-libs; then
+		if grep -q "enable-static" "${ECONF_SOURCE:-.}"/configure; then
+			mateconf+=( --disable-static )
+		fi
+	fi
+
+	gnome2_src_configure "${mateconf[@]} $@"
 }
 
 # @FUNCTION: mate_src_install
