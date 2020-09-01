@@ -8,7 +8,7 @@ MATE_LA_PUNT="yes"
 inherit mate
 
 if [[ ${PV} != 9999 ]]; then
-	KEYWORDS="~amd64 ~arm ~x86"
+	KEYWORDS="amd64 ~arm x86"
 fi
 
 DESCRIPTION="User documentation for MATE Desktop"
@@ -18,11 +18,13 @@ SLOT="0"
 COMMON_DEPEND="virtual/libintl:0"
 
 RDEPEND="${COMMON_DEPEND}
-	gnome-extra/yelp"
+	gnome-extra/yelp
+"
 
 DEPEND="${COMMON_DEPEND}
 	>=dev-util/intltool-0.40
 	app-text/yelp-tools
 	sys-devel/gettext:*
 	virtual/pkgconfig:*
-	!!mate-base/mate-desktop[user-guide]"
+	!!mate-base/mate-desktop[user-guide(-)]
+"
