@@ -6,7 +6,7 @@ EAPI=6
 inherit mate
 
 if [[ ${PV} != 9999 ]]; then
-	KEYWORDS="~amd64 ~arm ~arm64 ~x86"
+	KEYWORDS="amd64 ~arm ~arm64 x86"
 fi
 
 DESCRIPTION="A session daemon for MATE that makes it easy to manage your laptop or desktop"
@@ -44,7 +44,8 @@ RDEPEND="${COMMON_DEPEND}
 	!systemd? (
 		elogind? ( sys-auth/elogind )
 		!elogind? ( >=sys-auth/consolekit-0.9.2 )
-	)"
+	)
+"
 
 DEPEND="${COMMON_DEPEND}
 	app-text/docbook-xml-dtd:4.3
