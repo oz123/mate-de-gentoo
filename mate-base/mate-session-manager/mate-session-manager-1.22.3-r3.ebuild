@@ -6,7 +6,7 @@ EAPI=6
 inherit mate
 
 if [[ ${PV} != 9999 ]]; then
-	KEYWORDS="~amd64 ~arm ~arm64 ~x86"
+	KEYWORDS="amd64 ~arm ~arm64 x86"
 fi
 
 DESCRIPTION="MATE session manager"
@@ -73,18 +73,15 @@ src_configure() {
 src_install() {
 	mate_src_install
 
-	dodir /etc/X11/Sessions/
 	exeinto /etc/X11/Sessions/
 	doexe "${FILESDIR}"/MATE
 
-	dodir /usr/share/mate/applications/
 	insinto /usr/share/mate/applications/
 	doins "${FILESDIR}"/defaults.list
 
-	dodir /etc/X11/xinit/xinitrc.d/
 	exeinto /etc/X11/xinit/xinitrc.d/
-	doexe "${FILESDIR}"/15-xdg-data-mate
+	newexe "${FILESDIR}"/15-xdg-data-mate-r2 15-xdg-data-mate
 
 	# This should be done in MATE too, see Gentoo bug #270852
-	doexe "${FILESDIR}"/10-user-dirs-update-mate
+	newexe "${FILESDIR}"/10-user-dirs-update-mate-r2 10-user-dirs-update-mate
 }
