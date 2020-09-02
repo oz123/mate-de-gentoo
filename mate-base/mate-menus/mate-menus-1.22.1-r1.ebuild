@@ -8,7 +8,7 @@ GNOME2_LA_PUNT="yes"
 inherit mate
 
 if [[ ${PV} != 9999 ]]; then
-	KEYWORDS="~amd64 ~arm ~arm64 ~x86"
+	KEYWORDS="amd64 ~arm ~arm64 x86"
 fi
 
 DESCRIPTION="MATE menu system, implementing the F.D.O cross-desktop spec"
@@ -40,5 +40,5 @@ src_install() {
 	mate_src_install
 
 	exeinto /etc/X11/xinit/xinitrc.d/
-	doexe "${FILESDIR}/10-xdg-menu-mate"
+	newexe "${FILESDIR}/10-xdg-menu-mate-r1" "10-xdg-menu-mate"
 }
