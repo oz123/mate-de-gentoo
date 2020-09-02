@@ -20,7 +20,6 @@ IUSE="image-converter +open-terminal share +wallpaper xattr ${SENDTO}"
 
 COMMON_DEPEND=">=dev-libs/glib-2.50:2
 	>=mate-base/caja-1.21.3
-	virtual/libintl
 	x11-libs/gdk-pixbuf:2
 	>=x11-libs/gtk+-3.22:3
 	gajim? (
@@ -29,7 +28,7 @@ COMMON_DEPEND=">=dev-libs/glib-2.50:2
 	)
 	open-terminal? ( >=mate-base/mate-desktop-1.17.0 )
 	pidgin? ( >=dev-libs/dbus-glib-0.60 )
-	upnp? ( >=net-libs/gupnp-0.13:0/4 )
+	upnp? ( >=net-libs/gupnp-0.13:0= )
 	xattr? ( sys-apps/attr )"
 
 RDEPEND="${COMMON_DEPEND}
@@ -44,10 +43,10 @@ RDEPEND="${COMMON_DEPEND}
 	pidgin? ( net-im/pidgin )"
 
 DEPEND="${COMMON_DEPEND}
+	dev-libs/libxml2
 	dev-util/gtk-doc
 	dev-util/gtk-doc-am
-	>=dev-util/intltool-0.18:*
-	sys-devel/gettext:*
+	>=sys-devel/gettext-0.19.8:*
 	virtual/pkgconfig:*
 	!!mate-extra/mate-file-manager-open-terminal
 	!!mate-extra/mate-file-manager-sendto
