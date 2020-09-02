@@ -8,17 +8,17 @@ MATE_LA_PUNT="yes"
 inherit mate
 
 if [[ ${PV} != 9999 ]]; then
-	KEYWORDS="~amd64 ~arm ~arm64 ~x86"
+	KEYWORDS="amd64 ~arm ~arm64 x86"
 fi
 
 DESCRIPTION="Utilities for the MATE desktop"
 LICENSE="FDL-1.1+ GPL-2+ GPL-3+ LGPL-2+"
 SLOT="0"
 
-IUSE="X applet debug ipv6 test udisks"
+IUSE="X applet debug ipv6 test"
 RESTRICT="!test? ( test )"
 
-COMMON_DEPEND="
+RDEPEND="
 	dev-libs/atk
 	>=dev-libs/glib-2.50:2
 	>=gnome-base/libgtop-2.12:2=
@@ -32,26 +32,23 @@ COMMON_DEPEND="
 	x11-libs/libX11
 	x11-libs/libXext
 	x11-libs/pango
-	applet? ( >=mate-base/mate-panel-1.17.0 )
-	udisks? ( >=sys-fs/udisks-1.90.0:2 )
-"
+	applet? ( >=mate-base/mate-panel-1.17.0 )"
 
-RDEPEND="${COMMON_DEPEND}
-	virtual/libintl
-"
-
-DEPEND="${COMMON_DEPEND}
+DEPEND="${RDEPEND}
 	app-text/rarian
 	>=app-text/scrollkeeper-dtd-1:1.0
 	app-text/yelp-tools
-	dev-libs/libxml2
 	dev-util/glib-utils
 	dev-util/gtk-doc
 	dev-util/gtk-doc-am
-	>=sys-devel/gettext-0.19.8:*
+	>=dev-util/intltool-0.50.1
+	sys-devel/gettext
 	virtual/pkgconfig
-	x11-base/xorg-proto
-"
+	x11-base/xorg-proto"
+
+PATCHES=(
+	"${FILESDIR}/${P}-gcc-10-fno-common.patch"
+)
 
 src_prepare() {
 	# Make apps visible in all DEs.
@@ -63,10 +60,10 @@ src_prepare() {
 
 src_configure() {
 	mate_src_configure \
+		--disable-maintainer-flags \
 		--enable-zlib \
 		--enable-debug=$(usex debug yes minimum) \
 		$(use_with X x) \
 		$(use_enable applet gdict-applet) \
-		$(use_enable ipv6) \
-		$(use_enable udisks disk_image_mounter)
+		$(use_enable ipv6)
 }
