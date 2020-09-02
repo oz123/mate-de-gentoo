@@ -13,20 +13,20 @@ DESCRIPTION="Applets for the MATE Desktop and Panel"
 LICENSE="CC-BY-SA-3.0 FDL-1.1+ GPL-2+ GPL-3+ LGPL-2+"
 SLOT="0"
 
-IUSE="X ipv6 policykit +upower"
+IUSE="X +cpupower ipv6 policykit +upower"
+
+REQUIRED_USE="policykit? ( cpupower )"
 
 COMMON_DEPEND="dev-libs/atk
 	>=dev-libs/dbus-glib-0.74
 	>=dev-libs/glib-2.50:2
 	>=dev-libs/libmateweather-1.17.0
 	>=dev-libs/libxml2-2.5:2
-	dev-python/pygobject:3
 	>=gnome-base/libgtop-2.12.0:2=
 	>=gnome-extra/gucharmap-3.0:2.90
 	>=mate-base/mate-panel-1.17.0
 	>=net-wireless/wireless-tools-28_pre9:0
 	>=sys-apps/dbus-1.1.2
-	sys-power/cpupower
 	x11-libs/gdk-pixbuf:2
 	>=x11-libs/gtk+-3.22:3
 	x11-libs/gtksourceview:3.0
@@ -35,7 +35,10 @@ COMMON_DEPEND="dev-libs/atk
 	>=x11-libs/libwnck-3.0:3
 	x11-libs/pango
 	virtual/libintl
-	policykit? ( >=sys-auth/polkit-0.97:0 )
+	cpupower? (
+		sys-power/cpupower
+		policykit? ( >=sys-auth/polkit-0.97:0 )
+	)
 	upower? ( >=sys-power/upower-0.9.23 )
 	!!net-analyzer/mate-netspeed"
 
@@ -52,16 +55,23 @@ DEPEND="${COMMON_DEPEND}
 	sys-devel/gettext:*
 	virtual/pkgconfig:*"
 
-PATCHES=( "${FILESDIR}"/${P}-cpupower.patch )
+PATCHES=(
+	"${FILESDIR}/${P}-gcc-10-fno-common.patch"
+)
 
 src_configure() {
+
+	# configure.ac logic is a little hinky
+	# and ignores --enable flags for cpufreq
+	use cpupower || myconf="--disable-cpufreq"
+
 	mate_src_configure \
 		--libexecdir=/usr/libexec/mate-applets \
-		--with-cpufreq-lib=cpupower \
 		$(use_with X x) \
 		$(use_with upower) \
 		$(use_enable ipv6) \
-		$(use_enable policykit polkit)
+		$(use_enable policykit polkit) \
+		"${myconf[@]}"
 }
 
 src_test() {
