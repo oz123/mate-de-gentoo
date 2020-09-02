@@ -8,7 +8,7 @@ MATE_LA_PUNT="yes"
 inherit mate readme.gentoo-r1
 
 if [[ ${PV} != 9999 ]]; then
-	KEYWORDS="~amd64 ~arm ~arm64 ~x86"
+	KEYWORDS="amd64 ~arm ~arm64 x86"
 fi
 
 DESCRIPTION="Engrampa archive manager for MATE"
@@ -23,6 +23,7 @@ COMMON_DEPEND="
 	virtual/libintl
 	x11-libs/gdk-pixbuf:2
 	>=x11-libs/gtk+-3.22:3[X]
+	x11-libs/libSM
 	x11-libs/pango
 	caja? ( >=mate-base/caja-1.17.1 )
 	magic? ( sys-apps/file )
@@ -41,26 +42,6 @@ DEPEND="${COMMON_DEPEND}
 	virtual/pkgconfig
 "
 
-DISABLE_AUTOFORMATTING="yes"
-DOC_CONTENTS="
-${PN} is a frontend for several archiving utilities. If you want
-support for a particular archive format,install the relevant package:
-
-7-zip   : emerge app-arch/p7zip
-ace     : emerge app-arch/unace
-arj     : emerge app-arch/arj
-cpio    : emerge app-arch/cpio
-deb     : emerge app-arch/dpkg
-iso     : emerge app-cdr/cdrtools
-jar,zip : emerge app-arch/zip  or  emerge app-arch/unzip
-lha     : emerge app-arch/lha
-lzma    : emerge app-arch/xz-utils
-lzop    : emerge app-arch/lzop
-rar     : emerge app-arch/unrar
-rpm     : emerge app-arch/rpm
-unstuff : emerge app-arch/stuffit
-zoo     : emerge app-arch/zoo"
-
 src_configure() {
 	mate_src_configure \
 		--disable-run-in-place \
@@ -71,10 +52,22 @@ src_configure() {
 
 src_install() {
 	mate_src_install
-	readme.gentoo_create_doc
 }
 
 pkg_postinst() {
 	mate_pkg_postinst
-	readme.gentoo_print_elog
+	optfeature "Support for 7-zip"  app-arch/p7zip
+	optfeature "Support for ace"  app-arch/unace
+	optfeature "Support for arj"  app-arch/arj
+	optfeature "Support for cpio"  app-arch/cpio
+	optfeature "Support for deb"  app-arch/dpkg
+	optfeature "Support for iso"  app-cdr/cdrtools
+	optfeature "Support for jar,zip"  app-arch/zip app-arch/unzip
+	optfeature "Support for lha"  app-arch/lha
+	optfeature "Support for lzma"  app-arch/xz-utils
+	optfeature "Support for lzop"  app-arch/lzop
+	optfeature "Support for rar"  app-arch/unrar
+	optfeature "Support for rpm"  app-arch/rpm
+	optfeature "Support for unstuff"  app-arch/stuffit
+	optfeature "Support for zoo"  app-arch/zoo
 }
