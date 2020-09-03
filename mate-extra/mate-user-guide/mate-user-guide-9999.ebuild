@@ -19,11 +19,13 @@ COMMON_DEPEND=""
 
 RDEPEND="${COMMON_DEPEND}
 	gnome-extra/yelp
+	mate-base/mate-desktop
 	virtual/libintl
 "
 
 DEPEND="${COMMON_DEPEND}
 	app-text/yelp-tools
-	>=sys-devel/gettext-0.19.8:*
-	virtual/pkgconfig:*
-	!!mate-base/mate-desktop[user-guide]"
+	>=sys-devel/gettext-0.19.8
+	virtual/pkgconfig
+	!!mate-base/mate-desktop[user-guide(-)]
+"
