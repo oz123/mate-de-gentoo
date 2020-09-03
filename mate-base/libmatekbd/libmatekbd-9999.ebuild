@@ -18,7 +18,7 @@ SLOT="0"
 IUSE="X +introspection test"
 RESTRICT="!test? ( test )"
 
-RDEPEND="
+COMMON_DEPEND="
 	>=dev-libs/glib-2.50:2
 	virtual/libintl
 	x11-libs/cairo
@@ -27,13 +27,17 @@ RDEPEND="
 	>=x11-libs/libxklavier-5.2:0[introspection?]
 	x11-libs/pango
 	>=x11-libs/gtk+-3.22:3[introspection?]
-	introspection? ( >=dev-libs/gobject-introspection-0.6.7:= )"
+	introspection? ( >=dev-libs/gobject-introspection-0.6.7:= )
+"
 
-DEPEND="${RDEPEND}
+RDEPEND="${COMMON_DEPEND}"
+
+DEPEND="${COMMON_DEPEND}
 	dev-libs/libxml2
 	dev-util/glib-utils
 	>=sys-devel/gettext-0.19.8
-	virtual/pkgconfig"
+	virtual/pkgconfig
+"
 
 src_configure() {
 	mate_src_configure \
