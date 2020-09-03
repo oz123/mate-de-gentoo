@@ -25,7 +25,8 @@ COMMON_DEPEND="
 	>=x11-libs/libXrandr-1.3
 	>=x11-libs/gtk+-3.22:3[introspection?]
 	introspection? ( >=dev-libs/gobject-introspection-0.9.7:= )
-	startup-notification? ( >=x11-libs/startup-notification-0.5:0 )"
+	startup-notification? ( >=x11-libs/startup-notification-0.5:0 )
+"
 
 RDEPEND="${COMMON_DEPEND}
 	virtual/libintl
@@ -36,10 +37,11 @@ DEPEND="${COMMON_DEPEND}
 	app-text/iso-codes
 	dev-util/gtk-doc
 	dev-util/gtk-doc-am
-	>=sys-devel/gettext-0.19.8:*
+	>=sys-devel/gettext-0.19.8
 	x11-base/xorg-proto
 	>=x11-libs/gdk-pixbuf-2.36.5
-	virtual/pkgconfig:*"
+	virtual/pkgconfig
+"
 
 src_configure() {
 	mate_src_configure \
