@@ -52,8 +52,9 @@ DEPEND="${COMMON_DEPEND}
 	dev-util/glib-utils
 	dev-util/gtk-doc
 	dev-util/gtk-doc-am
-	>=sys-devel/gettext-0.19.8:*
-	virtual/pkgconfig"
+	>=sys-devel/gettext-0.19.8
+	virtual/pkgconfig
+"
 
 PDEPEND="mate? ( >=x11-themes/mate-icon-theme-${MATE_BRANCH} )"
 
