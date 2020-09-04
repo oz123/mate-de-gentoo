@@ -16,11 +16,6 @@ SLOT="0"
 IUSE="X debug consolekit elogind kernel_linux libnotify opengl pam systemd"
 REQUIRED_USE="?? ( elogind systemd )"
 
-DOC_CONTENTS="
-	Information for converting screensavers is located in
-	/usr/share/doc/${PF}/xss-conversion.txt*
-"
-
 COMMON_DEPEND="
 	>=dev-libs/dbus-glib-0.71:0
 	>=dev-libs/glib-2.50:2
@@ -59,6 +54,11 @@ DEPEND="${COMMON_DEPEND}
 	>=sys-devel/gettext-0.19.8:*
 	x11-base/xorg-proto
 	virtual/pkgconfig:*
+"
+
+DOC_CONTENTS="
+	Information for converting screensavers is located in
+	/usr/share/doc/${PF}/xss-conversion.txt*
 "
 
 src_configure() {
