@@ -40,9 +40,9 @@ RDEPEND="${COMMON_DEPEND}
 
 DEPEND="${COMMON_DEPEND}
 	app-text/yelp-tools
-	>=sys-devel/gettext-0.19.8:*
+	>=sys-devel/gettext-0.19.8
 	>=sys-devel/autoconf-2.63:*
-	virtual/pkgconfig:*
+	virtual/pkgconfig
 "
 
 src_configure() {
