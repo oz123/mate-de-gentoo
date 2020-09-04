@@ -13,7 +13,7 @@ DESCRIPTION="A session daemon for MATE that makes it easy to manage your laptop 
 
 LICENSE="FDL-1.1+ GPL-2+ LGPL-2+"
 SLOT="0"
-IUSE="+applet elogind gnome-keyring policykit systemd test"
+IUSE="+applet elogind libsecret policykit systemd test"
 
 REQUIRED_USE="?? ( elogind systemd )"
 
@@ -25,6 +25,7 @@ COMMON_DEPEND="
 	>=dev-libs/glib-2.50:2
 	>=media-libs/libcanberra-0.10:0[gtk3]
 	>=sys-apps/dbus-1
+	>=sys-power/upower-0.99.8:=
 	>=x11-apps/xrandr-1.3
 	>=x11-libs/cairo-1
 	>=x11-libs/gdk-pixbuf-2.11:2
@@ -35,8 +36,8 @@ COMMON_DEPEND="
 	>=x11-libs/libnotify-0.7:0
 	x11-libs/pango
 	applet? ( >=mate-base/mate-panel-1.17.0 )
-	gnome-keyring? ( >=gnome-base/libgnome-keyring-3 )
-	>=sys-power/upower-0.99.8:="
+	libsecret? ( >=app-crypt/libsecret-0.11 )
+"
 
 RDEPEND="${COMMON_DEPEND}
 	virtual/libintl
@@ -45,7 +46,8 @@ RDEPEND="${COMMON_DEPEND}
 	!systemd? (
 		elogind? ( sys-auth/elogind )
 		!elogind? ( >=sys-auth/consolekit-0.9.2 )
-	)"
+	)
+"
 
 DEPEND="${COMMON_DEPEND}
 	app-text/docbook-xml-dtd:4.3
@@ -54,14 +56,17 @@ DEPEND="${COMMON_DEPEND}
 	app-text/yelp-tools
 	dev-libs/libxml2
 	dev-util/glib-utils
-	>=sys-devel/gettext-0.19.8:*
+	>=sys-devel/gettext-0.19.8
 	virtual/pkgconfig
-	x11-base/xorg-proto"
+	x11-base/xorg-proto
+"
+
+PATCHES=( "${FILESDIR}/${PN}-1.24.1-libsecret.patch" )
 
 src_configure() {
 	mate_src_configure \
 		--enable-compile-warnings=minimum \
-		$(use_with gnome-keyring keyring) \
+		$(use_with libsecret) \
 		$(use_enable applet applets) \
 		$(use_enable test tests)
 }
