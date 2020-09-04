@@ -19,8 +19,9 @@ RDEPEND="${COMMON_DEPEND}"
 
 DEPEND="${COMMON_DEPEND}
 	>=x11-misc/icon-naming-utils-0.8.7:0
-	>=sys-devel/gettext-0.19.8:*
-	virtual/pkgconfig:*"
+	>=sys-devel/gettext-0.19.8
+	virtual/pkgconfig
+"
 
 RESTRICT="binchecks strip"
 
