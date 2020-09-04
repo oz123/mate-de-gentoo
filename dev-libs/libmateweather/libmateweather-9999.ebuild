@@ -5,7 +5,7 @@ EAPI=6
 
 MATE_LA_PUNT="yes"
 
-inherit mate
+inherit eapi7-ver mate
 
 if [[ ${PV} != 9999 ]]; then
 	KEYWORDS="~amd64 ~arm ~arm64 ~x86"
@@ -22,7 +22,8 @@ COMMON_DEPEND=">=dev-libs/glib-2.50:2
 	>=net-libs/libsoup-2.54:2.4
 	>=sys-libs/timezone-data-2010k:0
 	x11-libs/gdk-pixbuf:2
-	>=x11-libs/gtk+-3.22:3"
+	>=x11-libs/gtk+-3.22:3
+"
 
 RDEPEND="${COMMON_DEPEND}
 	virtual/libintl
@@ -31,9 +32,10 @@ RDEPEND="${COMMON_DEPEND}
 DEPEND="${COMMON_DEPEND}
 	dev-util/gtk-doc
 	dev-util/gtk-doc-am
-	>=sys-devel/gettext-0.19.8:*
+	>=sys-devel/gettext-0.19.8
 	>=sys-devel/libtool-2.2.6:2
-	virtual/pkgconfig:*"
+	virtual/pkgconfig
+"
 
 src_configure() {
 	mate_src_configure \
