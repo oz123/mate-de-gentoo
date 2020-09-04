@@ -46,14 +46,15 @@ COMMON_DEPEND=">=dev-libs/dbus-glib-0.74
 	sound? (
 		>=media-libs/libmatemixer-1.10
 		media-libs/libcanberra[gtk3]
-	)"
+	)
+"
 
 RDEPEND="${COMMON_DEPEND}
 	virtual/libintl
 "
 
 DEPEND="${COMMON_DEPEND}
-	>=sys-devel/gettext-0.19.8:*
+	>=sys-devel/gettext-0.19.8
 	virtual/pkgconfig
 	x11-base/xorg-proto
 "
