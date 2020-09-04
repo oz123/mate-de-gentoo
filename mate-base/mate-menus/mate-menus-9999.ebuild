@@ -18,13 +18,15 @@ SLOT="0"
 IUSE="debug +introspection"
 
 COMMON_DEPEND=">=dev-libs/glib-2.50:2
-	introspection? ( >=dev-libs/gobject-introspection-0.6.7:= )"
+	introspection? ( >=dev-libs/gobject-introspection-0.6.7:= )
+"
 
 RDEPEND="${COMMON_DEPEND}"
 
 DEPEND="${COMMON_DEPEND}
-	>=sys-devel/gettext-0.19.8:*
-	virtual/pkgconfig:*"
+	>=sys-devel/gettext-0.19.8
+	virtual/pkgconfig
+"
 
 src_configure() {
 	# Do NOT compile with --disable-debug/--enable-debug=no as it disables API
@@ -38,5 +40,5 @@ src_install() {
 	mate_src_install
 
 	exeinto /etc/X11/xinit/xinitrc.d/
-	doexe "${FILESDIR}/10-xdg-menu-mate"
+	newexe "${FILESDIR}/10-xdg-menu-mate-r1" "10-xdg-menu-mate"
 }
