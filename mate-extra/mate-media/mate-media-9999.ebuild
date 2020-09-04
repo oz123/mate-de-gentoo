@@ -15,7 +15,8 @@ SLOT="0"
 
 IUSE=""
 
-COMMON_DEPEND=">=dev-libs/glib-2.50:2
+COMMON_DEPEND="
+	>=dev-libs/glib-2.50:2
 	dev-libs/libxml2:2
 	>=mate-base/mate-panel-1.17.0
 	>=mate-base/mate-desktop-1.17.0
@@ -31,6 +32,7 @@ RDEPEND="${COMMON_DEPEND}
 "
 
 DEPEND="${COMMON_DEPEND}
-	>=sys-devel/gettext-0.19.8:*
-	virtual/pkgconfig:*
-	!!<mate-base/mate-applets-1.8:*"
+	>=sys-devel/gettext-0.19.8
+	virtual/pkgconfig
+	!!<mate-base/mate-applets-1.8
+"
