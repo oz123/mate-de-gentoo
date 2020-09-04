@@ -14,7 +14,7 @@ HOMEPAGE="https://mate-desktop.org/"
 
 LICENSE="GPL-2+ GPL-3+ HPND LGPL-2+ LGPL-2.1+"
 SLOT="0"
-IUSE="debug elogind gnome-keyring ipv6 systemd +xtrans"
+IUSE="debug elogind gles2 gnome-keyring ipv6 systemd +xtrans"
 
 REQUIRED_USE="?? ( elogind systemd )"
 
@@ -37,32 +37,38 @@ COMMON_DEPEND="
 	x11-libs/libXrender
 	x11-libs/libXtst
 	x11-libs/pango
+	gles2? ( media-libs/mesa[egl,gles2] )
 	systemd? ( sys-apps/systemd )
 	!systemd? (
 		elogind? ( sys-auth/elogind )
 		!elogind? ( >=sys-auth/consolekit-0.9.2 )
 	)
-	xtrans? ( x11-libs/xtrans )"
+	xtrans? ( x11-libs/xtrans )
+"
 
 RDEPEND="${COMMON_DEPEND}
+	mate-base/mate-desktop
 	virtual/libintl
 	x11-apps/xdpyinfo
 	x11-misc/xdg-user-dirs
 	x11-misc/xdg-user-dirs-gtk
 	gnome-keyring? ( gnome-base/gnome-keyring )
-	!<gnome-base/gdm-2.20.4"
+	!<gnome-base/gdm-2.20.4
+"
 
 DEPEND="${COMMON_DEPEND}
 	>=dev-lang/perl-5
 	dev-util/glib-utils
-	>=sys-devel/gettext-0.19.8:*
-	virtual/pkgconfig"
+	>=sys-devel/gettext-0.19.8
+	virtual/pkgconfig
+"
 
 MATE_FORCE_AUTORECONF=true
 
 src_configure() {
 	mate_src_configure \
 		$(use_with elogind) \
+		$(use_with gles2 libglesv2) \
 		$(use_with systemd) \
 		$(use_with xtrans)  \
 		$(use_enable debug) \
@@ -72,18 +78,15 @@ src_configure() {
 src_install() {
 	mate_src_install
 
-	dodir /etc/X11/Sessions/
 	exeinto /etc/X11/Sessions/
 	doexe "${FILESDIR}"/MATE
 
-	dodir /usr/share/mate/applications/
 	insinto /usr/share/mate/applications/
 	doins "${FILESDIR}"/defaults.list
 
-	dodir /etc/X11/xinit/xinitrc.d/
 	exeinto /etc/X11/xinit/xinitrc.d/
-	doexe "${FILESDIR}"/15-xdg-data-mate
+	newexe "${FILESDIR}"/15-xdg-data-mate-r2 15-xdg-data-mate
 
 	# This should be done in MATE too, see Gentoo bug #270852
-	doexe "${FILESDIR}"/10-user-dirs-update-mate
+	newexe "${FILESDIR}"/10-user-dirs-update-mate-r2 10-user-dirs-update-mate
 }
