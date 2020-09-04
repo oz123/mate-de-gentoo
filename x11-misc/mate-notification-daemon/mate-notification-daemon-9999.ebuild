@@ -19,6 +19,7 @@ IUSE=""
 
 COMMON_DEPEND="dev-libs/atk
 	>=dev-libs/glib-2.50:2
+	>=dev-libs/libxml2-2.9.0
 	>=sys-apps/dbus-1
 	x11-libs/cairo
 	>=x11-libs/gdk-pixbuf-2.22:2
@@ -39,15 +40,11 @@ RDEPEND="${COMMON_DEPEND}
 
 DEPEND="${COMMON_DEPEND}
 	app-arch/xz-utils
-	dev-libs/libxml2
 	dev-util/gdbus-codegen
-	>=sys-devel/gettext-0.19.8:*
+	>=sys-devel/gettext-0.19.8
 	>=sys-devel/libtool-2.2.6:2
-	virtual/pkgconfig:*"
-
-src_configure() {
-	mate_src_configure
-}
+	virtual/pkgconfig
+"
 
 src_install() {
 	mate_src_install
