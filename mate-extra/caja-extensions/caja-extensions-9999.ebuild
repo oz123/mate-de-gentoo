@@ -28,10 +28,12 @@ COMMON_DEPEND=">=dev-libs/glib-2.50:2
 	)
 	open-terminal? ( >=mate-base/mate-desktop-1.17.0 )
 	pidgin? ( >=dev-libs/dbus-glib-0.60 )
-	upnp? ( >=net-libs/gupnp-0.13:0/4 )
-	xattr? ( sys-apps/attr )"
+	upnp? ( >=net-libs/gupnp-0.13:0= )
+	xattr? ( sys-apps/attr )
+"
 
 RDEPEND="${COMMON_DEPEND}
+	mate-base/mate-desktop
 	cdr? ( >=app-cdr/brasero-2.32.1:= )
 	gajim? ( net-im/gajim )
 	image-converter? (
@@ -40,18 +42,20 @@ RDEPEND="${COMMON_DEPEND}
 			media-gfx/graphicsmagick[imagemagick]
 		)
 	)
-	pidgin? ( net-im/pidgin )"
+	pidgin? ( net-im/pidgin )
+"
 
 DEPEND="${COMMON_DEPEND}
 	dev-libs/libxml2
 	dev-util/gtk-doc
 	dev-util/gtk-doc-am
-	>=sys-devel/gettext-0.19.8:*
-	virtual/pkgconfig:*
+	>=sys-devel/gettext-0.19.8
+	virtual/pkgconfig
 	!!mate-extra/mate-file-manager-open-terminal
 	!!mate-extra/mate-file-manager-sendto
 	!!mate-extra/mate-file-manager-image-converter
-	!!mate-extra/mate-file-manager-share"
+	!!mate-extra/mate-file-manager-share
+"
 
 src_configure() {
 	local sendto_plugins="removable-devices"
