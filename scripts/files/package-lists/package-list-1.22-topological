@@ -20,8 +20,8 @@ mate-extra/mate-media
 mate-extra/mate-power-manager
 mate-extra/mate-system-monitor
 app-text/atril
-mate-extra/caja-dropbox
 mate-extra/caja-extensions
+mate-extra/caja-dropbox
 app-arch/engrampa
 media-gfx/eom
 mate-base/mate-applets
