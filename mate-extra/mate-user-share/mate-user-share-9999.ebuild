@@ -39,14 +39,14 @@ RDEPEND="${COMMON_DEPEND}
 DEPEND="${COMMON_DEPEND}
 	app-text/docbook-xml-dtd:4.1.2
 	app-text/yelp-tools
-	>=sys-devel/gettext-0.19.8:*
-	virtual/pkgconfig:*
+	>=sys-devel/gettext-0.19.8
+	virtual/pkgconfig
 "
 
 src_configure() {
 	mate_src_configure \
+		--disable-bluetooth \
 		--with-httpd=apache2 \
 		--with-modules-path=/usr/$(get_libdir)/apache2/modules/ \
-		--disable-bluetooth \
 		$(use_with X x)
 }
