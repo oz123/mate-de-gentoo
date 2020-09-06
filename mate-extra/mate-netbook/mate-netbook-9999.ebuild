@@ -33,6 +33,6 @@ RDEPEND="${COMMON_DEPEND}
 DEPEND="${COMMON_DEPEND}
 	x11-base/xorg-proto
 	>=dev-util/intltool-0.50.1
-	>=sys-devel/gettext-0.19.8:*
-	virtual/pkgconfig:*
+	>=sys-devel/gettext-0.19.8
+	virtual/pkgconfig
 "
