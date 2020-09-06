@@ -3,10 +3,10 @@
 
 EAPI=6
 
-PYTHON_COMPAT=( python{3_6,3_7} )
+PYTHON_COMPAT=( python{3_6,3_7,3_8} )
 PYTHON_REQ_USE="xml"
 
-inherit python-r1 mate
+inherit mate python-r1
 
 if [[ ${PV} != 9999 ]]; then
 	KEYWORDS="~amd64 ~arm ~arm64 ~x86"
@@ -31,8 +31,8 @@ RDEPEND="${COMMON_DEPEND}
 "
 
 DEPEND="${COMMON_DEPEND}
-	>=sys-devel/gettext-0.19.8:*
-	virtual/pkgconfig:*
+	>=sys-devel/gettext-0.19.8
+	virtual/pkgconfig
 "
 
 src_prepare() {
