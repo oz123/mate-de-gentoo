@@ -37,6 +37,7 @@ COMMON_DEPEND="
 "
 
 RDEPEND="${COMMON_DEPEND}
+	mate-base/mate-desktop
 	virtual/libintl
 "
 
@@ -48,7 +49,7 @@ DEPEND="${COMMON_DEPEND}
 	dev-util/glib-utils
 	dev-util/gtk-doc
 	dev-util/gtk-doc-am
-	>=sys-devel/gettext-0.19.8:*
+	>=sys-devel/gettext-0.19.8
 	virtual/pkgconfig
 	x11-base/xorg-proto
 "
