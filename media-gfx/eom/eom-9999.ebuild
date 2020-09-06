@@ -50,9 +50,11 @@ DEPEND="${COMMON_DEPEND}
 	dev-util/glib-utils
 	dev-util/gtk-doc
 	dev-util/gtk-doc-am
-	>=sys-devel/gettext-0.19.8:*
+	>=sys-devel/gettext-0.19.8
 	virtual/pkgconfig
 "
+
+PATCHES=( "${FILESDIR}/eom-1.24.0-add-gdk-includes.patch" )
 
 src_configure() {
 	mate_src_configure \
@@ -63,7 +65,7 @@ src_configure() {
 		$(use_with exif libexif) \
 		$(usex imagemagick \
 			--without-gdk-pixbuf-thumbnailer \
-			--with-gdk-pixbuf-thumbnail \
+			--with-gdk-pixbuf-thumbnailer \
 		) \
 		$(use_with jpeg libjpeg) \
 		$(use_with lcms cms) \
