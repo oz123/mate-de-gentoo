@@ -17,7 +17,8 @@ IUSE="X +cpupower ipv6 policykit +upower"
 
 REQUIRED_USE="policykit? ( cpupower )"
 
-COMMON_DEPEND="dev-libs/atk
+COMMON_DEPEND="
+	dev-libs/atk
 	>=dev-libs/dbus-glib-0.74
 	>=dev-libs/glib-2.50:2
 	>=dev-libs/libmateweather-1.17.0
@@ -39,9 +40,12 @@ COMMON_DEPEND="dev-libs/atk
 		policykit? ( >=sys-auth/polkit-0.97:0 )
 	)
 	upower? ( >=sys-power/upower-0.9.23 )
-	!!net-analyzer/mate-netspeed"
+	!!net-analyzer/mate-netspeed
+"
 
 RDEPEND="${COMMON_DEPEND}
+	mate-base/caja
+	mate-base/mate-desktop
 	>=mate-base/mate-settings-daemon-1.6
 	virtual/libintl
 "
@@ -52,17 +56,23 @@ DEPEND="${COMMON_DEPEND}
 	>=app-text/scrollkeeper-dtd-1:1.0
 	app-text/yelp-tools
 	dev-libs/libxslt
-	>=sys-devel/gettext-0.19.8:*
-	virtual/pkgconfig:*"
+	>=sys-devel/gettext-0.19.8
+	virtual/pkgconfig
+"
 
 src_configure() {
+
+	# configure.ac logic is a little hinky
+	# and ignores --enable flags for cpufreq
+	use cpupower || myconf="--disable-cpufreq"
+
 	mate_src_configure \
 		--libexecdir=/usr/libexec/mate-applets \
 		$(use_with X x) \
 		$(use_with upower) \
-		$(use_enable cpupower cpufreq) \
 		$(use_enable ipv6) \
-		$(use_enable policykit polkit)
+		$(use_enable policykit polkit) \
+		"${myconf[@]}"
 }
 
 src_test() {
