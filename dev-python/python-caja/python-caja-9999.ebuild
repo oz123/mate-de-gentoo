@@ -4,7 +4,7 @@
 EAPI=6
 
 MATE_LA_PUNT="yes"
-PYTHON_COMPAT=( python{3_6,3_7} )
+PYTHON_COMPAT=( python{3_6,3_7,3_8} )
 
 inherit mate python-single-r1
 
@@ -30,10 +30,17 @@ RDEPEND="${COMMON_DEPEND}"
 DEPEND="${COMMON_DEPEND}
 	dev-util/gtk-doc
 	dev-util/gtk-doc-am
-	>=sys-devel/gettext-0.19.8:*
-	virtual/pkgconfig:*
+	>=sys-devel/gettext-0.19.8
+	virtual/pkgconfig
 	doc? ( app-text/docbook-xml-dtd:4.1.2 )
 "
+
+src_prepare() {
+	MATE_FORCE_AUTORECONF="true"
+
+	sed -i "s/\$(PACKAGE)/${PF}/g" examples/Makefile.am || die
+	mate_src_prepare
+}
 
 src_install() {
 	mate_src_install
