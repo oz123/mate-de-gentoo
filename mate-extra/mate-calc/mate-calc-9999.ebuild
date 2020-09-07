@@ -20,7 +20,8 @@ COMMON_DEPEND="
 	>=dev-libs/glib-2.50:2
 	dev-libs/libxml2:2
 	>=x11-libs/gtk+-3.22:3
-	x11-libs/pango"
+	x11-libs/pango
+"
 
 RDEPEND="${COMMON_DEPEND}
 	virtual/libintl
@@ -29,5 +30,6 @@ RDEPEND="${COMMON_DEPEND}
 DEPEND="${COMMON_DEPEND}
 	app-text/yelp-tools
 	dev-libs/libxml2
-	>=sys-devel/gettext-0.19.8:*
-	virtual/pkgconfig:*"
+	>=sys-devel/gettext-0.19.8
+	virtual/pkgconfig
+"
