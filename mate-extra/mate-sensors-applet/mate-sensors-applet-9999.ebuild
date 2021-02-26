@@ -1,4 +1,4 @@
-# Copyright 1999-2018 Gentoo Authors
+# Copyright 1999-2021 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=6
@@ -31,7 +31,7 @@ COMMON_DEPEND=">=dev-libs/glib-2.36:2
 	libnotify? ( >=x11-libs/libnotify-0.7:0 )
 	video_cards_nvidia? ( || (
 		>=x11-drivers/nvidia-drivers-100.14.09:0[static-libs,tools]
-		media-video/nvidia-settings:0
+		media-video/nvidia-settings
 	) )"
 
 RDEPEND="${COMMON_DEPEND}"
@@ -44,7 +44,7 @@ DEPEND="${COMMON_DEPEND}
 	sys-devel/gettext:*
 	virtual/pkgconfig:*"
 
-PDEPEND="hddtemp? ( dbus? ( sys-fs/udisks:0 ) )"
+PDEPEND="hddtemp? ( dbus? ( sys-fs/udisks ) )"
 
 src_configure() {
 	local udisks
