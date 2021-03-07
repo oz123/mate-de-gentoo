@@ -57,6 +57,7 @@ DEPEND="${COMMON_DEPEND}
 	>=dev-lang/perl-5
 	dev-util/glib-utils
 	>=sys-devel/gettext-0.19.8
+	sys-devel/autoconf-archive
 	virtual/pkgconfig
 "
 
