@@ -54,6 +54,7 @@ DEPEND="${COMMON_DEPEND}
 	dev-libs/libxml2
 	dev-util/glib-utils
 	>=sys-devel/gettext-0.19.8
+	sys-devel/autoconf-archive
 	virtual/pkgconfig
 	x11-base/xorg-proto
 "
