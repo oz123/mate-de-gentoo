@@ -1,4 +1,4 @@
-# Copyright 1999-2020 Gentoo Authors
+# Copyright 1999-2021 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=6
@@ -6,7 +6,7 @@ EAPI=6
 inherit mate
 
 if [[ ${PV} != 9999 ]]; then
-	KEYWORDS="~amd64 ~arm ~arm64 ~x86"
+	KEYWORDS="amd64 ~arm ~arm64 x86"
 fi
 
 DESCRIPTION="A session daemon for MATE that makes it easy to manage your laptop or desktop"
@@ -15,7 +15,7 @@ LICENSE="FDL-1.1+ GPL-2+ LGPL-2+"
 SLOT="0"
 IUSE="+applet elogind libsecret policykit systemd test"
 
-REQUIRED_USE="?? ( elogind systemd )"
+REQUIRED_USE="^^ ( elogind systemd )"
 
 # Interactive testsuite.
 RESTRICT="test"
@@ -43,10 +43,7 @@ RDEPEND="${COMMON_DEPEND}
 	virtual/libintl
 	policykit? ( >=mate-extra/mate-polkit-1.6 )
 	systemd? ( sys-apps/systemd )
-	!systemd? (
-		elogind? ( sys-auth/elogind )
-		!elogind? ( >=sys-auth/consolekit-0.9.2 )
-	)
+	elogind? ( sys-auth/elogind )
 "
 
 DEPEND="${COMMON_DEPEND}
