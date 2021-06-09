@@ -1,4 +1,4 @@
-# Copyright 2019-2020 Gentoo Authors
+# Copyright 2019-2021 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=7
@@ -12,11 +12,11 @@ elif [[ ${PV} =~ _p[0-9]{8,} ]]; then
 	KEYWORDS="~amd64 ~x86"
 	S="${WORKDIR}/${PN}-${SHA}"
 else
-	SRC_URI="https://github.com/infirit/${PN}/archive/${PV}.tar.gz"
-	KEYWORDS="~amd64 ~x86"
+	SRC_URI="https://github.com/infirit/${PN}/archive/${PV}.tar.gz -> ${P}.tar.gz"
+	KEYWORDS="amd64 x86"
 fi
 
-PYTHON_COMPAT=( python{2_7,3_6,3_7,3_8} )
+PYTHON_COMPAT=( python{3_7,3_8} )
 
 inherit meson python-single-r1
 
