@@ -3,27 +3,30 @@
 
 EAPI=6
 
-PYTHON_COMPAT=( python3_{5,6,7} )
+PYTHON_COMPAT=( python3_{7,8} )
 MATE_LA_PUNT="yes"
 
-inherit mate python-single-r1 linux-info
+inherit eapi7-ver mate python-single-r1 linux-info
 
 if [[ ${PV} != 9999 ]]; then
-	KEYWORDS="~amd64 ~x86"
+	KEYWORDS="amd64 x86"
 fi
 
 DESCRIPTION="Store, Sync and Share Files Online"
-LICENSE="GPL-2"
+LICENSE="CC-BY-ND-3.0 GPL-3+ public-domain"
 SLOT="0"
 
 IUSE="debug"
-REQUIRED_USE=${PYTHON_REQUIRED_USE}
+REQUIRED_USE="${PYTHON_REQUIRED_USE}"
 
-COMMON_DEPEND="
+COMMON_DEPEND="${PYTHON_DEPS}
 	dev-libs/atk
 	>=dev-libs/glib-2.50:2
-	$(python_gen_cond_dep 'dev-python/pygobject:3[${PYTHON_MULTI_USEDEP}]')
+	$(python_gen_cond_dep '
+		dev-python/pygobject:3[${PYTHON_MULTI_USEDEP}]
+	')
 	>=mate-base/caja-1.19.1
+	mate-extra/caja-extensions
 	media-libs/fontconfig:1.0
 	media-libs/freetype:2
 	x11-libs/cairo
@@ -31,20 +34,20 @@ COMMON_DEPEND="
 	>=x11-libs/gtk+-3.22:3
 	x11-libs/libXinerama
 	x11-libs/pango
-	${PYTHON_DEPS}"
+"
 
 RDEPEND="${COMMON_DEPEND}
-	acct-group/dropbox
 	net-misc/dropbox
-	"
+"
 
 DEPEND="${COMMON_DEPEND}
 	dev-python/docutils
-	virtual/pkgconfig:*"
+	virtual/pkgconfig
+"
 
 CONFIG_CHECK="~INOTIFY_USER"
 
-pkg_setup () {
+pkg_setup() {
 	python-single-r1_pkg_setup
 	check_extra_config
 }
@@ -64,30 +67,23 @@ src_prepare() {
 
 src_configure() {
 	mate_src_configure \
-		--disable-static \
 		$(use_enable debug)
 }
 
-src_install () {
+src_install() {
 	python_fix_shebang caja-dropbox.in
 
 	mate_src_install
-
-	local extensiondir="$(pkg-config --variable=extensiondir libcaja-extension)"
-	[ -z ${extensiondir} ] && die "pkg-config unable to get caja extensions dir"
-
-	# Strip $EPREFIX from $extensiondir as fowners/fperms act on $ED not $D.
-	extensiondir="${extensiondir#${EPREFIX}}"
-	use prefix || fowners root:dropbox "${extensiondir}"/libcaja-dropbox.so
-	fperms o-rwx "${extensiondir}"/libcaja-dropbox.so
 }
 
-pkg_postinst () {
+pkg_postinst() {
 	mate_pkg_postinst
 
-	elog
-	elog "Add any users who wish to have access to the dropbox caja"
-	elog "plugin to the group 'dropbox'. You need to setup a Dropbox account"
-	elog "before using this plugin. Visit ${HOMEPAGE} for more information."
-	elog
+	for v in ${REPLACING_VERSIONS}; do
+		if ver_test "${v}" "-lt" "1.24.0-r1" || ver_test "${v}" "-eq" "9999"; then
+			ewarn "Starting with ${CATEGORY}/${PN}-1.24.0-r1, ${PN} now no longer"
+			ewarn "configures caja-dropbox to use its own group. This brings caja-dropbox in line"
+			ewarn "with nautilus-dropbox and dolphin-plugins-dropbox. You may remove the 'dropbox' group."
+		fi
+	done
 }
