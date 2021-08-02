@@ -5,9 +5,6 @@
 		<email>mate@gentoo.org</email>
 		<name>Gentoo MATE Desktop</name>
 	</maintainer>
-	<longdescription lang="en">
-			An extension for Caja that allows administrator access
-	</longdescription>
 	<upstream>
 		<remote-id type="github">infirit/caja-admin</remote-id>
 	</upstream>
