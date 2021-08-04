@@ -10,7 +10,7 @@ else
 	inherit eapi7-ver
 	MATE_BRANCH="$(ver_cut 1-2)"
 	MATE_THEMES_V=3
-	KEYWORDS="~amd64 ~arm ~arm64 ~x86"
+	KEYWORDS="amd64 ~arm ~arm64 x86"
 fi
 
 SRC_URI=""
@@ -57,7 +57,6 @@ RDEPEND="
 		=mate-extra/mate-system-monitor-${MATE_BRANCH}*
 		=mate-extra/mate-utils-${MATE_BRANCH}*
 		=media-gfx/eom-${MATE_BRANCH}*
-		sys-apps/gnome-disk-utility
 	)
 	help? (
 		gnome-extra/yelp
@@ -80,4 +79,7 @@ pkg_postinst() {
 	fi
 	elog "Some packages that are not included in this meta-package but may be of interest:"
 	elog "		mate-extra/caja-dropbox"
+	elog "		mate-extra/mate-user-share"
+	elog "		mate-extra/caja-admin"
+	elog "		mate-extra/caja-hide"
 }

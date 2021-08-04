@@ -1,0 +1,104 @@
+#!/usr/bin/perl
+# version-bump - utility to bump a set of packages from their -9999 version.
+# Usage: from the root of the overlay
+# version-bump version input_file.txt
+# <mudler@gentoo.org>
+
+use Cwd;
+
+my $VERSION       = $ARGV[0];           # Version to bump to
+my $PACKAGES_LIST = $ARGV[1];
+my $COMMIT_MSG    = $ENV{COMMIT_MSG};
+my $BUGZ          = $ENV{BUGZ};
+
+my $CWD = getcwd;
+my @FAILED;
+
+# print helpers
+
+sub say { print join( "\n", @_ ) . "\n"; }
+
+sub err { say "\e[31m@_ \e[0m"; }
+
+sub fatal { err @_; exit 1; }
+
+sub ok { say "\e[1;34m@_ \e[0m"; }
+
+sub info { say "\e[1;37m@_ \e[0m"; }
+
+# deadly checks
+
+if ( !@ARGV or $VERSION eq "-h" or $VERSION eq "--help" or !$PACKAGES_LIST ) {
+    say "You must feed me with at least a package version", "",
+        "e.g. $0 package",        "",
+        "ENV variables options:", "",
+        " COMMIT_MSG \t\t default commit message",
+        " BUGZ \t\t Gentoo Bugzilla id, if any e.g. 596998",
+        exit 1;
+}
+
+if ( -e "${CWD}/Manifest" ) {
+    fatal "You are running me from the wrong folder, don't you?",
+        "I need to be executed from the root of the overlay!";
+}
+
+open FILE, "<$PACKAGES_LIST" or fatal "Can't open $PACKAGES_LIST : $!";
+my @LIST = <FILE>;
+close FILE;
+chomp(@LIST);
+
+# Cycle packages that need to be manipulated
+# Here it's being used $_, that contains strings in the following format:  category/package
+for (@LIST) {
+    my ( $current_cat, $current_package ) = /(.?)\/(.*)$/;
+    my $local_package = $current_package . "-" . $VERSION . ".ebuild";
+    my $live_package  = $current_package . "-9999" . ".ebuild";
+    info "===" x 16, "\nBumping $local_package from $live_package";
+    if ( -d $_ ) {
+        chdir($_);    # entering in the directory
+    }
+    else {
+        fatal "$_ directory doesn't exists";
+    }
+
+    # Checking if ebuild we want to keyword is there
+    if ( !-e $local_package ) {
+        info("Inside -> $CWD/$_");
+        system("cp -rfv $live_package $local_package");
+        system("ebuild $local_package digest");
+
+        my $LOCAL_COMMIT_MSG = $COMMIT_MSG;
+
+        # if no COMMIT_MSG is supplied, we generate it
+        if ( !$COMMIT_MSG ) {
+            $LOCAL_COMMIT_MSG = "Version bump to $VERSION";
+            $LOCAL_COMMIT_MSG .= " bug \#${BUGZ}" if $BUGZ;
+        }
+
+        system("git add $local_package");
+        system("git add Manifest");
+        system("repoman commit -m '$_: $LOCAL_COMMIT_MSG'");
+        if ( $? >> 8 != 0 ) {
+            fatal
+                "Meh. we got errors. before going on, i want you to fix those by hand.";
+            push( @FAILED, $local_package );
+        }
+        else {
+            ok "Done for $_ [$local_package]";
+        }
+    }
+
+    else {
+        # errors, the ebuild cannot be found
+            err "/!\\ $local_package found in $_, operation failed!";
+        push( @FAILED, $local_package );
+    }
+    chdir($CWD);
+}
+
+info "Finished";
+
+if ( @FAILED > 0 ) {
+        err "Operation failed for the following ebuilds:";
+    say "> " . $_ for @FAILED;
+}

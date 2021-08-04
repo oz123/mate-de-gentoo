@@ -6,7 +6,7 @@ EAPI=6
 inherit mate
 
 if [[ ${PV} != 9999 ]]; then
-	KEYWORDS="~amd64 ~arm ~arm64 ~x86"
+	KEYWORDS="amd64 ~arm ~arm64 x86"
 fi
 
 DESCRIPTION="MATE session manager"
@@ -57,7 +57,6 @@ DEPEND="${COMMON_DEPEND}
 	>=dev-lang/perl-5
 	dev-util/glib-utils
 	>=sys-devel/gettext-0.19.8
-	sys-devel/autoconf-archive
 	virtual/pkgconfig
 "
 

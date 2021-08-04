@@ -1,4 +1,4 @@
-# Copyright 1999-2018 Gentoo Authors
+# Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=6
@@ -10,54 +10,63 @@ if [[ ${PV} != 9999 ]]; then
 fi
 
 DESCRIPTION="The MATE image viewer"
-LICENSE="GPL-2"
+LICENSE="FDL-1.1+ GPL-2+ IJG LGPL-2+"
 SLOT="0"
 
-IUSE="X debug dbus exif +introspection jpeg lcms svg tiff xmp"
+IUSE="X debug exif imagemagick +introspection jpeg lcms svg tiff xmp"
 
 COMMON_DEPEND="
-	dev-libs/atk:0
-	>=dev-libs/glib-2.36:2
-	>=dev-libs/libpeas-1.2.0[gtk]
+	dev-libs/atk
+	>=dev-libs/glib-2.52:2
+	>=dev-libs/libpeas-1.8.0[gtk]
 	>=dev-libs/libxml2-2:2
-	gnome-base/dconf:0
+	gnome-base/dconf
 	>=mate-base/mate-desktop-1.17.0
-	sys-libs/zlib:0
-	x11-libs/cairo:0
-	>=x11-libs/gdk-pixbuf-2.4:2[introspection?,jpeg?,tiff?]
-	>=x11-libs/gtk+-3.14:3[introspection?]
-	x11-libs/libX11:0
-	>=x11-misc/shared-mime-info-0.20:0
-	virtual/libintl:0
-	dbus? ( >=dev-libs/dbus-glib-0.71:0 )
+	sys-libs/zlib
+	x11-libs/cairo
+	>=x11-libs/gdk-pixbuf-2.36.5:2[introspection?,jpeg?,tiff?]
+	>=x11-libs/gtk+-3.22:3[introspection?]
+	x11-libs/libX11
+	>=x11-misc/shared-mime-info-0.20
 	exif? (
-		>=media-libs/libexif-0.6.14:0
+		>=media-libs/libexif-0.6.14
 		virtual/jpeg:0
 	)
+	imagemagick? ( >=media-gfx/imagemagick-6.2.6 )
 	introspection? ( >=dev-libs/gobject-introspection-0.9.3:= )
 	jpeg? ( virtual/jpeg:0 )
 	lcms? ( media-libs/lcms:2 )
 	svg? ( >=gnome-base/librsvg-2.36.2:2 )
 	xmp? ( >=media-libs/exempi-1.99.5:2 )
-	!!media-gfx/mate-image-viewer"
+"
 
-RDEPEND="${COMMON_DEPEND}"
+RDEPEND="${COMMON_DEPEND}
+	virtual/libintl
+	!!media-gfx/mate-image-viewer
+"
 
 DEPEND="${COMMON_DEPEND}
-	app-text/yelp-tools:0
+	app-text/yelp-tools
+	dev-util/glib-utils
 	dev-util/gtk-doc
 	dev-util/gtk-doc-am
-	>=dev-util/intltool-0.50.1:*
-	sys-devel/gettext:*
-	virtual/pkgconfig:*"
+	>=sys-devel/gettext-0.19.8
+	virtual/pkgconfig
+"
+
+PATCHES=( "${FILESDIR}/eom-1.24.0-add-gdk-includes.patch" )
 
 src_configure() {
 	mate_src_configure \
+		--enable-thumbnailer \
 		$(use_enable debug) \
 		$(use_enable introspection) \
 		$(use_with X x) \
-		$(use_with dbus) \
 		$(use_with exif libexif) \
+		$(usex imagemagick \
+			--without-gdk-pixbuf-thumbnailer \
+			--with-gdk-pixbuf-thumbnailer \
+		) \
 		$(use_with jpeg libjpeg) \
 		$(use_with lcms cms) \
 		$(use_with svg librsvg) \

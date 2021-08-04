@@ -129,6 +129,6 @@ for (@KEYWORD_PACKAGES) {
 }
 
 if(@FAILED > 0){
-  fatal "Operation failed for the following ebuilds:";
-  fatal "** ".$_ for @FAILED;
+  err "Operation failed for the following ebuilds:";
+  err "** ".$_ for @FAILED;
 }
