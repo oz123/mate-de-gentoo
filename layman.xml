@@ -1,16 +1,14 @@
 <?xml version="1.0" ?>
 <repositories version="1.0">
-	<repo quality="experimental" status="official">
-		<name>gentoo-mate</name>
-		<description lang="en">Gentoo MATE Desktop Project Repo</description>
+	<repo quality="experimental" status="unofficial">
+		<name>mate-de-gentoo</name>
+		<description lang="en">MATE Desktop EBuilds</description>
     		<homepage>https://wiki.gentoo.org/wiki/Project:MATE</homepage>
-		<owner type="project">
-			<email>mate@gentoo.org</email>
-			<name>MATE Desktop Project</name>
+		<owner>
+			<name>Oz Tiram</name>
+            <email>oz.tiram@gmail.com</email>
 		</owner>
-		<source type="git">git://anongit.gentoo.org/proj/gentoo-mate.git</source>
-		<source type="git">https://anongit.gentoo.org/git/proj/gentoo-mate.git</source>
-		<source type="git">git+ssh://git@git.gentoo.org/proj/gentoo-mate.git</source>
-		<feed>https://cgit.gentoo.org/proj/gentoo-mate.git/atom/</feed>
+		<source type="git">git@github.com:oz123/mate-de-gentoo.git</source>
+        <source type="git">https://github.com/oz123/mate-de-gentoo.git</source>
 	</repo>
 </repositories>
