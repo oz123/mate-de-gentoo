@@ -48,7 +48,7 @@ RDEPEND="
 		x11-libs/pango[introspection]
 		x11-libs/gdk-pixbuf:2[introspection]
 	synctex? ( >=dev-python/dbus-python-0.82 )
-	terminal? ( >=xd11-libs/vte-0.52:2.91[introspection] )
+	terminal? ( >=x11-libs/vte-0.52:2.91[introspection] )
 
 	)"
 
