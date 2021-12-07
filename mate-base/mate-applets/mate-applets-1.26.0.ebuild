@@ -39,9 +39,7 @@ COMMON_DEPEND="
 		sys-power/cpupower
 		policykit? ( >=sys-auth/polkit-0.97:0 )
 	)
-	netlink? (
-		dev-libs/libnl:3
-	)
+	dev-libs/libnl:3
 	upower? ( >=sys-power/upower-0.99.8 )
 	!!net-analyzer/mate-netspeed
 "
