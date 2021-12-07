@@ -45,6 +45,7 @@ DEPEND="${COMMON_DEPEND}
 	dev-util/gdbus-codegen
 	>=sys-devel/gettext-0.19.8
 	virtual/pkgconfig
+	mate-base/mate-panel
 "
 
 src_configure() {
