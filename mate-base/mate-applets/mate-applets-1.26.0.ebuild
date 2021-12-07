@@ -39,7 +39,9 @@ COMMON_DEPEND="
 		sys-power/cpupower
 		policykit? ( >=sys-auth/polkit-0.97:0 )
 	)
-	dev-libs/libnl:3
+	netlink? (
+		dev-libs/libnl:3
+	)
 	upower? ( >=sys-power/upower-0.99.8 )
 	!!net-analyzer/mate-netspeed
 "
@@ -71,6 +73,7 @@ src_configure() {
 		--libexecdir=/usr/libexec/mate-applets \
 		$(use_with X x) \
 		$(use_with upower) \
+		$(use_with netlink nl) \
 		$(use_enable ipv6) \
 		$(use_enable policykit polkit) \
 		"${myconf[@]}"
