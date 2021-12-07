@@ -73,6 +73,7 @@ src_configure() {
 		--libexecdir=/usr/libexec/mate-applets \
 		$(use_with X x) \
 		$(use_with upower) \
+		$(use_with netlink nl) \
 		$(use_enable ipv6) \
 		$(use_enable policykit polkit) \
 		"${myconf[@]}"
