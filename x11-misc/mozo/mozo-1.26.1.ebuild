@@ -23,7 +23,6 @@ COMMON_DEPEND="${PYTHON_DEPS}
 	>=mate-base/mate-menus-1.21.0[introspection]
 	x11-libs/gdk-pixbuf:2[introspection]
 	>=x11-libs/gtk+-3.22:3[introspection]
-	!!x11-misc/mate-menu-editor
 "
 
 RDEPEND="${COMMON_DEPEND}
