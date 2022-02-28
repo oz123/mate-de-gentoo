@@ -21,7 +21,6 @@ REQUIRED_USE="|| ( X wayland )"
 
 COMMON_DEPEND="
 	dev-libs/atk
-	>=dev-libs/dbus-glib-0.80:0
 	>=dev-libs/glib-2.50:2
 	>=dev-libs/libmateweather-1.17.0
 	dev-libs/libxml2:2
