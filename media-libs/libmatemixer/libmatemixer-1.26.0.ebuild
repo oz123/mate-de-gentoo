@@ -20,7 +20,7 @@ COMMON_DEPEND="
 	>=sys-devel/gettext-0.19.8:*
 	alsa? ( >=media-libs/alsa-lib-1.0.5 )
 	udev? ( virtual/udev )
-	pulseaudio? ( >=media-sound/pulseaudio-5.0.0:0[alsa?,glib] )
+	pulseaudio? ( >=media-sound/pulseaudio-5.0.0:0[glib] )
 
 "
 
