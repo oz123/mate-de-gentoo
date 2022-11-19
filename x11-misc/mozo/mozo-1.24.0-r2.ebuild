@@ -1,29 +1,27 @@
-# Copyright 1999-2021 Gentoo Authors
+# Copyright 1999-2022 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=7
 
-PYTHON_COMPAT=( python{3_6,3_7,3_8,3_9,3_10} )
-PYTHON_REQ_USE="xml"
+PYTHON_COMPAT=( python3_{8..10} )
+PYTHON_REQ_USE="xml(+)"
 
 inherit mate python-r1
 
-if [[ ${PV} != 9999 ]]; then
-	KEYWORDS="~amd64"
+if [[ "${PV}" != *9999 ]]; then
+	KEYWORDS="~amd64 ~arm ~arm64 ~loong ~riscv ~x86"
 fi
 
 DESCRIPTION="Mozo menu editor for MATE"
 LICENSE="GPL-2+ GPL-3+ LGPL-2+ LGPL-2.1+"
 SLOT="0"
-IUSE=""
-REQUIRED_USE=${PYTHON_REQUIRED_USE}
+REQUIRED_USE="${PYTHON_REQUIRED_USE}"
 
 COMMON_DEPEND="${PYTHON_DEPS}
-	>=dev-python/pygobject-3:3[${PYTHON_USEDEP}]
+	dev-python/pygobject:3[${PYTHON_USEDEP}]
 	>=mate-base/mate-menus-1.21.0[introspection]
 	x11-libs/gdk-pixbuf:2[introspection]
-	>=x11-libs/gtk+-3.22:3[introspection]
-	!!x11-misc/mate-menu-editor
+	x11-libs/gtk+:3[introspection]
 "
 
 RDEPEND="${COMMON_DEPEND}
@@ -31,7 +29,7 @@ RDEPEND="${COMMON_DEPEND}
 "
 
 DEPEND="${COMMON_DEPEND}
-	>=sys-devel/gettext-0.19.8
+	sys-devel/gettext
 	virtual/pkgconfig
 "
 
