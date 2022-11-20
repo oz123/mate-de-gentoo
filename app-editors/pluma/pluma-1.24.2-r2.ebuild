@@ -6,7 +6,7 @@ EAPI=7
 MATE_LA_PUNT="yes"
 
 DISTUTILS_USE_PEP517=setuptools
-PYTHON_COMPAT=( python3_{8..11} )
+PYTHON_COMPAT=( python3_{8..10} )
 
 inherit mate python-single-r1 virtualx
 
@@ -30,7 +30,7 @@ COMMON_DEPEND="
 	x11-libs/cairo
 	x11-libs/gdk-pixbuf:2
 	>=x11-libs/gtk+-3.22:3[introspection?]
-	>=x11-libs/gtksourceview-4.0.2:4
+	>=x11-libs/gtksourceview-3.0.0:3.0
 	x11-libs/libICE
 	x11-libs/libX11
 	>=x11-libs/libSM-1.0
