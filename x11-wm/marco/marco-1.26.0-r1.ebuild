@@ -1,14 +1,14 @@
-# Copyright 1999-2021 Gentoo Authors
+# Copyright 1999-2022 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=6
+EAPI=7
 
 MATE2_LA_PUNT="yes"
 
 inherit mate
 
-if [[ ${PV} != 9999 ]]; then
-	KEYWORDS="amd64 ~arm ~arm64 x86"
+if [[ "${PV}" != *9999 ]]; then
+	KEYWORDS="~amd64 ~arm ~arm64 ~loong ~riscv ~x86"
 fi
 
 DESCRIPTION="MATE default window manager"
@@ -19,7 +19,7 @@ IUSE="startup-notification test xinerama"
 RESTRICT="!test? ( test )"
 
 COMMON_DEPEND="
-	dev-libs/atk
+	app-accessibility/at-spi2-core:2
 	>=dev-libs/glib-2.58:2
 	>=gnome-base/libgtop-2:2=
 	media-libs/libcanberra[gtk3]
@@ -40,7 +40,6 @@ COMMON_DEPEND="
 	x11-libs/libXrender
 	>=x11-libs/startup-notification-0.7
 	xinerama? ( x11-libs/libXinerama )
-	!!x11-wm/mate-window-manager
 "
 
 RDEPEND="${COMMON_DEPEND}
@@ -49,7 +48,7 @@ RDEPEND="${COMMON_DEPEND}
 	virtual/libintl
 "
 
-DEPEND="${COMMON_DEPEND}
+BDEPEND="${COMMON_DEPEND}
 	app-text/yelp-tools
 	>=sys-devel/gettext-0.19.8
 	>=sys-devel/libtool-2.0.0
