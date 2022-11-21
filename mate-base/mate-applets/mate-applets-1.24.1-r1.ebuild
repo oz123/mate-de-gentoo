@@ -13,7 +13,7 @@ DESCRIPTION="Applets for the MATE Desktop and Panel"
 LICENSE="CC-BY-SA-3.0 FDL-1.1+ GPL-2+ GPL-3+ LGPL-2+"
 SLOT="0"
 
-IUSE="X +cpupower ipv6 netlink policykit +upower"
+IUSE="X +cpupower ipv6 policykit +upower"
 
 REQUIRED_USE="policykit? ( cpupower )"
 
@@ -25,7 +25,7 @@ COMMON_DEPEND="
 	>=dev-libs/libxml2-2.5:2
 	>=gnome-base/libgtop-2.12.0:2=
 	>=gnome-extra/gucharmap-3.0:2.90
-	>=mate-base/mate-panel-1.25.2
+	>=mate-base/mate-panel-1.17.0
 	>=net-wireless/wireless-tools-28_pre9:0
 	>=sys-apps/dbus-1.10.0
 	x11-libs/gdk-pixbuf:2
@@ -39,10 +39,7 @@ COMMON_DEPEND="
 		sys-power/cpupower
 		policykit? ( >=sys-auth/polkit-0.97:0 )
 	)
-	netlink? (
-		dev-libs/libnl:3
-	)
-	upower? ( >=sys-power/upower-0.99.8 )
+	upower? ( >=sys-power/upower-0.9.23 )
 "
 
 RDEPEND="${COMMON_DEPEND}
@@ -70,7 +67,6 @@ src_configure() {
 		--libexecdir=/usr/libexec/mate-applets \
 		$(use_with X x) \
 		$(use_with upower) \
-		$(use_with netlink nl) \
 		$(use_enable ipv6) \
 		$(use_enable policykit polkit) \
 		"${myconf[@]}"
