@@ -1,26 +1,26 @@
-# Copyright 1999-2020 Gentoo Authors
+# Copyright 1999-2022 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=6
+EAPI=7
 
 MATE_LA_PUNT="yes"
 
 inherit mate
 
-if [[ ${PV} != 9999 ]]; then
-	KEYWORDS="~amd64 ~arm ~arm64 ~x86"
+if [[ "${PV}" != *9999 ]]; then
+	KEYWORDS="~amd64 ~arm ~arm64 ~loong ~riscv ~x86"
 fi
 
 DESCRIPTION="Several Caja extensions"
-LICENSE="GPL-2"
+LICENSE="GPL-2+"
 SLOT="0"
 
 SENDTO="cdr gajim +mail pidgin upnp"
 IUSE="image-converter +open-terminal share +wallpaper xattr ${SENDTO}"
 
-COMMON_DEPEND=">=dev-libs/glib-2.50:2
+COMMON_DEPEND="
+	>=dev-libs/glib-2.50:2
 	>=mate-base/caja-1.21.3
-	virtual/libintl
 	x11-libs/gdk-pixbuf:2
 	>=x11-libs/gtk+-3.22:3
 	gajim? (
@@ -29,10 +29,12 @@ COMMON_DEPEND=">=dev-libs/glib-2.50:2
 	)
 	open-terminal? ( >=mate-base/mate-desktop-1.17.0 )
 	pidgin? ( >=dev-libs/dbus-glib-0.60 )
-	upnp? ( >=net-libs/gupnp-0.13:= )
-	xattr? ( sys-apps/attr )"
+	upnp? ( >=net-libs/gupnp-0.13:0= )
+	xattr? ( sys-apps/attr )
+"
 
 RDEPEND="${COMMON_DEPEND}
+	mate-base/mate-desktop
 	cdr? ( >=app-cdr/brasero-2.32.1:= )
 	gajim? ( net-im/gajim )
 	image-converter? (
@@ -41,18 +43,16 @@ RDEPEND="${COMMON_DEPEND}
 			media-gfx/graphicsmagick[imagemagick]
 		)
 	)
-	pidgin? ( net-im/pidgin )"
+	pidgin? ( net-im/pidgin )
+"
 
-DEPEND="${COMMON_DEPEND}
+BDEPEND="${COMMON_DEPEND}
+	dev-libs/libxml2
 	dev-util/gtk-doc
 	dev-util/gtk-doc-am
-	>=dev-util/intltool-0.18:*
-	sys-devel/gettext:*
-	virtual/pkgconfig:*
-	!!mate-extra/mate-file-manager-open-terminal
-	!!mate-extra/mate-file-manager-sendto
-	!!mate-extra/mate-file-manager-image-converter
-	!!mate-extra/mate-file-manager-share"
+	>=sys-devel/gettext-0.19.8
+	virtual/pkgconfig
+"
 
 src_configure() {
 	local sendto_plugins="removable-devices"
