@@ -1,16 +1,15 @@
-# Copyright 1999-2019 Gentoo Authors
+# Copyright 1999-2022 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=6
+EAPI=7
 
-if [[ ${PV} == 9999 ]]; then
+if [[ "${PV}" == *9999 ]]; then
 	MATE_BRANCH=9999
 	MATE_THEMES_V=9999
 else
-	inherit eapi7-ver
 	MATE_BRANCH="$(ver_cut 1-2)"
 	MATE_THEMES_V=3
-	KEYWORDS="amd64 ~arm ~arm64 x86"
+	KEYWORDS="~amd64 ~arm ~arm64 ~loong ~riscv ~x86"
 fi
 
 SRC_URI=""
@@ -20,7 +19,7 @@ HOMEPAGE="https://mate-desktop.org"
 LICENSE="metapackage"
 
 SLOT="0"
-IUSE="+base -bluetooth help +notification +themes +extras"
+IUSE="+base bluetooth help +notification +themes +extras"
 
 S="${WORKDIR}"
 
@@ -43,7 +42,6 @@ RDEPEND="
 	themes? (
 		=x11-themes/mate-backgrounds-${MATE_BRANCH}*
 		=x11-themes/mate-icon-theme-${MATE_BRANCH}*
-		>=x11-themes/mate-themes-meta-${MATE_THEMES_V}
 	)
 	extras? (
 		=app-arch/engrampa-${MATE_BRANCH}*
@@ -57,7 +55,6 @@ RDEPEND="
 		=mate-extra/mate-system-monitor-${MATE_BRANCH}*
 		=mate-extra/mate-utils-${MATE_BRANCH}*
 		=media-gfx/eom-${MATE_BRANCH}*
-		sys-apps/gnome-disk-utility
 	)
 	help? (
 		gnome-extra/yelp
@@ -81,4 +78,6 @@ pkg_postinst() {
 	elog "Some packages that are not included in this meta-package but may be of interest:"
 	elog "		mate-extra/caja-dropbox"
 	elog "		mate-extra/mate-user-share"
+	elog "		mate-extra/caja-admin"
+	elog "		mate-extra/caja-hide"
 }
