@@ -1,14 +1,14 @@
-# Copyright 1999-2020 Gentoo Authors
+# Copyright 1999-2022 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=6
+EAPI=7
 
 MATE_LA_PUNT="yes"
 
 inherit mate
 
-if [[ ${PV} != 9999 ]]; then
-	KEYWORDS="~amd64 ~arm ~arm64 ~x86"
+if [[ "${PV}" != *9999 ]]; then
+	KEYWORDS="~amd64 ~arm ~arm64 ~loong ~riscv ~x86"
 fi
 
 DESCRIPTION="Libraries for the MATE desktop that are not part of the UI"
@@ -28,19 +28,20 @@ COMMON_DEPEND="
 	startup-notification? ( >=x11-libs/startup-notification-0.5:0 )
 "
 
-RDEPEND="${COMMON_DEPEND}
-	virtual/libintl
-"
+RDEPEND="${COMMON_DEPEND}"
 
-DEPEND="${COMMON_DEPEND}
+BDEPEND="
 	app-text/docbook-xml-dtd:4.1.2
 	app-text/iso-codes
 	dev-util/gtk-doc
 	dev-util/gtk-doc-am
 	>=sys-devel/gettext-0.19.8
-	x11-base/xorg-proto
 	>=x11-libs/gdk-pixbuf-2.36.5
 	virtual/pkgconfig
+"
+
+DEPEND="${COMMON_DEPEND}
+	x11-base/xorg-proto
 "
 
 src_configure() {
