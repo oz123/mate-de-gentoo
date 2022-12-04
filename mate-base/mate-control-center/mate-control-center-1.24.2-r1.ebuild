@@ -1,14 +1,14 @@
-# Copyright 1999-2021 Gentoo Authors
+# Copyright 1999-2022 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=6
+EAPI=7
 
 MATE_LA_PUNT="yes"
 
 inherit mate
 
-if [[ ${PV} != 9999 ]]; then
-	KEYWORDS="amd64 ~arm ~arm64 x86"
+if [[ "${PV}" != *9999 ]]; then
+	KEYWORDS="amd64 ~arm ~arm64 ~loong ~riscv x86"
 fi
 
 DESCRIPTION="The MATE Desktop configuration tool"
@@ -18,7 +18,7 @@ SLOT="0"
 IUSE="accountsservice appindicator debug"
 
 COMMON_DEPEND="
-	dev-libs/atk
+	app-accessibility/at-spi2-core:2
 	>=dev-libs/dbus-glib-0.73
 	>=dev-libs/glib-2.50:2
 	dev-libs/libxml2:2
@@ -54,9 +54,7 @@ COMMON_DEPEND="
 
 RDEPEND="${COMMON_DEPEND}"
 
-DEPEND="${COMMON_DEPEND}
-	app-text/rarian
-	>=app-text/scrollkeeper-dtd-1:1.0
+BDEPEND="${COMMON_DEPEND}
 	app-text/yelp-tools
 	dev-libs/libxml2
 	dev-util/desktop-file-utils
