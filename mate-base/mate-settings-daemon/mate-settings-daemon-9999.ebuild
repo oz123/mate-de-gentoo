@@ -1,29 +1,30 @@
-# Copyright 1999-2020 Gentoo Authors
+# Copyright 1999-2022 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=6
+EAPI=7
 
 MATE_LA_PUNT="yes"
 
 inherit mate
 
-if [[ ${PV} != 9999 ]]; then
-	KEYWORDS="~amd64 ~arm ~arm64 ~x86"
+if [[ "${PV}" != *9999 ]]; then
+	KEYWORDS="~amd64 ~arm ~arm64 ~loong ~riscv ~x86"
 fi
 
 DESCRIPTION="MATE Settings Daemon"
 LICENSE="GPL-2+ GPL-3+ HPND LGPL-2+ LGPL-2.1+"
 SLOT="0"
 
-IUSE="X debug libnotify policykit pulseaudio rfkill smartcard +sound"
+IUSE="X accessibility debug libnotify policykit pulseaudio rfkill smartcard +sound"
 
 REQUIRED_USE="pulseaudio? ( sound )"
 
-COMMON_DEPEND=">=dev-libs/dbus-glib-0.74
+COMMON_DEPEND="
+	>=dev-libs/dbus-glib-0.74
 	>=dev-libs/glib-2.50:2
 	>=gnome-base/dconf-0.13.4
 	>=mate-base/libmatekbd-1.17.0
-	>=mate-base/mate-desktop-1.23.2
+	>=mate-base/mate-desktop-1.25.0
 	media-libs/fontconfig:1.0
 	x11-libs/cairo
 	x11-libs/gdk-pixbuf:2
@@ -32,6 +33,7 @@ COMMON_DEPEND=">=dev-libs/dbus-glib-0.74
 	x11-libs/libXi
 	x11-libs/libXext
 	>=x11-libs/libxklavier-5.2
+	accessibility? ( app-accessibility/at-spi2-core:2 )
 	libnotify? ( >=x11-libs/libnotify-0.7:0 )
 	policykit? (
 		>=dev-libs/dbus-glib-0.71
@@ -53,8 +55,8 @@ RDEPEND="${COMMON_DEPEND}
 	virtual/libintl
 "
 
-DEPEND="${COMMON_DEPEND}
-	>=sys-devel/gettext-0.19.8
+BDEPEND="${COMMON_DEPEND}
+	sys-devel/gettext
 	virtual/pkgconfig
 	x11-base/xorg-proto
 "
