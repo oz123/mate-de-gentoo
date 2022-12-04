@@ -1,37 +1,35 @@
-# Copyright 1999-2020 Gentoo Authors
+# Copyright 1999-2022 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=6
+EAPI=7
 
 MATE_LA_PUNT="yes"
 
 inherit mate
 
-if [[ ${PV} != 9999 ]]; then
-	KEYWORDS="amd64 ~arm ~arm64 x86"
+if [[ "${PV}" != *9999 ]]; then
+	KEYWORDS="~amd64 ~arm ~arm64 ~loong ~riscv ~x86"
 fi
 
 DESCRIPTION="The MATE panel"
 LICENSE="FDL-1.1+ GPL-2+ LGPL-2+"
 SLOT="0"
 
-IUSE="X +introspection wayland"
+IUSE="+X +introspection wayland"
 
 REQUIRED_USE="|| ( X wayland )"
 
 COMMON_DEPEND="
-	dev-libs/atk
-	>=dev-libs/dbus-glib-0.80:0
+	app-accessibility/at-spi2-core:2
 	>=dev-libs/glib-2.50:2
 	>=dev-libs/libmateweather-1.17.0
 	dev-libs/libxml2:2
 	>=gnome-base/dconf-0.13.4
-	>=gnome-base/librsvg-2.36.2:2
 	>=mate-base/mate-desktop-1.17.0
 	>=mate-base/mate-menus-1.21.0
 	>=sys-apps/dbus-1.1.2
 	>=x11-libs/cairo-1.0.0[X?]
-	>=x11-libs/gdk-pixbuf-2.25.2:2
+	>=x11-libs/gdk-pixbuf-2.26.0:2
 	>=x11-libs/gtk+-3.22:3[introspection?]
 	x11-libs/libICE
 	x11-libs/libSM
@@ -43,13 +41,16 @@ COMMON_DEPEND="
 		>=x11-libs/libXrandr-1.3
 	)
 	introspection? ( >=dev-libs/gobject-introspection-0.6.7:= )
-	wayland? ( gui-libs/gtk-layer-shell )"
+	wayland? ( gui-libs/gtk-layer-shell )
+"
 
 RDEPEND="${COMMON_DEPEND}
 	virtual/libintl
 "
 
-DEPEND="${COMMON_DEPEND}
+DEPEND="${COMMON_DEPEND}"
+
+BDEPEND="
 	app-text/docbook-xml-dtd:4.1.2
 	app-text/yelp-tools
 	>=dev-lang/perl-5:=
@@ -57,12 +58,12 @@ DEPEND="${COMMON_DEPEND}
 	dev-util/gdbus-codegen
 	dev-util/gtk-doc
 	dev-util/gtk-doc-am
-	>=sys-devel/gettext-0.19.8:*
-	virtual/pkgconfig"
+	>=sys-devel/gettext-0.19.8
+	virtual/pkgconfig
+"
 
 src_configure() {
 	mate_src_configure \
-		--disable-static \
 		--libexecdir=/usr/libexec/mate-applets \
 		--disable-deprecation-flags \
 		$(use_enable X x11) \

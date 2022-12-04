@@ -1,14 +1,14 @@
-# Copyright 1999-2021 Gentoo Authors
+# Copyright 1999-2022 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=7
+EAPI=6
 
 MATE_LA_PUNT="yes"
 
 inherit mate
 
 if [[ ${PV} != 9999 ]]; then
-	KEYWORDS="~amd64"
+	KEYWORDS="amd64 ~arm ~arm64 ~loong ~riscv x86"
 fi
 
 DESCRIPTION="The MATE panel"
@@ -20,16 +20,21 @@ IUSE="X +introspection wayland"
 REQUIRED_USE="|| ( X wayland )"
 
 COMMON_DEPEND="
-	dev-libs/atk
+	|| (
+		>=app-accessibility/at-spi2-core-2.46.0:2
+		dev-libs/atk
+	)
+	>=dev-libs/dbus-glib-0.80:0
 	>=dev-libs/glib-2.50:2
 	>=dev-libs/libmateweather-1.17.0
 	dev-libs/libxml2:2
 	>=gnome-base/dconf-0.13.4
+	>=gnome-base/librsvg-2.36.2:2
 	>=mate-base/mate-desktop-1.17.0
 	>=mate-base/mate-menus-1.21.0
 	>=sys-apps/dbus-1.1.2
 	>=x11-libs/cairo-1.0.0[X?]
-	>=x11-libs/gdk-pixbuf-2.26.0:2
+	>=x11-libs/gdk-pixbuf-2.25.2:2
 	>=x11-libs/gtk+-3.22:3[introspection?]
 	x11-libs/libICE
 	x11-libs/libSM
