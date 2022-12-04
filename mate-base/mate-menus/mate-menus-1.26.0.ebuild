@@ -1,4 +1,4 @@
-# Copyright 1999-2021 Gentoo Authors
+# Copyright 1999-2022 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=7
@@ -7,8 +7,8 @@ GNOME2_LA_PUNT="yes"
 
 inherit mate
 
-if [[ ${PV} != 9999 ]]; then
-	KEYWORDS="~amd64"
+if [[ "${PV}" != *9999 ]]; then
+	KEYWORDS="~amd64 ~arm ~arm64 ~loong ~riscv ~x86"
 fi
 
 DESCRIPTION="MATE menu system, implementing the F.D.O cross-desktop spec"
@@ -23,10 +23,11 @@ COMMON_DEPEND=">=dev-libs/glib-2.50:2
 
 RDEPEND="${COMMON_DEPEND}"
 
-DEPEND="${COMMON_DEPEND}
+BDEPEND="
 	>=sys-devel/gettext-0.19.8
 	virtual/pkgconfig
 "
+DEPEND="${COMMON_DEPEND}"
 
 src_configure() {
 	# Do NOT compile with --disable-debug/--enable-debug=no as it disables API
