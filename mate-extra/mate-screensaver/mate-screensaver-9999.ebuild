@@ -1,12 +1,12 @@
-# Copyright 1999-2021 Gentoo Authors
+# Copyright 1999-2022 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=6
+EAPI=7
 
 inherit mate readme.gentoo-r1
 
-if [[ ${PV} != 9999 ]]; then
-	KEYWORDS="~amd64 ~arm ~arm64 ~x86"
+if [[ "${PV}" != *9999 ]]; then
+	KEYWORDS="~amd64 ~arm ~arm64 ~loong ~riscv ~x86"
 fi
 
 DESCRIPTION="Replaces xscreensaver, integrating with the MATE desktop"
@@ -18,7 +18,7 @@ REQUIRED_USE="?? ( elogind systemd )"
 
 COMMON_DEPEND="
 	>=dev-libs/dbus-glib-0.71:0
-	>=dev-libs/glib-2.50:2
+	>=dev-libs/glib-2.58:2
 	gnome-base/dconf
 	>=mate-base/libmatekbd-1.17.0
 	>=mate-base/mate-desktop-1.17.0
@@ -45,10 +45,9 @@ COMMON_DEPEND="
 RDEPEND="${COMMON_DEPEND}
 	>=mate-base/mate-session-manager-1.6
 	virtual/libintl
-	!!<gnome-extra/gnome-screensaver-3
 "
 
-DEPEND="${COMMON_DEPEND}
+BDEPEND="${COMMON_DEPEND}
 	dev-libs/libxml2
 	>=sys-devel/gettext-0.19.8:*
 	x11-base/xorg-proto
