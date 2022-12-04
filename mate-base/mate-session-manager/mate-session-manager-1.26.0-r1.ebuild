@@ -1,12 +1,12 @@
-# Copyright 1999-2021 Gentoo Authors
+# Copyright 1999-2022 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=7
 
 inherit mate
 
-if [[ ${PV} != 9999 ]]; then
-	KEYWORDS="~amd64"
+if [[ "${PV}" != *9999 ]]; then
+	KEYWORDS="~amd64 ~arm ~arm64 ~loong ~riscv ~x86"
 fi
 
 DESCRIPTION="MATE session manager"
@@ -50,11 +50,12 @@ RDEPEND="${COMMON_DEPEND}
 	x11-misc/xdg-user-dirs
 	x11-misc/xdg-user-dirs-gtk
 	gnome-keyring? ( gnome-base/gnome-keyring )
-	!<gnome-base/gdm-2.20.4
 "
 
 DEPEND="${COMMON_DEPEND}
 	>=dev-lang/perl-5
+"
+BDEPEND="
 	dev-util/glib-utils
 	>=sys-devel/gettext-0.19.8
 	virtual/pkgconfig
