@@ -5,7 +5,7 @@ EAPI=7
 
 MATE_LA_PUNT="yes"
 
-PYTHON_COMPAT=( python3_{8..11} )
+PYTHON_COMPAT=( python3_{8..10} )
 
 inherit linux-info mate python-single-r1
 
@@ -17,7 +17,7 @@ DESCRIPTION="Store, Sync and Share Files Online"
 LICENSE="CC-BY-ND-3.0 GPL-3+ public-domain"
 SLOT="0"
 
-IUSE="debug nls"
+IUSE="debug"
 REQUIRED_USE="${PYTHON_REQUIRED_USE}"
 
 COMMON_DEPEND="${PYTHON_DEPS}
@@ -66,8 +66,7 @@ src_prepare() {
 
 src_configure() {
 	mate_src_configure \
-		$(use_enable debug) \
-		$(use_enable nls)
+		$(use_enable debug)
 }
 
 src_install() {
