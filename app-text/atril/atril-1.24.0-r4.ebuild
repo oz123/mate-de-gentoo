@@ -1,32 +1,30 @@
-# Copyright 1999-2020 Gentoo Authors
+# Copyright 1999-2022 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=6
+EAPI=7
 
 MATE_LA_PUNT="yes"
 
-inherit mate
+PYTHON_COMPAT=( python3_{7..9} )
 
-if [[ ${PV} != 9999 ]]; then
-	KEYWORDS="~amd64 ~arm ~arm64 ~x86"
+inherit mate python-any-r1 virtualx
+
+if [[ "${PV}" != *9999 ]]; then
+	KEYWORDS="~amd64 ~arm ~arm64 ~loong ~riscv ~x86"
 fi
 
 DESCRIPTION="Atril document viewer for MATE"
-LICENSE="GPL-2"
+LICENSE="FDL-1.1+ GPL-2+ GPL-3+ LGPL-2+ LGPL-2.1+"
 SLOT="0"
 
-IUSE="caja dbus debug djvu dvi epub +introspection gnome-keyring +postscript +synctex t1lib tiff xps"
-
-PATCHES=(
-	"${FILESDIR}/${PN}-1.23.2-Make-synctex-optional.patch"
-	)
+IUSE="caja dbus debug djvu dvi epub +introspection gnome-keyring +postscript synctex t1lib test tiff xps"
 
 REQUIRED_USE="t1lib? ( dvi )"
 
-RDEPEND="
+COMMON_DEPEND="
+	app-accessibility/at-spi2-core:2
 	>=app-text/poppler-0.22[cairo]
-	dev-libs/atk
-	>=dev-libs/glib-2.62.0
+	>=dev-libs/glib-2.62:2
 	>=dev-libs/libxml2-2.5:2
 	sys-libs/zlib
 	x11-libs/gdk-pixbuf:2
@@ -49,32 +47,48 @@ RDEPEND="
 	gnome-keyring? ( >=app-crypt/libsecret-0.5 )
 	introspection? ( >=dev-libs/gobject-introspection-0.6:= )
 	postscript? ( >=app-text/libspectre-0.2 )
-	synctex? ( app-text/texlive-core )
+	synctex? ( virtual/tex-base )
 	tiff? ( >=media-libs/tiff-3.6:0 )
 	xps? ( >=app-text/libgxps-0.2.1 )
-	!!app-text/mate-document-viewer"
+"
 
-DEPEND="${RDEPEND}
+RDEPEND="${COMMON_DEPEND}
+	virtual/libintl
+"
+
+BDEPEND="${COMMON_DEPEND}
 	app-text/docbook-xml-dtd:4.1.2
-	app-text/rarian
 	app-text/yelp-tools
-	>=app-text/scrollkeeper-dtd-1:1.0
 	dev-util/gdbus-codegen
 	dev-util/glib-utils
 	dev-util/gtk-doc
 	dev-util/gtk-doc-am
-	>=dev-util/intltool-0.50.1
 	sys-devel/gettext
-	virtual/pkgconfig"
+	virtual/pkgconfig
+	test? ( $(python_gen_any_dep 'dev-util/dogtail[${PYTHON_USEDEP}]') )
+"
 
-# Tests use dogtail which is not available on Gentoo.
+#RESTRICT="!test? ( test )"
+# Tests use dogtail and require using accessibility services.
+# Until we figure out how to run successfully, don't run tests
 RESTRICT="test"
+
+PATCHES=(
+	"${FILESDIR}/${PN}-1.24.0-make-synctex-optional.patch"
+)
+
+python_check_deps() {
+	use test && python_has_version "dev-util/dogtail[${PYTHON_USEDEP}]"
+}
+
+pkg_setup() {
+	use test && python-any-r1_pkg_setup
+}
 
 src_configure() {
 	# Passing --disable-help would drop offline help, that would be inconsistent
 	# with helps of the most of GNOME apps that doesn't require network for that.
 	mate_src_configure \
-		--disable-tests \
 		--enable-comics \
 		--enable-pdf \
 		--enable-pixbuf \
@@ -89,8 +103,16 @@ src_configure() {
 		$(use_enable epub) \
 		$(use_enable introspection) \
 		$(use_enable postscript ps) \
-		$(use_enable t1lib) \
-		$(use_enable tiff) \
 		$(use_enable synctex) \
+		$(use_enable t1lib) \
+		$(use_enable test tests) \
+		$(use_enable tiff) \
 		$(use_enable xps)
+}
+
+src_test() {
+	export GSETTINGS_BACKEND=keyfile
+	gsettings set org.gnome.desktop.interface toolkit-accessibility true || die
+	gsettings set org.mate.interface accessibility true || die
+	virtx emake check
 }
