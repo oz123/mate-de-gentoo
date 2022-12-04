@@ -1,18 +1,17 @@
-# Copyright 1999-2020 Gentoo Authors
+# Copyright 1999-2022 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=6
+EAPI=7
 
-if [[ ${PV} == 9999 ]]; then
+if [[ "${PV}" == *9999 ]]; then
 	MATE_BRANCH=9999
 else
-	inherit eapi7-ver
 	MATE_BRANCH="$(ver_cut 1-2)"
-	KEYWORDS="~amd64 ~arm ~arm64 ~x86"
+	KEYWORDS="~amd64 ~arm ~arm64 ~loong ~riscv ~x86"
 fi
 
 DESCRIPTION="Meta package for MATE panel applets"
-HOMEPAGE="https://wiki.gentoo.org/wiki/No_homepage"
+HOMEPAGE="https://wiki.gentoo.org/wiki/Project:MATE"
 SRC_URI=""
 
 LICENSE="metapackage"
