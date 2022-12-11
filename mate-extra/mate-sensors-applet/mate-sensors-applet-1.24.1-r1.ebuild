@@ -8,7 +8,7 @@ MATE_LA_PUNT="yes"
 inherit mate
 
 if [[ "${PV}" != *9999 ]]; then
-	KEYWORDS="~amd64 ~arm ~loong ~riscv ~x86"
+	KEYWORDS="~amd64 ~arm ~arm64 ~loong ~riscv ~x86"
 fi
 
 DESCRIPTION="MATE panel applet to display readings from hardware sensors"
@@ -41,6 +41,10 @@ BDEPEND="${COMMON_DEPEND}
 
 PDEPEND="hddtemp? ( dbus? ( sys-fs/udisks:2 ) )"
 
+PATCHES=(
+	"${FILESDIR}/${PN}-1.24.1-dont-check-for-headers.patch"
+)
+
 src_configure() {
 	local udisks
 
@@ -52,6 +56,7 @@ src_configure() {
 
 	mate_src_configure \
 		--disable-netbsd \
+		--without-aticonfig \
 		$(use_enable libnotify) \
 		$(use_with lm-sensors libsensors) \
 		$(use_with video_cards_nvidia nvidia) \
