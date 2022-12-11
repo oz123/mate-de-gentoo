@@ -1,12 +1,12 @@
-# Copyright 1999-2021 Gentoo Authors
+# Copyright 1999-2022 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=6
+EAPI=7
 
 inherit mate toolchain-funcs
 
-if [[ ${PV} != 9999 ]]; then
-	KEYWORDS="amd64 ~arm ~arm64 x86"
+if [[ "${PV}" != *9999 ]]; then
+	KEYWORDS="~amd64 ~arm ~arm64 ~loong ~riscv ~x86"
 fi
 
 DESCRIPTION="The MATE System Monitor"
@@ -53,8 +53,8 @@ src_configure() {
 		if use elogind; then
 			local pkgconfig="$(tc-getPKG_CONFIG)"
 			myconf+=(
-				SYSTEMD_CFLAGS="$(${pkgconfig} --cflags "libelogind")"
-				SYSTEMD_LIBS="$(${pkgconfig} --libs "libelogind")"
+				SYSTEMD_CFLAGS="$(${pkgconfig} --cflags 'libelogind')"
+				SYSTEMD_LIBS="$(${pkgconfig} --libs 'libelogind')"
 			)
 		fi
 	else
