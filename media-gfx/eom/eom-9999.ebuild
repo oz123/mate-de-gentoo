@@ -1,22 +1,22 @@
-# Copyright 1999-2020 Gentoo Authors
+# Copyright 1999-2022 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=6
+EAPI=7
 
 inherit mate
 
-if [[ ${PV} != 9999 ]]; then
-	KEYWORDS="~amd64 ~arm ~arm64 ~x86"
+if [[ "${PV}" != *9999 ]]; then
+	KEYWORDS="~amd64 ~arm ~arm64 ~loong ~riscv ~x86"
 fi
 
 DESCRIPTION="The MATE image viewer"
 LICENSE="FDL-1.1+ GPL-2+ IJG LGPL-2+"
 SLOT="0"
 
-IUSE="X debug exif imagemagick +introspection jpeg lcms svg tiff xmp"
+IUSE="X debug exif imagemagick +introspection nls jpeg lcms svg tiff xmp"
 
 COMMON_DEPEND="
-	dev-libs/atk
+	app-accessibility/at-spi2-core:2
 	>=dev-libs/glib-2.52:2
 	>=dev-libs/libpeas-1.8.0[gtk]
 	>=dev-libs/libxml2-2:2
@@ -29,38 +29,36 @@ COMMON_DEPEND="
 	x11-libs/libX11
 	>=x11-misc/shared-mime-info-0.20
 	exif? (
-		>=media-libs/libexif-0.6.14
-		virtual/jpeg:0
+		>=media-libs/libexif-0.6.22
+		media-libs/libjpeg-turbo:=
 	)
 	imagemagick? ( >=media-gfx/imagemagick-6.2.6 )
 	introspection? ( >=dev-libs/gobject-introspection-0.9.3:= )
-	jpeg? ( virtual/jpeg:0 )
+	jpeg? ( media-libs/libjpeg-turbo:= )
 	lcms? ( media-libs/lcms:2 )
 	svg? ( >=gnome-base/librsvg-2.36.2:2 )
-	xmp? ( >=media-libs/exempi-1.99.5:2 )
+	xmp? ( >=media-libs/exempi-1.99.5:2= )
 "
 
 RDEPEND="${COMMON_DEPEND}
 	virtual/libintl
-	!!media-gfx/mate-image-viewer
 "
 
-DEPEND="${COMMON_DEPEND}
+BDEPEND="${COMMON_DEPEND}
 	app-text/yelp-tools
 	dev-util/glib-utils
 	dev-util/gtk-doc
 	dev-util/gtk-doc-am
-	>=sys-devel/gettext-0.19.8
+	sys-devel/gettext
 	virtual/pkgconfig
 "
-
-PATCHES=( "${FILESDIR}/eom-1.24.0-add-gdk-includes.patch" )
 
 src_configure() {
 	mate_src_configure \
 		--enable-thumbnailer \
 		$(use_enable debug) \
 		$(use_enable introspection) \
+		$(use_enable nls) \
 		$(use_with X x) \
 		$(use_with exif libexif) \
 		$(usex imagemagick \
