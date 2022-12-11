@@ -1,24 +1,27 @@
-# Copyright 1999-2020 Gentoo Authors
+# Copyright 1999-2022 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=6
+EAPI=7
 
 MATE_LA_PUNT="yes"
 
 inherit mate
 
-if [[ ${PV} != 9999 ]]; then
-	KEYWORDS="~amd64 ~arm ~arm64 ~x86"
+if [[ "${PV}" != *9999 ]]; then
+	KEYWORDS="~amd64 ~arm ~arm64 ~loong ~riscv ~x86"
 fi
 
 DESCRIPTION="MATE Notification daemon"
-LICENSE="GPL-2"
+LICENSE="GPL-2+ GPL-3+"
 SLOT="0"
 
 IUSE=""
 
-COMMON_DEPEND="dev-libs/atk
+COMMON_DEPEND="
+	app-accessibility/at-spi2-core:2
 	>=dev-libs/glib-2.50:2
+	>=dev-libs/libxml2-2.9.0
+	>=media-libs/libcanberra-0.4:0[gtk3]
 	>=sys-apps/dbus-1
 	x11-libs/cairo
 	>=x11-libs/gdk-pixbuf-2.22:2
@@ -27,24 +30,20 @@ COMMON_DEPEND="dev-libs/atk
 	virtual/libintl
 	>=x11-libs/gtk+-3.22:3
 	>=x11-libs/libwnck-3:3
-	>=media-libs/libcanberra-0.4:0[gtk3]
+"
+
+RDEPEND="${COMMON_DEPEND}
 	!x11-misc/notify-osd
-	!x11-misc/qtnotifydaemon
-	!x11-misc/notification-daemon"
+	!x11-misc/notification-daemon
+"
 
-RDEPEND="${COMMON_DEPEND}"
-
-DEPEND="${COMMON_DEPEND}
+BDEPEND="${COMMON_DEPEND}
 	app-arch/xz-utils
 	dev-util/gdbus-codegen
-	>=dev-util/intltool-0.50.1
-	sys-devel/gettext:*
+	sys-devel/gettext
 	>=sys-devel/libtool-2.2.6:2
-	virtual/pkgconfig:*"
-
-src_configure() {
-	mate_src_configure
-}
+	virtual/pkgconfig
+"
 
 src_install() {
 	mate_src_install
