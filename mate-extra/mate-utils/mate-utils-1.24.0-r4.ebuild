@@ -1,24 +1,25 @@
-# Copyright 1999-2020 Gentoo Authors
+# Copyright 1999-2022 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=6
+EAPI=7
 
 MATE_LA_PUNT="yes"
 
 inherit mate
 
-if [[ ${PV} != 9999 ]]; then
-	KEYWORDS="~amd64 ~arm ~arm64 ~x86"
+if [[ "${PV}" != *9999 ]]; then
+	KEYWORDS="~amd64 ~arm ~arm64 ~loong ~riscv ~x86"
 fi
 
 DESCRIPTION="Utilities for the MATE desktop"
-LICENSE="GPL-2"
+LICENSE="FDL-1.1+ GPL-2+ GPL-3+ LGPL-2+"
 SLOT="0"
 
-IUSE="X applet debug ipv6 test"
+IUSE="X applet debug ipv6 test udisks"
+RESTRICT="!test? ( test )"
 
-RDEPEND="
-	dev-libs/atk
+COMMON_DEPEND="
+	app-accessibility/at-spi2-core:2
 	>=dev-libs/glib-2.50:2
 	>=gnome-base/libgtop-2.12:2=
 	>=media-libs/libcanberra-0.4[gtk3]
@@ -31,24 +32,25 @@ RDEPEND="
 	x11-libs/libX11
 	x11-libs/libXext
 	x11-libs/pango
-	applet? ( >=mate-base/mate-panel-1.17.0 )"
+	applet? ( >=mate-base/mate-panel-1.17.0 )
+	udisks? ( >=sys-fs/udisks-1.90.0:2 )
+"
 
-DEPEND="${RDEPEND}
-	app-text/rarian
-	>=app-text/scrollkeeper-dtd-1:1.0
+RDEPEND="${COMMON_DEPEND}
+	mate-base/mate-desktop
+	virtual/libintl
+"
+
+BDEPEND="${COMMON_DEPEND}
 	app-text/yelp-tools
+	dev-libs/libxml2
 	dev-util/glib-utils
 	dev-util/gtk-doc
 	dev-util/gtk-doc-am
-	>=dev-util/intltool-0.50.1
-	gnome-base/librsvg
-	sys-devel/gettext
-	sys-fs/udisks:2
+	>=sys-devel/gettext-0.19.8
 	virtual/pkgconfig
-	x11-base/xorg-proto"
-
-# This patch is already upstreamed
-#PATCHES=( "${FILESDIR}/${PN}-1.22.1-make-inkscape-optional.patch" )
+	x11-base/xorg-proto
+"
 
 src_prepare() {
 	# Make apps visible in all DEs.
@@ -60,10 +62,10 @@ src_prepare() {
 
 src_configure() {
 	mate_src_configure \
-		--disable-maintainer-flags \
 		--enable-zlib \
 		--enable-debug=$(usex debug yes minimum) \
 		$(use_with X x) \
 		$(use_enable applet gdict-applet) \
-		$(use_enable ipv6)
+		$(use_enable ipv6) \
+		$(use_enable udisks disk_image_mounter)
 }
