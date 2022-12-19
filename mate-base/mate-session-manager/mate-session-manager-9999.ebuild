@@ -1,12 +1,12 @@
-# Copyright 1999-2021 Gentoo Authors
+# Copyright 1999-2022 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=6
+EAPI=7
 
 inherit mate
 
-if [[ ${PV} != 9999 ]]; then
-	KEYWORDS="~amd64 ~arm ~arm64 ~x86"
+if [[ "${PV}" != *9999 ]]; then
+	KEYWORDS="~amd64 ~arm ~arm64 ~loong ~riscv ~x86"
 fi
 
 DESCRIPTION="MATE session manager"
@@ -14,7 +14,7 @@ HOMEPAGE="https://mate-desktop.org/"
 
 LICENSE="GPL-2+ GPL-3+ HPND LGPL-2+ LGPL-2.1+"
 SLOT="0"
-IUSE="debug elogind gles2 gnome-keyring ipv6 systemd +xtrans"
+IUSE="debug elogind gles2 gnome-keyring nls systemd +xtrans"
 
 REQUIRED_USE="^^ ( elogind systemd )"
 
@@ -50,11 +50,12 @@ RDEPEND="${COMMON_DEPEND}
 	x11-misc/xdg-user-dirs
 	x11-misc/xdg-user-dirs-gtk
 	gnome-keyring? ( gnome-base/gnome-keyring )
-	!<gnome-base/gdm-2.20.4
 "
 
 DEPEND="${COMMON_DEPEND}
 	>=dev-lang/perl-5
+"
+BDEPEND="
 	dev-util/glib-utils
 	>=sys-devel/gettext-0.19.8
 	virtual/pkgconfig
@@ -64,12 +65,13 @@ MATE_FORCE_AUTORECONF=true
 
 src_configure() {
 	mate_src_configure \
+		--enable-ipv6 \
 		$(use_with elogind) \
 		$(use_with gles2 libglesv2) \
 		$(use_with systemd) \
 		$(use_with xtrans)  \
 		$(use_enable debug) \
-		$(use_enable ipv6)
+		$(use_enable nls)
 }
 
 src_install() {

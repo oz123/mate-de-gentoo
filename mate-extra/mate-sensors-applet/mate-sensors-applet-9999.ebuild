@@ -1,14 +1,14 @@
-# Copyright 1999-2020 Gentoo Authors
+# Copyright 1999-2022 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=6
+EAPI=7
 
 MATE_LA_PUNT="yes"
 
 inherit mate
 
-if [[ ${PV} != 9999 ]]; then
-	KEYWORDS="~amd64 ~arm ~x86"
+if [[ "${PV}" != *9999 ]]; then
+	KEYWORDS="~amd64 ~arm ~loong ~riscv ~x86"
 fi
 
 DESCRIPTION="MATE panel applet to display readings from hardware sensors"
@@ -33,9 +33,7 @@ RDEPEND="${COMMON_DEPEND}
 	virtual/libintl
 "
 
-DEPEND="${COMMON_DEPEND}
-	app-text/rarian
-	>=app-text/scrollkeeper-dtd-1:1.0
+BDEPEND="${COMMON_DEPEND}
 	app-text/yelp-tools
 	>=sys-devel/gettext-0.19.8
 	virtual/pkgconfig
@@ -54,7 +52,6 @@ src_configure() {
 
 	mate_src_configure \
 		--disable-netbsd \
-		--without-aticonfig \
 		$(use_enable libnotify) \
 		$(use_with lm-sensors libsensors) \
 		$(use_with video_cards_nvidia nvidia) \

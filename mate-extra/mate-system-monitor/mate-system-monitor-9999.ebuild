@@ -1,19 +1,19 @@
-# Copyright 1999-2021 Gentoo Authors
+# Copyright 1999-2022 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=6
+EAPI=7
 
 inherit mate toolchain-funcs
 
-if [[ ${PV} != 9999 ]]; then
-	KEYWORDS="~amd64 ~arm ~arm64 ~x86"
+if [[ "${PV}" != *9999 ]]; then
+	KEYWORDS="~amd64 ~arm ~arm64 ~loong ~riscv ~x86"
 fi
 
 DESCRIPTION="The MATE System Monitor"
 
 LICENSE="FDL-1.1+ GPL-2+ LGPL-2+"
 SLOT="0"
-IUSE="elogind systemd"
+IUSE="elogind systemd wnck"
 
 REQUIRED_USE="?? ( elogind systemd )"
 
@@ -61,5 +61,6 @@ src_configure() {
 		myconf+=( --disable-systemd )
 	fi
 
-	mate_src_configure "${myconf[@]}"
+	mate_src_configure "${myconf[@]}" \
+		$(use_enable wnck)
 }

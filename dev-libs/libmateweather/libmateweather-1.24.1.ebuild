@@ -1,14 +1,14 @@
-# Copyright 1999-2021 Gentoo Authors
+# Copyright 1999-2022 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=6
+EAPI=7
 
 MATE_LA_PUNT="yes"
 
 inherit mate
 
-if [[ ${PV} != 9999 ]]; then
-	KEYWORDS="amd64 ~arm ~arm64 x86"
+if [[ "${PV}" != *9999 ]]; then
+	KEYWORDS="amd64 ~arm ~arm64 ~riscv x86"
 fi
 
 DESCRIPTION="MATE library to access weather information from online services"
@@ -17,7 +17,8 @@ SLOT="0"
 
 IUSE="debug"
 
-COMMON_DEPEND=">=dev-libs/glib-2.50:2
+COMMON_DEPEND="
+	>=dev-libs/glib-2.50:2
 	>=dev-libs/libxml2-2.6:2
 	>=net-libs/libsoup-2.54:2.4
 	>=sys-libs/timezone-data-2010k:0

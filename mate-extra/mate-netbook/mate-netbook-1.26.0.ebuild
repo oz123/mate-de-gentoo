@@ -1,12 +1,12 @@
-# Copyright 1999-2021 Gentoo Authors
+# Copyright 1999-2022 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=7
 
 inherit mate
 
-if [[ ${PV} != 9999 ]]; then
-	KEYWORDS="~amd64"
+if [[ "${PV}" != *9999 ]]; then
+	KEYWORDS="~amd64 ~arm ~arm64 ~loong ~riscv ~x86"
 fi
 
 DESCRIPTION="MATE utilities for netbooks"
@@ -24,12 +24,15 @@ COMMON_DEPEND="
 	x11-libs/libXtst
 	x11-libs/libX11
 	x11-libs/cairo
-	virtual/libintl"
+"
 
-RDEPEND="${COMMON_DEPEND}"
+RDEPEND="${COMMON_DEPEND}
+	virtual/libintl
+"
 
-DEPEND="${COMMON_DEPEND}
+BDEPEND="${COMMON_DEPEND}
 	x11-base/xorg-proto
 	>=dev-util/intltool-0.50.1
-	sys-devel/gettext:*
-	virtual/pkgconfig:*"
+	>=sys-devel/gettext-0.19.8
+	virtual/pkgconfig
+"
