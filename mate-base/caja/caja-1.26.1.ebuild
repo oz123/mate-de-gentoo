@@ -5,10 +5,10 @@ EAPI=7
 
 MATE_LA_PUNT="yes"
 
-inherit mate virtualx
+inherit mate
 
-if [[ "${PV}" != *9999 ]]; then
-	KEYWORDS="~amd64 ~arm ~arm64 ~loong ~riscv ~x86"
+if [[ ${PV} != 9999 ]]; then
+	KEYWORDS="amd64 ~arm ~arm64 ~loong ~riscv x86"
 fi
 
 DESCRIPTION="Caja file manager for the MATE desktop"
@@ -18,7 +18,10 @@ SLOT="0"
 IUSE="+introspection +mate nls xmp"
 
 COMMON_DEPEND="
-	app-accessibility/at-spi2-core:2
+	|| (
+		>=app-accessibility/at-spi2-core-2.46.0:2
+		dev-libs/atk
+	)
 	>=dev-libs/glib-2.58.1:2
 	>=dev-libs/libxml2-2.4.7:2
 	gnome-base/dconf
@@ -41,8 +44,7 @@ COMMON_DEPEND="
 	xmp? ( >=media-libs/exempi-1.99.5:2= )
 "
 
-BDEPEND="
-	${COMMON_DEPEND}
+BDEPEND="${COMMON_DEPEND}
 	>=dev-lang/perl-5:=
 	dev-util/gdbus-codegen
 	dev-util/glib-utils
@@ -78,7 +80,7 @@ src_test() {
 	unset SESSION_MANAGER
 	unset DBUS_SESSION_BUS_ADDRESS
 
-	virtx emake check || die "Test phase failed"
+	Xemake check || die "Test phase failed"
 }
 
 pkg_postinst() {
