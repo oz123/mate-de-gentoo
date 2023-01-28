@@ -22,8 +22,6 @@ if [[ ${PV} == 9999 ]]; then
 	inherit git-r3
 fi
 
-[[ ${EAPI:-0} -eq 7 ]] && inherit eapi7-ver
-
 # @ECLASS_VARIABLE: MATE_TARBALL_SUFFIX
 # @INTERNAL
 # @DESCRIPTION:
