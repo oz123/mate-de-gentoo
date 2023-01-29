@@ -1,0 +1,5 @@
+cd $(dirname $1)
+
+git rm $(basename $1)
+
+pkgdev commit
