@@ -61,6 +61,10 @@ DEPEND="${COMMON_DEPEND}
 
 MATE_FORCE_AUTORECONF=true
 
+PATCHES=(
+	"${FILESDIR}"/pluma-1.26.0-fortify-source-3.patch
+)
+
 src_prepare() {
 	# Test require gvfs sftp fs mounted and schema's installed. Skip this one.
 	# https://github.com/mate-desktop/mate-text-editor/issues/33
