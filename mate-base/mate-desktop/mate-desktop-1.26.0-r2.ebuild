@@ -1,4 +1,4 @@
-# Copyright 1999-2022 Gentoo Authors
+# Copyright 1999-2023 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=7
@@ -43,6 +43,10 @@ BDEPEND="
 DEPEND="${COMMON_DEPEND}
 	x11-base/xorg-proto
 "
+
+PATCHES=(
+	"${FILESDIR}/${P}--blow_expensive_caches--use_after_free.patch"
+)
 
 src_configure() {
 	mate_src_configure \
