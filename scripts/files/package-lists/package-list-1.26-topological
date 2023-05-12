@@ -38,7 +38,6 @@ app-editors/pluma
 app-editors/pluma-pluma-plugins
 dev-python/python-caja
 mate-extra/caja-admin
-mate-extra/caja-hide
 x11-themes/mate-themes
 x11-themes/mate-themes-meta
 mate-extra/mate-calc
