@@ -6,6 +6,7 @@ set -e
 # Configuration
 GENTOO_REPO="/var/db/repos/gentoo"
 OVERLAY_REPO="/var/db/repos/mate-de-gentoo"
+PACKAGE_LIST="${OVERLAY_REPO}/scripts/files/package-lists/package-list-1.28-topological"
 GIT_AUTHOR="Oz Tiram"
 GIT_EMAIL="oz. tiram@gmail.com"
 
@@ -166,33 +167,28 @@ sync_package() {
 
 # Main function
 main() {
-    # List of MATE packages to sync
-    # Format: "category:package1 package2 package3"
-    
-    MATE_PACKAGES=(
-        "mate-base:mate-common mate-desktop mate-menus mate-panel mate-session-manager mate-settings-daemon mate-control-center"
-        "mate-extra:mate-utils mate-system-monitor mate-power-manager mate-screensaver mate-sensors-applet mate-user-guide"
-        "x11-terms:mate-terminal"
-        "x11-misc:mozo"
-        "app-editors:pluma"
-        "app-text:atril"
-        "media-gfx:eom"
-        "app-arch:engrampa"
-    )
-    
     echo -e "${GREEN}Starting MATE packages sync from Gentoo to overlay${NC}"
     echo -e "Gentoo repo: $GENTOO_REPO"
-    echo -e "Overlay repo: $OVERLAY_REPO\n"
+    echo -e "Overlay repo: $OVERLAY_REPO"
+    echo -e "Package list: $PACKAGE_LIST\n"
     
-    # Sync each package
-    for entry in "${MATE_PACKAGES[@]}"; do
-        category="${entry%%:*}"
-        packages="${entry#*:}"
+    # Check if package list exists
+    if [[ ! -f "$PACKAGE_LIST" ]]; then
+        echo -e "${RED}Error: Package list not found at $PACKAGE_LIST${NC}"
+        exit 1
+    fi
+    
+    # Read package list and sync each package
+    while IFS= read -r line; do
+        # Skip empty lines and comments
+        [[ -z "$line" || "$line" =~ ^[[:space:]]*# ]] && continue
         
-        for package in $packages; do
-            sync_package "$category" "$package"
-        done
-    done
+        # Parse category/package
+        category="${line%%/*}"
+        package="${line##*/}"
+        
+        sync_package "$category" "$package"
+    done < "$PACKAGE_LIST"
     
     echo -e "\n${GREEN}=== Sync completed ===${NC}"
 }
