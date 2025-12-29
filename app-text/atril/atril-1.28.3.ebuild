@@ -25,7 +25,7 @@ DEPEND="
 	>=mate-base/mate-desktop-$(ver_cut 1-2)
 	sys-libs/zlib
 	x11-libs/gdk-pixbuf:2
-	x11-libs/gtk+:3[introspection?]
+	x11-libs/gtk+:3[X(+),introspection?]
 	x11-libs/libICE
 	x11-libs/libSM:0
 	x11-libs/libX11
