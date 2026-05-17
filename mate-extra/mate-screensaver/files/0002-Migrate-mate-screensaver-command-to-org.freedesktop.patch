@@ -1,0 +1,30 @@
+From 9030c30cae3a7f7c3f0471b3ee935746569fbfab Mon Sep 17 00:00:00 2001
+From: Oz Tiram <oz.tiram@gmail.com>
+Date: Fri, 21 Jun 2024 21:24:47 +0200
+Subject: [PATCH 2/2] Migrate mate-screensaver-command to
+ org.freedesktop.Screensaver
+
+---
+ src/mate-screensaver-command.c | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+
+diff --git a/src/mate-screensaver-command.c b/src/mate-screensaver-command.c
+index a233ebe..5dd7dd5 100644
+--- a/src/mate-screensaver-command.c
++++ b/src/mate-screensaver-command.c
+@@ -34,9 +34,9 @@
+ #include <dbus/dbus-glib.h>
+ #include <dbus/dbus-glib-lowlevel.h>
+ 
+-#define GS_SERVICE   "org.mate.ScreenSaver"
+-#define GS_PATH      "/org/mate/ScreenSaver"
+-#define GS_INTERFACE "org.mate.ScreenSaver"
++#define GS_SERVICE   "org.freedesktop.ScreenSaver"
++#define GS_PATH      "/org/freedesktop/ScreenSaver"
++#define GS_INTERFACE "org.freedesktop.ScreenSaver"
+ 
+ static gboolean do_quit       = FALSE;
+ static gboolean do_lock       = FALSE;
+-- 
+2.43.2
+
