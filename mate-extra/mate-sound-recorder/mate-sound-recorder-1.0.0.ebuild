@@ -3,7 +3,7 @@
 
 EAPI=8
 
-PYTHON_COMPAT=( python3_{11..13} )
+PYTHON_COMPAT=( python3_{12..14} )
 
 inherit meson python-single-r1 xdg
 
@@ -20,7 +20,9 @@ REQUIRED_USE="${PYTHON_REQUIRED_USE}"
 
 RDEPEND="
 	${PYTHON_DEPS}
-	dev-python/pygobject:3[${PYTHON_SINGLE_USEDEP}]
+	$(python_gen_cond_dep '
+		dev-python/pygobject:3[${PYTHON_USEDEP}]
+	')
 	>=dev-libs/glib-2.39.3:2
 	>=dev-libs/gobject-introspection-1.31.6
 	>=x11-libs/gtk+-3.22.0:3[introspection]
